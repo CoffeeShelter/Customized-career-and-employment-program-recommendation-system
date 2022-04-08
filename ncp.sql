@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS NCP;
 
+# DROP DATABASE IF EXISTS NCP;
+
 USE NCP;
 #########################################################################################
 #                                     학생 정보 (임시)                                     #
@@ -170,7 +172,7 @@ CREATE TABLE IF NOT EXISTS Program_Instance (
     operating_state varchar(2) NOT NULL,
     operating_result int NOT NULL,
     operating_department varchar(20) NOT NULL,
-    primary key(code),
+    primary key(code, open_year, open_term),
     foreign key(code) references Program_Information (code),
     foreign key(operating_method) references Program_Operating_Method (code),
     foreign key(college_number) references College_Information (code),
@@ -181,6 +183,8 @@ CREATE TABLE IF NOT EXISTS Program_Instance (
     foreign key(manager) references Manager_Information (staff_id),
     foreign key(operating_state) references Operating_State (code)
 );
+
+desc Program_Instance;
 
 #########################################################################################
 #                              학생 정보 (프로그램 수강 선호 조건)                              #
@@ -194,9 +198,48 @@ CREATE TABLE IF NOT EXISTS Preference_Information (
     start_day date NOT NULL,
     end_day date NOT NULL,
     operating_method varchar(3) NOT NULL,
-    target_student int NOT NULL,
 	primary key(university_number),
     foreign key(university_number) references Student (university_number),
     foreign key(NCS_part) references NCS_Part (code),
     foreign key(operating_method) references Program_Operating_Method (code)
+);
+
+# 비교과 프로그램 참여 평가 결과 정보
+# 비교과 프로그램 참여 결과에 대한 카테고리 정보를 저장
+CREATE TABLE IF NOT EXISTS Evaluation_Result_Category (
+	code varchar(2) NOT NULL,
+    category_name varchar(20) NOT NULL,
+    primary key(code)
+);
+
+# 비교과 참여 이력 정보
+# 학생이 현재까지 비교과 프로그램 참여 이력 및 수료한 정보를 저장
+CREATE TABLE IF NOT EXISTS Program_Participation_History (
+	university_number varchar(9) NOT NULL,
+    code varchar(10) NOT NULL,
+    open_year date NOT NULL,
+    end_term int NOT NULL,
+    evaluation_result varchar(2) NOT NULL,
+	foreign key(university_number) references Student (university_number),
+    foreign key(code) references Program_Instance (code),
+    foreign key(evaluation_result) references Evaluation_Result_Category (code)
+);
+
+#########################################################################################
+#                                  추천 프로그램 관련 정보                                    #
+#########################################################################################
+
+# 비교과 프로그램 추천 결과 정보
+# Rlogic에 의해 모집 중에 있는 프로그램에 대한 추천 적합 도를 계산한 결과를 저장(알고리즘 단계별 적합 도는 View로 처리)
+CREATE TABLE IF NOT EXISTS Recommendation_Result (
+	code varchar(10) NOT NULL,
+    open_year date NOT NULL,
+    open_term int NOT NULL,
+    university_number varchar(9) NOT NULL,
+    capability_category varchar(3) NOT NULL,
+    recommendation_degree float NOT NULL,
+    primary key(university_number),
+	foreign key(code, open_year, open_term) references Program_Instance (code, open_year, open_term),
+	foreign key(university_number) references Student (university_number),
+	foreign key(capability_category) references Program_Information (TALENT_capability)
 );
