@@ -92,6 +92,7 @@ insert into college_information values ('7', '미래대학');
 select * from college_information;
 
 # 학부 정보
+insert into department_information values ('00', '전체학부');
 insert into department_information values ('21', '경영학부');
 insert into department_information values ('22', '국제학부');
 insert into department_information values ('31', '경찰학부');
@@ -150,58 +151,70 @@ insert into Operating_State values ('0', '전체');
 select * from Operating_State;
 
 # 비교과 프로그램
-/*
-	code varchar(10) NOT NULL,
-    program_name varchar(200) NOT NULL,
-    category_large varchar(3) NOT NULL,
-    category_middle varchar(3) NOT NULL,
-    operating_type varchar(3) NOT NULL,
-    related_NCS_part varchar(3) NOT NULL,
-    period date NOT NULL,
-    completation_time int NOT NULL,
-    TALENT_capability varchar(3),
-    TALENT_reflection_rate int,
-    previous_program varchar(10),
-    after_program varchar(10),
-    program_goal text NOT NULL,
-    grogram_detail text,
-    primary key(code),
-    foreign key(category_large) references Program_Large_Category (code),
-    foreign key(category_middle) references Program_Middle_Category (code),
-    foreign key(operating_type) references Program_Operating_Type (code),
-    foreign key(related_NCS_part) references NCS_Part (code),
-    foreign key(TALENT_capability) references TALENT_Capability (code),
-    foreign key(previous_program) references Program_Information (code),
-    foreign key(after_program) references Program_Information (code)
-*/
+insert ignore into Program_Information ( code, program_name, category_large, category_middle, operating_type, related_NCS_part, completation_time, TALENT_capability, TALENT_reflection_rate, program_goal, grogram_detail )
+values ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '1', 0, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '2', 0, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '3', 70, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '4', 0, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '5', 30, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '6', 0, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '1', 0, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '2', 0, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '3', 70, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '4', 0, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '5', 30, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        ( '11002', 'E-DISC 진단검사', '1', '1', '1', '00', 1, '6', 0, 
+		'E-DISC 검사를 통한 행동유형별 직무매칭 검사', 
+		'전학년 대상 E-DISC 검사 실시' ),
+        
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '1', 40, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' ),
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '2', 20, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' ),
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '3', 20, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' ),
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '4', 20, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' ),
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '5', 0, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' ),
+        ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '6', 0, 
+		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
+		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' );
 
-insert into Program_Information (
-	code,
-    program_name,
-    category_large,
-    category_middle,
-    operating_type,
-    related_NCS_part,
-    completation_time,
-    TALENT_capability, 
-	TALENT_reflection_rate,
-    program_goal,
-    grogram_detail
-) values (
-	'11001',
-    '진로취업 SEOCH 진로진단검사',
-    '1',
-    '1',
-    '1',
-    '00',
-    1,
-    '3',
-    70,
-    '진로진단검사를 통한 진로수준 파악',
-    '전학년 대상 진로개발준비도검사 실시'
-);
+# 개설 유형
+# 1: 기존
+# 2: 신규
+insert into Program_Instance
+values ('11001', 1, '2022', 1, '2021-03-01', '2022-02-01', '01:00:00', '2', -1, 0, '0', '00', '00000', '0', '0', '223099', '1', 0, '서원대학교');
 
-delete from Program_Information where code = '11001';
-select * from Program_Information;
+select * from Program_Instance;
 
 desc Program_information;
