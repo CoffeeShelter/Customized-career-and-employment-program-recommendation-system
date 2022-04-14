@@ -103,3 +103,104 @@ insert into department_information values ('61', '호텔외식조리학부');
 insert into department_information values ('62', '레저스포츠학부');
 insert into department_information values ('71', '비전학부');
 select * from department_information;
+
+# 학과전공 정보
+insert into Major_Information values ('00000', '전체학과');
+insert into Major_Information values ('10001', '국어교육과');
+insert into Major_Information values ('10002', '영어교육과');
+insert into Major_Information values ('22203', '영어전공');
+insert into Major_Information values ('33101', '경찰행정전공');
+insert into Major_Information values ('33102', '범죄수사전공');
+insert into Major_Information values ('30001', '소방행정학과');
+select * from Major_Information;
+
+# 학년 정보
+insert into Student_Grade values ('0', '전학년');
+insert into Student_Grade values ('1', '1학년');
+insert into Student_Grade values ('2', '2학년');
+insert into Student_Grade values ('3', '3학년');
+insert into Student_Grade values ('4', '4학년');
+insert into Student_Grade values ('5', '저학년');
+insert into Student_Grade values ('6', '고학년');
+insert into Student_Grade values ('7', '졸업유예자');
+insert into Student_Grade values ('8', '졸업자');
+select * from Student_Grade;
+
+# 성별 정보
+insert into Student_Sex values ('0', '전체');
+insert into Student_Sex values ('1', '남학생');
+insert into Student_Sex values ('2', '여학생');
+select * from Student_Sex;
+
+# 프로그램 운영 담당자 정보
+insert into Manager_information values ('223099', '장미정');
+insert into Manager_information values ('223100', '조혜련');
+insert into Manager_information values ('223101', '이미예');
+insert into Manager_information values ('223102', '박경의');
+insert into Manager_information values ('223103', '김동윤');
+select * from Manager_information;
+
+# 프로그램 운영 상황 정보
+insert into Operating_State values ('1', '모집중');
+insert into Operating_State values ('2', '운영중');
+insert into Operating_State values ('3', '운영완료');
+insert into Operating_State values ('4', '결과분석중');
+insert into Operating_State values ('5', '결과보고완료');
+insert into Operating_State values ('0', '전체');
+select * from Operating_State;
+
+# 비교과 프로그램
+/*
+	code varchar(10) NOT NULL,
+    program_name varchar(200) NOT NULL,
+    category_large varchar(3) NOT NULL,
+    category_middle varchar(3) NOT NULL,
+    operating_type varchar(3) NOT NULL,
+    related_NCS_part varchar(3) NOT NULL,
+    period date NOT NULL,
+    completation_time int NOT NULL,
+    TALENT_capability varchar(3),
+    TALENT_reflection_rate int,
+    previous_program varchar(10),
+    after_program varchar(10),
+    program_goal text NOT NULL,
+    grogram_detail text,
+    primary key(code),
+    foreign key(category_large) references Program_Large_Category (code),
+    foreign key(category_middle) references Program_Middle_Category (code),
+    foreign key(operating_type) references Program_Operating_Type (code),
+    foreign key(related_NCS_part) references NCS_Part (code),
+    foreign key(TALENT_capability) references TALENT_Capability (code),
+    foreign key(previous_program) references Program_Information (code),
+    foreign key(after_program) references Program_Information (code)
+*/
+
+insert into Program_Information (
+	code,
+    program_name,
+    category_large,
+    category_middle,
+    operating_type,
+    related_NCS_part,
+    period,
+    completation_time,
+    TALENT_capability, 
+	TALENT_reflection_rate,
+    program_goal,
+    grogram_detail
+) values (
+	'11001',
+    '진로취업 SEOCH 진로진단검사',
+    '1',
+    '1',
+    '1',
+    '00',
+    '2021-03-01',
+    1,
+    '3',
+    70,
+    '진로진단검사를 통한 진로수준 파악',
+    '전학년 대상 진로개발준비도검사 실시'
+);
+
+ select * from Program_Information;

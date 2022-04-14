@@ -16,6 +16,20 @@ CREATE TABLE IF NOT EXISTS Student (
 );
 
 #########################################################################################
+#                                     역량준비 수준 (임시)                                     #
+#########################################################################################
+
+# 학생 정보 테이블
+# 학생의 기본 정보를 저장
+CREATE TABLE IF NOT EXISTS Preparation_Level (
+	university_number varchar(9) NOT NULL,
+    capability_category varchar(20) NOT NULL,
+    preparation_degree float NOT NULL,
+    preparation_level varchar(10) NOT NULL,
+    preparation_rank int NOT NULL
+);
+
+#########################################################################################
 #                                     비교과 프로그램                                       #
 #########################################################################################
 
