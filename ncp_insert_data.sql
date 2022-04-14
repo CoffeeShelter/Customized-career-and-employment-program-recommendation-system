@@ -182,7 +182,6 @@ insert into Program_Information (
     category_middle,
     operating_type,
     related_NCS_part,
-    period,
     completation_time,
     TALENT_capability, 
 	TALENT_reflection_rate,
@@ -195,7 +194,6 @@ insert into Program_Information (
     '1',
     '1',
     '00',
-    '2021-03-01',
     1,
     '3',
     70,
@@ -203,4 +201,7 @@ insert into Program_Information (
     '전학년 대상 진로개발준비도검사 실시'
 );
 
- select * from Program_Information;
+delete from Program_Information where code = '11001';
+select * from Program_Information;
+
+desc Program_information;

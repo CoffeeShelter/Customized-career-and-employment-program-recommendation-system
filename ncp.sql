@@ -146,7 +146,7 @@ CREATE TABLE Program_Information (
     category_middle varchar(3) NOT NULL,
     operating_type varchar(3) NOT NULL,
     related_NCS_part varchar(3) NOT NULL,
-    period date NOT NULL,
+    # period date NOT NULL,
     completation_time int NOT NULL,
     TALENT_capability varchar(3),
     TALENT_reflection_rate int,
@@ -163,6 +163,10 @@ CREATE TABLE Program_Information (
     foreign key(previous_program) references Program_Information (code),
     foreign key(after_program) references Program_Information (code)
 );
+
+# use ncp;
+# alter table Program_Information drop period;
+# desc Program_Information;
 
 # 비교과 프로그램 수행이력 정보
 # 등록(개발)된 비교과 프로그램에 대한 기본 정보를 저장
