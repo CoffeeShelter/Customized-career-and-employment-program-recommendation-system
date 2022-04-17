@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.program_operating_type">
+
+	<resultMap id="program_operating_type_Result" type="Program_Operating_Type_VO">
+		<result property="code" column="code" />
+		<result property="category_name" column="category_name" />
+	</resultMap>
+
+	<!-- 상품 전체 항목 검색 -->
+	<select id="selectAll" resultMap="program_operating_type_Result"	>
+	<![CDATA[
+		select *
+		from Program_Operating_Type
+	]]>
+	</select>
+
+</mapper>

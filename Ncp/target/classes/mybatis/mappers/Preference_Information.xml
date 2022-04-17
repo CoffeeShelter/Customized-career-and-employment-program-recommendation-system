@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.preference_information">
+
+	<resultMap id="preference_information_Result" type="Preference_Information_VO">
+		<result property="university_number" column="university_number" />
+		<result property="NCS_part" column="NCS_part" />
+		<result property="start_day" column="start_day" />
+		<result property="end_day" column="end_day" />
+		<result property="operating_method" column="operating_method" />
+	</resultMap>
+
+	<!-- 상품 전체 항목 검색 -->
+	<select id="selectAll" resultMap="preference_information_Result"	>
+	<![CDATA[
+		select * from Preference_Information
+	]]>
+	</select>
+
+</mapper>
