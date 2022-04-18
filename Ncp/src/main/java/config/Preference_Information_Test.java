@@ -2,11 +2,12 @@ package config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import data.dao.Preference_Information_DAO;
+import data.dao.BaseData_DAO;
 import data.dao.Preparation_Level_DAO;
 import data.dao.Program_Middle_Category_DAO;
-import data.vo.Preference_Information_VO;
+import data.vo.NCS_Part_VO;
 import data.vo.Preparation_Level_VO;
 import data.vo.Program_Middle_Category_VO;
 
@@ -33,7 +34,13 @@ public class Preference_Information_Test {
 				}
 			}
 		}
+		
+		BaseData_DAO baseDAO = new BaseData_DAO();
+		Map<String, Object> datum = baseDAO.loadData();
 
+		List<NCS_Part_VO> test_list = (ArrayList<NCS_Part_VO>) datum.get("NCS_Part");
+		System.out.println(test_list.get(1).getCategory_name());
+		
 	}
 
 }
