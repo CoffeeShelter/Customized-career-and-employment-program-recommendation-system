@@ -6,9 +6,11 @@ import java.util.Map;
 
 import data.dao.BaseData_DAO;
 import data.dao.Preparation_Level_DAO;
+import data.dao.Program_DAO;
 import data.dao.Program_Middle_Category_DAO;
 import data.vo.NCS_Part_VO;
 import data.vo.Preparation_Level_VO;
+import data.vo.Program_Instance_VO;
 import data.vo.Program_Middle_Category_VO;
 
 public class Preference_Information_Test {
@@ -40,6 +42,13 @@ public class Preference_Information_Test {
 
 		List<NCS_Part_VO> test_list = (ArrayList<NCS_Part_VO>) datum.get("NCS_Part");
 		System.out.println(test_list.get(1).getCategory_name());
+		
+		Program_DAO programDAO = new Program_DAO();
+		List<Program_Instance_VO> program_list = programDAO.getProgram_Instance();
+		
+		for (Program_Instance_VO obj : program_list) {
+			System.out.println(obj.getCode());
+		}
 		
 	}
 

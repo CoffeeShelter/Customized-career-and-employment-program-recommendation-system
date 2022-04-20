@@ -212,8 +212,16 @@ values ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 
 # 개설 유형
 # 1: 기존
 # 2: 신규
-insert into Program_Instance
+insert into Program_Instance (code, open_type, open_year, open_term, start_day, end_day, training_time, operating_method, recuiting_number, participation_number, college_number, department_number, major_number, target_grade, target_sex, manager, operating_state, operating_result, operating_department)
 values ('11001', 1, '2022', 1, '2021-03-01', '2022-02-01', '01:00:00', '2', -1, 0, '0', '00', '00000', '0', '0', '223099', '1', 0, '서원대학교');
+
+alter table Recommendation_Result modify open_year year;
+alter table Recommendation_Result modify training_time time;
+
+alter table Program_Instance modify open_year year;
+alter table Program_Instance modify training_time time;
+
+desc Program_Instance;
 
 select * from Program_Instance;
 
