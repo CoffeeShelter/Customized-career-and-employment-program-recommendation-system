@@ -151,6 +151,7 @@ insert into Operating_State values ('0', '전체');
 select * from Operating_State;
 
 # 비교과 프로그램
+/*
 insert ignore into Program_Information ( code, program_name, category_large, category_middle, operating_type, related_NCS_part, completation_time, TALENT_capability, TALENT_reflection_rate, program_goal, grogram_detail )
 values ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '1', 0, 
 		'진로진단검사를 통한 진로수준 파악', 
@@ -208,21 +209,4 @@ values ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 
         ( '11004', 'E-DISC 워크숍', '1', '1', '2', '00', 3, '6', 0, 
 		'E-DISC 검사 해석을 통한 개인별 성향 이해 및 직무매칭', 
 		'E-DISC 검사 결과 해석을 통해 성향에 따른 직무매칭 워크숍 프로그램' );
-
-# 개설 유형
-# 1: 기존
-# 2: 신규
-insert into Program_Instance (code, open_type, open_year, open_term, start_day, end_day, training_time, operating_method, recuiting_number, participation_number, college_number, department_number, major_number, target_grade, target_sex, manager, operating_state, operating_result, operating_department)
-values ('11001', 1, '2022', 1, '2021-03-01', '2022-02-01', '01:00:00', '2', -1, 0, '0', '00', '00000', '0', '0', '223099', '1', 0, '서원대학교');
-
-alter table Recommendation_Result modify open_year year;
-alter table Recommendation_Result modify training_time time;
-
-alter table Program_Instance modify open_year year;
-alter table Program_Instance modify training_time time;
-
-desc Program_Instance;
-
-select * from Program_Instance;
-
-desc Program_information;
+*/

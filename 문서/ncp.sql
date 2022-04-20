@@ -1,6 +1,8 @@
+# DROP DATABASE IF EXISTS NCP;
+
 CREATE DATABASE IF NOT EXISTS NCP;
 
-# DROP DATABASE IF EXISTS NCP;
+USE ncp;
 
 USE NCP;
 #########################################################################################
@@ -145,23 +147,22 @@ CREATE TABLE Program_Information (
     category_large varchar(3) NOT NULL,
     category_middle varchar(3) NOT NULL,
     operating_type varchar(3) NOT NULL,
-    related_NCS_part varchar(3) NOT NULL,
-    # period date NOT NULL,
+    related_NCS_part varchar(100) NOT NULL,
     completation_time int NOT NULL,
-    TALENT_capability varchar(3),
-    TALENT_reflection_rate int,
-    previous_program varchar(10),
-    after_program varchar(10),
+    TALENT_capability varchar(100),
+    # TALENT_reflection_rate int,
+    previous_program varchar(210),
+    after_program varchar(210),
     program_goal text NOT NULL,
     grogram_detail text,
     primary key(code, TALENT_capability),
     foreign key(category_large) references Program_Large_Category (code),
     foreign key(category_middle) references Program_Middle_Category (code),
-    foreign key(operating_type) references Program_Operating_Type (code),
-    foreign key(related_NCS_part) references NCS_Part (code),
-    foreign key(TALENT_capability) references TALENT_Capability (code),
-    foreign key(previous_program) references Program_Information (code),
-    foreign key(after_program) references Program_Information (code)
+    foreign key(operating_type) references Program_Operating_Type (code)
+    # foreign key(related_NCS_part) references NCS_Part (code),
+    # foreign key(TALENT_capability) references TALENT_Capability (code),
+    # foreign key(previous_program) references Program_Information (code),
+    # foreign key(after_program) references Program_Information (code)
 );
 
 # use ncp;
@@ -235,7 +236,7 @@ CREATE TABLE IF NOT EXISTS Evaluation_Result_Category (
 CREATE TABLE IF NOT EXISTS Program_Participation_History (
 	university_number varchar(9) NOT NULL,
     code varchar(10) NOT NULL,
-    open_year date NOT NULL,
+    open_year year NOT NULL,
     end_term int NOT NULL,
     evaluation_result varchar(2) NOT NULL,
 	foreign key(university_number) references Student (university_number),
@@ -259,5 +260,5 @@ CREATE TABLE IF NOT EXISTS Recommendation_Result (
     primary key(university_number),
 	foreign key(code, open_year, open_term) references Program_Instance (code, open_year, open_term),
 	foreign key(university_number) references Student (university_number),
-	foreign key(capability_category) references Program_Information (TALENT_capability)
+	foreign key(capability_category) references Program_Middle_Category (code)
 );

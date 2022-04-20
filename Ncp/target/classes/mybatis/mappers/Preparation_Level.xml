@@ -24,4 +24,14 @@
 	]]>
 	</select>
 
+	<select id="selectOne" resultMap="preparation_level_Result" parameterType="String">
+      <![CDATA[  
+		select *
+		from Preparation_Level 
+		where university_number = #{student_number}
+		order by preparation_degree asc
+		limit 3;
+      ]]>
+     </select>
+
 </mapper>

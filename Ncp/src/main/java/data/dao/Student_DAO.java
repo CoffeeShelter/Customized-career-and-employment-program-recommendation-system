@@ -2,7 +2,6 @@ package data.dao;
 
 import java.io.Reader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -10,10 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import data.vo.Preparation_Level_VO;
-import data.vo.Program_Information_VO;
+import data.vo.Preference_Information_VO;
 
-public class Preparation_Level_DAO {
+public class Student_DAO {
 	private static SqlSessionFactory sqlMapper = null;
 
 	private static SqlSessionFactory getInstance() {
@@ -29,30 +27,19 @@ public class Preparation_Level_DAO {
 		}
 		return sqlMapper;
 	}
-	
 
-	public List<Preparation_Level_VO> selectAll() {
-		sqlMapper = getInstance();
-		SqlSession session = sqlMapper.openSession();
-		
-		List<Preparation_Level_VO> preparation_level_list = null;
-		preparation_level_list = session.selectList("mapper.preparation_level.selectAll");
-		
-		return preparation_level_list;
-	}
+	public Preference_Information_VO getPreferenceInformation(String university_number) {
+		Preference_Information_VO data = null;
 
-	public List<Preparation_Level_VO> selectAll(String student_number) {
-		List<Preparation_Level_VO> data = null;
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 
 		Map<String, Object> parameter = new HashMap<>();
 
-		parameter.put("student_number", student_number);
-
-		data = session.selectList("mapper.preparation_level.selectOne", parameter);
+		parameter.put("university_number", university_number);
+		
+		data = session.selectOne("mapper.preference_information.selectOne", parameter);
 
 		return data;
 	}
-	
 }

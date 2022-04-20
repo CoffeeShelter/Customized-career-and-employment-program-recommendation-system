@@ -27,7 +27,7 @@
 		<result property="operating_department" column="operating_department" />
 	</resultMap>
 
-	<!-- 상품 전체 항목 검색 -->
+	<!-- 전체 항목 검색 -->
 	<select id="selectAll" resultMap="program_instance_Result"	>
 	<![CDATA[
 		select *

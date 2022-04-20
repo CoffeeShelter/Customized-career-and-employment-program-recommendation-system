@@ -13,10 +13,17 @@
 		<result property="operating_method" column="operating_method" />
 	</resultMap>
 
-	<!-- 상품 전체 항목 검색 -->
 	<select id="selectAll" resultMap="preference_information_Result"	>
 	<![CDATA[
 		select * from Preference_Information
+	]]>
+	</select>
+
+	<select id="selectOne" resultMap="preference_information_Result" parameterType="String"	>
+	<![CDATA[
+		select *
+		from Preference_Information
+		where university_number = #{university_number}
 	]]>
 	</select>
 

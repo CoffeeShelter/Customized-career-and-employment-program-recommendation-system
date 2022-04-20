@@ -27,19 +27,14 @@ insert into Preparation_Level values ("202011346", "맞춤취업", 22.9, "낮음
 insert into Preparation_Level values ("202011346", "구직활동", 23.9, "낮음", 1);
 
 insert ignore into Preference_Information
-values (201910823, '11', '2022-06-01', '2022-07-31', '2'),
+values (201910823, '11', '2022-06-01', '2022-07-31', '0'),
 		(202011346, '19', '0000-01-01', '9999-01-01', '2');
 
-delete from Preference_Information
-where university_number = '202011346';
 
 select * from Preference_Information;
 
-select *
+select * 
 from Preparation_Level 
-where university_number = '202011346'
+where university_number = '201910823'
 order by preparation_degree asc
 limit 3;
-
-select *
-from Program_Information pInfo, Program_Instance pInstance, Preference_Information preInfo, Preparation_Level pLevel;

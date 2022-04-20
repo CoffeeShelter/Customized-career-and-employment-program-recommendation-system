@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="data.vo.Operating_State_VO" alias="Operating_State_VO" />
 		<typeAlias type="data.vo.Evaluation_Result_Category_VO" alias="Evaluation_Result_Category_VO" />
 		<typeAlias type="data.vo.Program_Instance_VO" alias="Program_Instance_VO" />
+		<typeAlias type="data.vo.Program_Information_VO" alias="Program_Information_VO" />		
 	</typeAliases>
 
 	<environments default="development">
@@ -55,5 +56,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/mappers/Operating_State.xml" />
 		<mapper resource="mybatis/mappers/Evaluation_Result_Category.xml" />
 		<mapper resource="mybatis/mappers/Program_Instance.xml" />
+		<mapper resource="mybatis/mappers/Program_Information.xml" />
 	</mappers>
 </configuration>

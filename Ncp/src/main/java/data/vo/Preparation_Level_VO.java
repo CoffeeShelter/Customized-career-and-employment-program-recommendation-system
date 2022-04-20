@@ -47,4 +47,11 @@ public class Preparation_Level_VO {
 		this.preparation_rank = preparation_rank;
 	}
 
+	@Override
+	public String toString() {
+		return "Preparation_Level_VO [university_number=" + university_number + ", capability_category="
+				+ capability_category + ", preparation_degree=" + preparation_degree + ", preparation_level="
+				+ preparation_level + ", preparation_rank=" + preparation_rank + "]";
+	}
+
 }
