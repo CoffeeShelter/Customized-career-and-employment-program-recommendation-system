@@ -14,6 +14,9 @@ USE NCP;
 CREATE TABLE IF NOT EXISTS Student (
 	university_number varchar(9) NOT NULL,
     name varchar(20) NOT NULL,
+    major_number varchar(5) NOT NULL,
+    grade varchar(3) NOT NULL,
+    sex varchar(1) NOT NULL,
     primary key(university_number)
 );
 

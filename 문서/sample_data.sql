@@ -4,8 +4,8 @@ show tables;
 
 select * from student;
 
-insert into student (university_number, name) values ('201910823', '신민예');
-insert into student (university_number, name) values ('202011346', '장리');
+insert into student (university_number, name, major_number ,grade, sex) values ('201910823', '신민예', '10001', '4', '2');
+insert into student (university_number, name, major_number ,grade, sex) values ('202011346', '장리', '33102', '1', '1');
 
 # 학번, 역량 영역, 준비도, 준비 수준, 준비도 순위
 insert into Preparation_Level values ("201910823", "자기이해", 20.2, "보통", 5);

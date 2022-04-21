@@ -24,6 +24,5 @@ values ('11001', 1, '2022', 1, '2021-03-01', '2022-02-01', '01:00:00', '2', -1, 
 
 desc Program_Instance;
 
-select *
-from Program_Information
-where code = '11001';
+select * from Program_Information;
+select * from Program_Instance;

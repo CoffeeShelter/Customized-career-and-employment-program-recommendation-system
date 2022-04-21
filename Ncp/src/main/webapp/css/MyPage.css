@@ -34,24 +34,26 @@
 .base_info_table {
   position: relative;
 }
-.base_info_table table {
+
+table{
   width: 100%;
   text-align: center;
   font-size: 1.5rem;
   background-color: #fff;
-  border-bottom: 1px solid #d0d2d4;
+  border: 1px solid #d0d2d4;
+  border-collapse: collapse;
 }
-.base_info_table table tbody th {
+th, td {
+  border: 1px solid #d0d2d4;
+}
+th {
   font-weight: 500;
   background-color: #f0f3f7;
-  border: 1px solid #d0d2d4;
-
   padding: 8px;
   text-align: center;
 }
-.base_info_table table tbody td {
+td {
   border: 1px solid #d0d2d4;
-
   padding: 8px;
   text-align: left;
 }

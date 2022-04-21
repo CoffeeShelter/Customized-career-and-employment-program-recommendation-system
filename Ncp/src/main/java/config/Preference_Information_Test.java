@@ -9,8 +9,6 @@ public class Preference_Information_Test {
 		Rlogic rLogic = new Rlogic();
 		ProgramUtils programUtils = new ProgramUtils();
 		
-		rLogic.getReccomendationResult("201910823");
-		
+		rLogic.getReccomendationResult("202011346");
 	}
-
 }

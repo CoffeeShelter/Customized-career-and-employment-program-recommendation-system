@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import data.vo.Preference_Information_VO;
+import data.vo.Student_VO;
 
 public class Student_DAO {
 	private static SqlSessionFactory sqlMapper = null;
@@ -37,8 +38,23 @@ public class Student_DAO {
 		Map<String, Object> parameter = new HashMap<>();
 
 		parameter.put("university_number", university_number);
-		
+
 		data = session.selectOne("mapper.preference_information.selectOne", parameter);
+
+		return data;
+	}
+
+	public Student_VO getStudent(String university_number) {
+		Student_VO data = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		Map<String, Object> parameter = new HashMap<>();
+
+		parameter.put("university_number", university_number);
+
+		data = session.selectOne("mapper.student.selectOne", parameter);
 
 		return data;
 	}
