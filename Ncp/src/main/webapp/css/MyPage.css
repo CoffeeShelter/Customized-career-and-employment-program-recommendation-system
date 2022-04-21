@@ -4,28 +4,56 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
+  font-size: 14px;
 }
 .top_area {
-  padding-top: 224px;
+  /* padding-top: 224px; */
   padding-bottom: 150px;
   background-color: #e7f0fc;
 }
+.header_top {
+  text-align: center;
+  padding: 28px;
+}
+.header_bottom {
+  height: 95px;
+}
+.seowonLogo {
+  width: 167.09px;
+  height: 50px;
+  object-fit: cover;
+  display: inline-block;
+}
 .top_area h3 {
   color: #303d6f;
-  font-family: sans-serif;
-  font-size: 4rem;
+  font-size: 3em;
   font-weight: 600;
   line-height: 1.2em;
 }
-.main_contents {
-  top: -150px;
+.title_area {
+  margin: 0 126.5px;
+  padding: 0 115px;
 }
+
+.info_text_area img {
+  display: inline;
+}
+.info_text {
+  display: inline;
+  font-size: 1.5em;
+}
+
+main {
+  position: relative;
+}
+
 .contents {
   width: 1280px;
   margin: 0 auto;
   padding: 25px 20px 5%;
   background: #fff;
   border: 1px solid #e1e1e1;
+  transform: translateY(-100px);
 }
 .section_marea {
   position: relative;
@@ -35,7 +63,15 @@
   position: relative;
 }
 
-table{
+.recommendation_result {
+  padding: 10px;
+}
+.recommendation_result p {
+  font-size: 1.2em;
+  padding: 2px;
+}
+
+table {
   width: 100%;
   text-align: center;
   font-size: 1.5rem;
@@ -43,7 +79,8 @@ table{
   border: 1px solid #d0d2d4;
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   border: 1px solid #d0d2d4;
 }
 th {
