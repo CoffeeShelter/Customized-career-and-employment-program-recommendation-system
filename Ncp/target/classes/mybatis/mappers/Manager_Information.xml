@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.manager_information">
+
+	<resultMap id="manager_information_Result" type="Manager_Information_VO">
+		<result property="staff_id" column="staff_id" />
+		<result property="staff_name" column="staff_name" />
+	</resultMap>
+
+	<!-- 상품 전체 항목 검색 -->
+	<select id="selectAll" resultMap="manager_information_Result"	>
+	<![CDATA[
+		select *
+		from Manager_Information
+	]]>
+	</select>
+
+</mapper>
