@@ -12,7 +12,7 @@ public class ProgramUtils {
 	private static List<Program_Information_VO> program_information_list = null;
 	private static List<Program_Instance_VO> program_instance_list = null;
 
-	public ProgramUtils() {
+	static {
 		if (program_information_list == null) {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
@@ -26,6 +26,10 @@ public class ProgramUtils {
 			}
 			program_instance_list = program_DAO.getProgram_Instance();
 		}
+	}
+	
+	public ProgramUtils() {
+		
 	}
 
 	public static List<Program_Information_VO> getProgramInformation() {
@@ -49,17 +53,19 @@ public class ProgramUtils {
 	}
 
 	public Program_Information_VO getProgram_Inforamtion(String code) {
-		Program_Information_VO data = null;
-
 		if (program_instance_list == null) {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
 			}
 		}
 		
-		data = program_DAO.getProgram_Inforamtion(code);
+		for (Program_Information_VO obj : program_information_list) {
+			if(obj.getCode().equals(code)) {
+				return obj;
+			}
+		}
 
-		return data;
+		return null;
 	}
 
 	public static Program_DAO getProgram_DAO() {

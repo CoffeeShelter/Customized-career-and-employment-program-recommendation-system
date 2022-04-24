@@ -45,6 +45,14 @@ public class Rlogic {
 	}
 
 	public Vector<Vector<RecommendationResult>> getReccomendationResult(String university_number) {
+		Student_DAO studentDAO = new Student_DAO();
+		Student_VO student = studentDAO.getStudent(university_number);
+		
+		List<Preparation_Level_VO> preLevel = null;
+		preLevel = preparation_level_DAO.selectAll(university_number);
+		
+		Preference_Information_VO preferenceInfo = studentDAO.getPreferenceInformation(university_number);
+		
 		Vector<Vector<RecommendationResult>> result = new Vector<>();
 		
 		Preparation_Level_DAO preLevelDAO = new Preparation_Level_DAO();
@@ -62,7 +70,7 @@ public class Rlogic {
 		Vector<RecommendationResult> result3 = new Vector<>();
 		for (Program_Instance_VO pInst : program_instance_list) {
 			Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
-			int score = getRecommendedScore(university_number, pInst);
+			int score = getRecommendedScore(student, preLevel, preferenceInfo, pInst, pInfo);
 			
 			Vector<RecommendationResult> temps = new Vector<>();
 			if (score != -1) {
@@ -103,21 +111,18 @@ public class Rlogic {
 		return result;
 	}
 
-	public int getRecommendedScore(String university_number, Program_Instance_VO pInst) {
+	public int getRecommendedScore(Student_VO student, List<Preparation_Level_VO> preLevel, Preference_Information_VO preferenceInfo, Program_Instance_VO pInst, Program_Information_VO pInfo) {
 		boolean middleCheck = false;
 		boolean ncsCheck = false;
 		boolean majorCheck = false;
 
 		int score = 0;
 
-		Student_DAO studentDAO = new Student_DAO();
-
-		Student_VO student = studentDAO.getStudent(university_number);
-		Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
+		// Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
 
 		// 1. 학생의 역량별 진단 수준 결과 하위 3개
-		List<Preparation_Level_VO> preLevel = null;
-		preLevel = preparation_level_DAO.selectAll(university_number);
+		// List<Preparation_Level_VO> preLevel = null;
+		// preLevel = preparation_level_DAO.selectAll(university_number);
 
 		if (preLevel != null) {
 			// 2. 비교과 프로그램 중 카테고리 일치 여부 검사 ( +30 )
@@ -136,7 +141,7 @@ public class Rlogic {
 		}
 
 		// 3. 비교과 프로그램 NCS 일치 여부 확인
-		Preference_Information_VO preferenceInfo = studentDAO.getPreferenceInformation(university_number);
+		// Preference_Information_VO preferenceInfo = studentDAO.getPreferenceInformation(university_number);
 		if (preferenceInfo == null) {
 			return -1;
 		}
