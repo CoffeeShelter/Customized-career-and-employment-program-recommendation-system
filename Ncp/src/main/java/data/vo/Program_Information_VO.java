@@ -7,7 +7,7 @@ public class Program_Information_VO {
 	private String category_middle;
 	private String operating_type;
 	private String related_NCS_part;
-	private String colpletation_time;
+	private String completation_time;
 	private String TALENT_capability;
 	// private String TALENT_reflection_rate;
 	private String previous_program;
@@ -63,12 +63,12 @@ public class Program_Information_VO {
 		this.related_NCS_part = related_NCS_part;
 	}
 
-	public String getColpletation_time() {
-		return colpletation_time;
+	public String getCompletation_time() {
+		return completation_time;
 	}
 
-	public void setColpletation_time(String colpletation_time) {
-		this.colpletation_time = colpletation_time;
+	public void setCompletation_time(String colpletation_time) {
+		this.completation_time = colpletation_time;
 	}
 
 	public String getTALENT_capability() {
@@ -123,7 +123,7 @@ public class Program_Information_VO {
 	public String toString() {
 		return "Program_Information_VO [code=" + code + ", program_name=" + program_name + ", category_large="
 				+ category_large + ", category_middle=" + category_middle + ", operating_type=" + operating_type
-				+ ", related_NCS_part=" + related_NCS_part + ", colpletation_time=" + colpletation_time
+				+ ", related_NCS_part=" + related_NCS_part + ", colpletation_time=" + completation_time
 				+ ", TALENT_capability=" + TALENT_capability + ", previous_program=" + previous_program
 				+ ", after_program=" + after_program + ", program_goal=" + program_goal + ", program_detail="
 				+ program_detail + "]";

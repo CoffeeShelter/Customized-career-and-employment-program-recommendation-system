@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="rlogic.Rlogic" %>
+<%@ page import="java.util.Vector" %>
+<%@ page import="data.RecommendationResult" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +14,11 @@
 <link rel="stylesheet" type="text/css" href="./css/MyPage.css" />
 </head>
 <body>
+<%
+	Rlogic rLogic = new Rlogic();
+	
+	Vector<Vector<RecommendationResult>> results = rLogic.getReccomendationResult("201910823");
+%>
 	<div class="top_area">
 		<div class="header_top">
 			<img class="seowonLogo" src="https://semsplus.seowon.ac.kr/contents/images/client/common/header_logo.svg" />
@@ -74,6 +82,9 @@
 						<h3 class="info_text">비교과 프로그램 추천 목록</h3>
 					</div>
 
+<%
+	for (Vector<RecommendationResult> datum : results) {
+%>
 					<div class="recommendation_result">
 						<p>최하위 역량(1) (진로탐색)_준비도: 67.1%</p>
 
@@ -94,20 +105,31 @@
 										<th>운영기간</th>
 										<th>이수시간</th>
 									</tr>
+									
+<%
+	for (RecommendationResult result : datum) {
+%>
 									<tr>
-										<td>12003</td>
-										<td>Start-Up</td>
-										<td>진로탐색</td>
-										<td>찾아가는 진로멘트특강</td>
-										<td>1학기</td>
-										<td>2</td>
-										<td>모집중</td>
-										<td>100%</td>
+										<td><%=result.getProgramCode() %></td>
+										<td><%=result.getLargeCategory() %></td>
+										<td><%=result.getMiddleCategory() %></td>
+										<td><%=result.getProgramName() %></td>
+										<td><%=result.getOpenTerm() %> 학기</td>
+										<td><%=result.getCompletationTime() %></td>
+										<td><%=result.getOperatingState() %></td>
+										<td><%=result.getRecommendationDegree() %> %</td>
 									</tr>
+<%
+	}
+%>
 								</tbody>
 							</table>
 						</div>
 					</div>
+
+<%
+	}
+%>
 
 					<div class="recommendation_result">
 						<p>최하위 역량(2) (실무역량)_준비도: 71.1%</p>

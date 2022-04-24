@@ -3,25 +3,28 @@ package rlogic;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
+import data.RecommendationResult;
 import data.dao.Preparation_Level_DAO;
 import data.dao.Program_Middle_Category_DAO;
 import data.dao.Student_DAO;
+import data.utils.CategoryUtils;
 import data.utils.ProgramUtils;
 import data.vo.Preference_Information_VO;
 import data.vo.Preparation_Level_VO;
 import data.vo.Program_Information_VO;
 import data.vo.Program_Instance_VO;
 import data.vo.Program_Middle_Category_VO;
-import data.vo.Recommendation_Result_VO;
 import data.vo.Student_VO;
 
 public class Rlogic {
 
 	private Preparation_Level_DAO preparation_level_DAO = null;
 	private Program_Middle_Category_DAO program_middle_category_DAO = null;
-	private static ProgramUtils programUtils = null;
-
+	private ProgramUtils programUtils = null;
+	private CategoryUtils categoryUtils = null;
+	
 	private List<Program_Middle_Category_VO> middle_category_list = null;
 
 	public Rlogic() {
@@ -35,25 +38,68 @@ public class Rlogic {
 		if (programUtils == null) {
 			programUtils = new ProgramUtils();
 		}
+		
+		if (categoryUtils == null) {
+			categoryUtils = new CategoryUtils();
+		}
 	}
 
-	public Recommendation_Result_VO getReccomendationResult(String student_number) {
-		Recommendation_Result_VO result = null;
-
+	public Vector<Vector<RecommendationResult>> getReccomendationResult(String university_number) {
+		Vector<Vector<RecommendationResult>> result = new Vector<>();
+		
+		Preparation_Level_DAO preLevelDAO = new Preparation_Level_DAO();
+		
+		List<Preparation_Level_VO> preLevelList = preLevelDAO.selectAll(university_number);
 		List<Program_Instance_VO> program_instance_list = ProgramUtils.getProgram_instance_list();
 
 		if (program_instance_list == null) {
 			System.out.println("null");
 			return null;
 		}
-
+		
+		Vector<RecommendationResult> result1 = new Vector<>();
+		Vector<RecommendationResult> result2 = new Vector<>();
+		Vector<RecommendationResult> result3 = new Vector<>();
 		for (Program_Instance_VO pInst : program_instance_list) {
 			Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
-			int score = getRecommendedScore(student_number, pInst);
-
-			System.out.println(pInfo.getProgram_name() + " : " + score + "Á¡");
+			int score = getRecommendedScore(university_number, pInst);
+			
+			Vector<RecommendationResult> temps = new Vector<>();
+			if (score != -1) {
+				RecommendationResult recoResult = new RecommendationResult(
+					pInfo.getCode(), 
+					categoryUtils.getLargeCategoryName(pInfo.getCategory_large()),
+					categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()),
+					pInfo.getProgram_name(),
+					pInst.getOpen_term(),
+					pInfo.getCompletation_time(),
+					pInst.getOperating_state(),
+					Integer.toString(score)
+				);
+				
+				temps.add(recoResult);
+				// System.out.println(recoResult.toString());
+			}
+			
+			for (RecommendationResult obj : temps) {
+				if (preLevelList.get(0).getCapability_category().equals(obj.getMiddleCategory())) {
+					result1.add(obj);
+				} else if (preLevelList.get(1).getCapability_category().equals(obj.getMiddleCategory())) {
+					result2.add(obj);
+				} else if (preLevelList.get(2).getCapability_category().equals(obj.getMiddleCategory())) {
+					result3.add(obj);
+				}
+			}
+			
+			System.out.println(result1.size() + " " + result2.size() + " " + result3.size());
+			
+			// System.out.println("[" + categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()) + "]: " + pInfo.getProgram_name() + " : " + score + "Á¡");
 		}
 
+		result.add(result1);
+		result.add(result2);
+		result.add(result3);
+		
 		return result;
 	}
 
