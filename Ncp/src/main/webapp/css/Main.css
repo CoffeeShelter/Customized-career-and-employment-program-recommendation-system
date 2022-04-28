@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.page_toparea {
+  padding-left: 224px;
+  padding-right: 224px;
+}
+.header_top {
+  background-color: antiquewhite;
+}
+.btn_login {
+  width: 112px;
+  height: 32px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 45%;
+  text-align: center;
+}
+.btn_login i,
+p {
+  display: inline;
+}
