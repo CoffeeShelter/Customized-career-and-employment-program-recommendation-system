@@ -5,19 +5,169 @@
 .page_toparea {
   padding-left: 224px;
   padding-right: 224px;
+  padding-top: 10px;
+
+  background: #c1dcff
+    url(https://semsplus.seowon.ac.kr/contents/images/client/main/bg_mainvisual.png)
+    no-repeat center;
+  background-size: cover;
 }
 .header_top {
-  background-color: antiquewhite;
+  display: flex;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
 }
 .btn_login {
+  background-color: transparent;
   width: 112px;
   height: 32px;
-  display: inline-block;
+  display: flex;
   border: 1px solid #000;
-  border-radius: 45%;
+  border-radius: 40px;
+
+  justify-content: center;
+  align-items: center;
+}
+.btn_login div i,
+p {
+  display: inline-block;
+}
+.btn_login:hover {
+  background-color: #0f298f;
+  cursor: pointer;
+}
+.btn_login:hover div i,
+.btn_login:hover div p {
+  color: #fff;
+}
+.seowon_logo {
+  width: 167.09px;
+  height: 50px;
+  object-fit: cover;
+}
+.seowon_logo:hover {
+  cursor: pointer;
+}
+.btn_sitemap {
+  width: 32px;
+  height: 32px;
+  background-color: #4163af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.btn_sitemap:hover {
+  cursor: pointer;
+}
+.btn_sitemap i {
+  color: #fff;
+}
+.header_bottom {
+  padding: 10px;
+}
+.menu_list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+}
+.top_menu {
+  display: block;
+  color: #3a3a37;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
   text-align: center;
 }
-.btn_login i,
-p {
+.top_menu::before {
+  content: "";
+  display: block;
+  margin: 0 auto 6px;
+  width: 70px;
+  height: 70px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.menu_list li a:hover {
+  cursor: pointer;
+}
+.menu_list li:nth-child(1) a::before {
+  background-color: #435991;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb01.png);
+}
+.menu_list li:nth-child(2) a::before {
+  background-color: #f87f2d;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb02.png);
+}
+.menu_list li:nth-child(3) a::before {
+  background-color: #05a8cd;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb03.png);
+}
+.menu_list li:nth-child(4) a::before {
+  background-color: #5f86d6;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb04.png);
+}
+.menu_list li:nth-child(5) a::before {
+  background-color: #a3cd61;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb05.png);
+}
+.menu_list li:nth-child(6) a::before {
+  background-color: #0e81b8;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb06.png);
+}
+.menu_list li:nth-child(7) a::before {
+  background-color: #3691de;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb07.png);
+}
+.menu_list li:nth-child(8) a::before {
+  background-color: #d94d4d;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb08.png);
+}
+.menu_list li:nth-child(9) a::before {
+  background-color: #3ab392;
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/common/icon_gnb09.png);
+}
+
+.visual_area {
+  display: flex;
+  margin: 26px 26px;
+  align-content: space-around;
+  align-items: center;
+}
+.visual_text {
   display: inline;
+  color: #013277;
+  font-size: 24px;
+  font-weight: 600;
+}
+.visual_text img {
+  display: block;
+  width: 482px;
+  object-fit: cover;
+  margin: 10px 0 10px;
+}
+.visual_text p {
+  display: block;
+  color: #3a3a3a;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  margin-bottom: 20px;
+}
+.visual_text dl dt {
+  margin-bottom: 14px;
+  color: #013277;
+  font-size: 22px;
+}
+.visual_text dl dd {
+  color: #013277;
+  font-size: 16px;
+  font-weight: 400;
+}
+.visual_image {
+  padding: 0 50px 0;
 }
