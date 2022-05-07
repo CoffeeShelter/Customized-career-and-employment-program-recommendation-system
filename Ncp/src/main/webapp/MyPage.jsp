@@ -15,9 +15,7 @@
 </head>
 <body>
 <%
-	Rlogic rLogic = new Rlogic();
-	
-	Vector<Vector<RecommendationResult>> results = rLogic.getReccomendationResult("201910823");
+	Vector<Vector<RecommendationResult>> results = (Vector<Vector<RecommendationResult>>) request.getAttribute("results");
 %>
 	<div class="top_area">
 		<div class="header_top">

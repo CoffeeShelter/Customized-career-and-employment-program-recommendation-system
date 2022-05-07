@@ -3,6 +3,8 @@
   margin: 0;
 }
 .page_toparea {
+  position: relative;
+  padding-bottom: 150px;
   padding-left: 224px;
   padding-right: 224px;
   padding-top: 10px;
@@ -13,6 +15,7 @@
   background-size: cover;
 }
 .header_top {
+  position: relative;
   display: flex;
   padding: 12px;
   justify-content: space-between;
@@ -65,6 +68,7 @@ p {
   color: #fff;
 }
 .header_bottom {
+  position: relative;
   padding: 10px;
 }
 .menu_list {
@@ -72,6 +76,9 @@ p {
   justify-content: space-around;
   align-items: center;
   list-style-type: none;
+}
+.menu_list li {
+  position: relative;
 }
 .top_menu {
   display: block;
@@ -91,6 +98,9 @@ p {
   background-repeat: no-repeat;
   border-radius: 20px;
   transition: all 0.3s;
+}
+.menu_list li a {
+  text-decoration: none;
 }
 .menu_list li a:hover {
   cursor: pointer;
@@ -133,10 +143,16 @@ p {
 }
 
 .visual_area {
+  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/sub/img_visual09.png);
   display: flex;
+  padding-left: 115px;
   margin: 26px 26px;
   align-content: space-around;
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+  height: 155px;
 }
 .visual_text {
   display: inline;
