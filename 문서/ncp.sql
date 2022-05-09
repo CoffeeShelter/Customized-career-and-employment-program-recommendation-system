@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS Recommendation_Result (
     university_number varchar(9) NOT NULL,
     capability_category varchar(3) NOT NULL,
     recommendation_degree float NOT NULL,
-    primary key(university_number),
+    primary key(code, university_number, open_year, open_term, capability_category),
 	foreign key(code, open_year, open_term) references Program_Instance (code, open_year, open_term),
 	foreign key(university_number) references Student (university_number),
 	foreign key(capability_category) references Program_Middle_Category (code)

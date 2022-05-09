@@ -24,21 +24,20 @@
 		where university_number = #{university_number}
 	]]>
 	</select>
-
-	<insert id="insertResult" parameterType="java.util.Map">
-
-		insert into
-		Recommendation_Result(code, open_year, open_term, university_number, capability_category,
-		recommendation_degree)
-		values
-
-		<foreach collection="list" item="result" separator=" , ">
-
-			(#{result.code}, #{result.open_year}, #{result.open_term},
-			#{result.university_number}, #{result.capability_category},
-			#{result.recommendation_degree})
-
+	
+	<insert id="insert" parameterType="java.util.List">
+		<![CDATA[
+			INSERT IGNORE INTO Recommendation_Result (
+				code, open_year, open_term, university_number, capability_category, recommendation_degree
+			) values 
+		]]>
+		<foreach collection="list" item="item" separator=" , ">
+		<![CDATA[
+			( #{item.code}, #{item.open_year}, #{item.open_term}, #{item.university_number}, #{item.capability_category}, #{item.recommendation_degree} )
+		]]>
 		</foreach>
+			
+		
 	</insert>
 
 </mapper>

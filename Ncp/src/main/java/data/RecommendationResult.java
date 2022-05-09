@@ -10,6 +10,8 @@ public class RecommendationResult {
 	private String operatingState;
 	private String recommendationDegree;
 
+	
+	
 	public RecommendationResult(String programCode, String largeCategory, String middleCategory, String programName,
 			String openTerm, String completationTime, String operatingState, String recommendationDegree) {
 		this.programCode = programCode;

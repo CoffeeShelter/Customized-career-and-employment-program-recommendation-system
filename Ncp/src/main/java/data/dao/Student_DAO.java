@@ -62,8 +62,8 @@ public class Student_DAO {
 		return data;
 	}
 	
-	public Recommendation_Result_VO getRecommendationResult(String university_number) {
-		Recommendation_Result_VO data = null;
+	public List<Recommendation_Result_VO> getRecommendationResult(String university_number) {
+		List<Recommendation_Result_VO> datum = null;
 
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
@@ -72,12 +72,12 @@ public class Student_DAO {
 
 		parameter.put("university_number", university_number);
 
-		data = session.selectOne("mapper.recommendation_result.selectOne", parameter);
+		datum = session.selectList("mapper.recommendation_result.selectOne", parameter);
 
-		return data;
+		return datum;
 	}
 
-	public int insertRecommendedResult(List<RecommendationResult> results) {
+	public int insertRecommendedResult(List<Recommendation_Result_VO> results) {
 		int result = -1;
 		
 		sqlMapper = getInstance();
@@ -87,7 +87,7 @@ public class Student_DAO {
 
 		parameter.put("list", results);
 		
-		result = session.insert("mapper.recommendation_result.insertResult", parameter);
+		result = session.insert("mapper.recommendation_result.insert", results);
 		if (result > 0) {
 			session.commit();
 		}

@@ -3,10 +3,22 @@ package data.vo;
 public class Recommendation_Result_VO {
 	private String code;
 	private String open_year;
-	private String open_term;
+	private int open_term;
 	private String university_number;
 	private String capability_category;
-	private String recommendation_degree;
+	private float recommendation_degree;
+	
+	public Recommendation_Result_VO() {}
+
+	public Recommendation_Result_VO(String code, String open_year, int open_term, String university_number,
+			String capability_category, float recommendation_degree) {
+		this.code = code;
+		this.open_year = open_year;
+		this.open_term = open_term;
+		this.university_number = university_number;
+		this.capability_category = capability_category;
+		this.recommendation_degree = recommendation_degree;
+	}
 
 	public String getCode() {
 		return code;
@@ -24,11 +36,11 @@ public class Recommendation_Result_VO {
 		this.open_year = open_year;
 	}
 
-	public String getOpen_term() {
+	public int getOpen_term() {
 		return open_term;
 	}
 
-	public void setOpen_term(String open_term) {
+	public void setOpen_term(int open_term) {
 		this.open_term = open_term;
 	}
 
@@ -48,11 +60,11 @@ public class Recommendation_Result_VO {
 		this.capability_category = capability_category;
 	}
 
-	public String getRecommendation_degree() {
+	public float getRecommendation_degree() {
 		return recommendation_degree;
 	}
 
-	public void setRecommendation_degree(String recommendation_degree) {
+	public void setRecommendation_degree(float recommendation_degree) {
 		this.recommendation_degree = recommendation_degree;
 	}
 
@@ -62,7 +74,5 @@ public class Recommendation_Result_VO {
 				+ ", university_number=" + university_number + ", capability_category=" + capability_category
 				+ ", recommendation_degree=" + recommendation_degree + "]";
 	}
-	
-	
 
 }

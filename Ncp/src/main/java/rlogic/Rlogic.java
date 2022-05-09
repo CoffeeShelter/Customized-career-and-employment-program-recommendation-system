@@ -17,6 +17,7 @@ import data.vo.Preparation_Level_VO;
 import data.vo.Program_Information_VO;
 import data.vo.Program_Instance_VO;
 import data.vo.Program_Middle_Category_VO;
+import data.vo.Recommendation_Result_VO;
 import data.vo.Student_VO;
 
 public class Rlogic {
@@ -69,11 +70,15 @@ public class Rlogic {
 		Vector<RecommendationResult> result1 = new Vector<>();
 		Vector<RecommendationResult> result2 = new Vector<>();
 		Vector<RecommendationResult> result3 = new Vector<>();
-		List<RecommendationResult> resultList = new ArrayList<>();
+		List<Recommendation_Result_VO> resultList = new ArrayList<>();
 		for (Program_Instance_VO pInst : program_instance_list) {
 			Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
 			float score = getRecommendedScore(student, preLevel, preferenceInfo, pInst, pInfo);
-
+			String code = pInfo.getCode();
+			String open_year = pInst.getOpen_year();
+			int open_term = Integer.parseInt(pInst.getOpen_term());
+			String capability_category = pInfo.getCategory_middle();
+			
 			Vector<RecommendationResult> temps = new Vector<>();
 			if (score != -1) {
 				RecommendationResult recoResult = new RecommendationResult(pInfo.getCode(),
@@ -83,7 +88,9 @@ public class Rlogic {
 						Float.toString(score));
 
 				temps.add(recoResult);
-				resultList.add(recoResult);
+				
+				Recommendation_Result_VO recoVO = new Recommendation_Result_VO(code, open_year.substring(0, 4), open_term, university_number, capability_category, score);
+				resultList.add(recoVO);
 			}
 
 			for (RecommendationResult obj : temps) {
@@ -96,7 +103,7 @@ public class Rlogic {
 				}
 			}
 		}
-
+		
 		result.add(result1);
 		result.add(result2);
 		result.add(result3);
@@ -104,7 +111,7 @@ public class Rlogic {
 		if (resultList.size() > 0) {
 			int insert_result = studentDAO.insertRecommendedResult(resultList);
 			if (insert_result > 0) {
-				System.out.println("성공");
+				System.out.println("추천 결과 " + insert_result + "개 추가");
 			}
 		}
 		return result;
