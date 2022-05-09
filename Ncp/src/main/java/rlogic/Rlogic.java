@@ -1,6 +1,7 @@
 package rlogic;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -24,7 +25,7 @@ public class Rlogic {
 	private Program_Middle_Category_DAO program_middle_category_DAO = null;
 	private ProgramUtils programUtils = null;
 	private CategoryUtils categoryUtils = null;
-	
+
 	private List<Program_Middle_Category_VO> middle_category_list = null;
 
 	public Rlogic() {
@@ -38,7 +39,7 @@ public class Rlogic {
 		if (programUtils == null) {
 			programUtils = new ProgramUtils();
 		}
-		
+
 		if (categoryUtils == null) {
 			categoryUtils = new CategoryUtils();
 		}
@@ -47,16 +48,16 @@ public class Rlogic {
 	public Vector<Vector<RecommendationResult>> getReccomendationResult(String university_number) {
 		Student_DAO studentDAO = new Student_DAO();
 		Student_VO student = studentDAO.getStudent(university_number);
-		
+
 		List<Preparation_Level_VO> preLevel = null;
 		preLevel = preparation_level_DAO.selectAll(university_number);
-		
+
 		Preference_Information_VO preferenceInfo = studentDAO.getPreferenceInformation(university_number);
-		
+
 		Vector<Vector<RecommendationResult>> result = new Vector<>();
-		
+
 		Preparation_Level_DAO preLevelDAO = new Preparation_Level_DAO();
-		
+
 		List<Preparation_Level_VO> preLevelList = preLevelDAO.selectAll(university_number);
 		List<Program_Instance_VO> program_instance_list = ProgramUtils.getProgram_instance_list();
 
@@ -64,31 +65,27 @@ public class Rlogic {
 			System.out.println("null");
 			return null;
 		}
-		
+
 		Vector<RecommendationResult> result1 = new Vector<>();
 		Vector<RecommendationResult> result2 = new Vector<>();
 		Vector<RecommendationResult> result3 = new Vector<>();
+		List<RecommendationResult> resultList = new ArrayList<>();
 		for (Program_Instance_VO pInst : program_instance_list) {
 			Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
-			int score = getRecommendedScore(student, preLevel, preferenceInfo, pInst, pInfo);
-			
+			float score = getRecommendedScore(student, preLevel, preferenceInfo, pInst, pInfo);
+
 			Vector<RecommendationResult> temps = new Vector<>();
 			if (score != -1) {
-				RecommendationResult recoResult = new RecommendationResult(
-					pInfo.getCode(), 
-					categoryUtils.getLargeCategoryName(pInfo.getCategory_large()),
-					categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()),
-					pInfo.getProgram_name(),
-					pInst.getOpen_term(),
-					pInfo.getCompletation_time(),
-					pInst.getOperating_state(),
-					Integer.toString(score)
-				);
-				
+				RecommendationResult recoResult = new RecommendationResult(pInfo.getCode(),
+						categoryUtils.getLargeCategoryName(pInfo.getCategory_large()),
+						categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()), pInfo.getProgram_name(),
+						pInst.getOpen_term(), pInfo.getCompletation_time(), pInst.getOperating_state(),
+						Float.toString(score));
+
 				temps.add(recoResult);
-				// System.out.println(recoResult.toString());
+				resultList.add(recoResult);
 			}
-			
+
 			for (RecommendationResult obj : temps) {
 				if (preLevelList.get(0).getCapability_category().equals(obj.getMiddleCategory())) {
 					result1.add(obj);
@@ -98,34 +95,38 @@ public class Rlogic {
 					result3.add(obj);
 				}
 			}
-			
-			System.out.println(result1.size() + " " + result2.size() + " " + result3.size());
-			
-			// System.out.println("[" + categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()) + "]: " + pInfo.getProgram_name() + " : " + score + "Á¡");
 		}
 
 		result.add(result1);
 		result.add(result2);
 		result.add(result3);
-		
+
+		if (resultList.size() > 0) {
+			int insert_result = studentDAO.insertRecommendedResult(resultList);
+			if (insert_result > 0) {
+				System.out.println("ì„±ê³µ");
+			}
+		}
 		return result;
 	}
 
-	public int getRecommendedScore(Student_VO student, List<Preparation_Level_VO> preLevel, Preference_Information_VO preferenceInfo, Program_Instance_VO pInst, Program_Information_VO pInfo) {
+	public float getRecommendedScore(Student_VO student, List<Preparation_Level_VO> preLevel,
+			Preference_Information_VO preferenceInfo, Program_Instance_VO pInst, Program_Information_VO pInfo) {
 		boolean middleCheck = false;
 		boolean ncsCheck = false;
 		boolean majorCheck = false;
 
-		int score = 0;
+		float score = 0.0f;
 
-		// Program_Information_VO pInfo = programUtils.getProgram_Inforamtion(pInst.getCode());
+		// Program_Information_VO pInfo =
+		// programUtils.getProgram_Inforamtion(pInst.getCode());
 
-		// 1. ÇÐ»ýÀÇ ¿ª·®º° Áø´Ü ¼öÁØ °á°ú ÇÏÀ§ 3°³
+		// 1. ï¿½Ð»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½
 		// List<Preparation_Level_VO> preLevel = null;
 		// preLevel = preparation_level_DAO.selectAll(university_number);
 
 		if (preLevel != null) {
-			// 2. ºñ±³°ú ÇÁ·Î±×·¥ Áß Ä«Å×°í¸® ÀÏÄ¡ ¿©ºÎ °Ë»ç ( +30 )
+			// 2. ï¿½ñ±³°ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ Ä«ï¿½×°ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ( +30 )
 			for (Preparation_Level_VO obj : preLevel) {
 				String category_code = convertMiddleCategoryCode(obj.getCapability_category());
 
@@ -140,23 +141,24 @@ public class Rlogic {
 			return -1;
 		}
 
-		// 3. ºñ±³°ú ÇÁ·Î±×·¥ NCS ÀÏÄ¡ ¿©ºÎ È®ÀÎ
-		// Preference_Information_VO preferenceInfo = studentDAO.getPreferenceInformation(university_number);
+		// 3. ï¿½ñ±³°ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ NCS ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+		// Preference_Information_VO preferenceInfo =
+		// studentDAO.getPreferenceInformation(university_number);
 		if (preferenceInfo == null) {
 			return -1;
 		}
-		
+
 		if (pInfo.getRelated_NCS_part().equals("00")) {
 			score += 20;
 			ncsCheck = true;
-		}else {
+		} else {
 			if (pInfo.getRelated_NCS_part().equals(preferenceInfo.getNCS_part())) {
 				score += 20;
 				ncsCheck = true;
 			}
 		}
 
-		// 4. ´ë»ó ÇÐ°ú(Àü°ø) ÀÏÄ¡ ¿©ºÎ È®ÀÎ
+		// 4. ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if (pInst.getMajor_number().equals("00000")) {
 			score += 10;
 			majorCheck = true;
@@ -171,7 +173,7 @@ public class Rlogic {
 			return -1;
 		}
 
-		// 5. ¼±¼ö ÇÁ·Î±×·¥ Âü¿© ¿©ºÎ
+		// 5. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String preProgram = pInfo.getPrevious_program();
 		if (preProgram != null) {
 
@@ -179,7 +181,7 @@ public class Rlogic {
 			score += 8;
 		}
 
-		// 6. ¿î¿µ¹æ½Ä ¸¸Á· ¿©ºÎ
+		// 6. ï¿½î¿µï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String openMethod = pInst.getOperating_method();
 		String preOpenMethod = preferenceInfo.getOperating_method();
 		if (preOpenMethod.equals("0")) {
@@ -190,7 +192,7 @@ public class Rlogic {
 			}
 		}
 
-		// 7. ¿î¿µ±â°£ ¸¸Á· ¿©ºÎ
+		// 7. ï¿½î¿µï¿½â°£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date proStartDay = simpleDate.parse(pInst.getStart_day());
@@ -209,10 +211,10 @@ public class Rlogic {
 				score += 8;
 			}
 		} catch (Exception e) {
-			System.out.println("[¿î¿µ±â°£ ¸¸Á· ¿©ºÎ Ã¼Å©] errors...");
+			System.out.println("[ï¿½î¿µï¿½â°£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©] errors...");
 		}
 
-		// 8. ´ë»ó ÇÐ³â ¸¸Á· ¿©ºÎ
+		// 8. ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String studentGrade = student.getGrade();
 		String targetGrade = pInst.getTarget_grade();
 		if (targetGrade.equals("0")) {
@@ -223,7 +225,7 @@ public class Rlogic {
 			}
 		}
 
-		// 9. ´ë»ó ¼ºº° ¸¸Á· ¿©ºÎ
+		// 9. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String studentSex = student.getSex();
 		String targetSex = pInst.getTarget_sex();
 		if (targetSex.equals("0")) {
@@ -237,7 +239,7 @@ public class Rlogic {
 		return score;
 	}
 
-	// Ä«Å×°í¸® ¸íÀ» ÄÚµå·Î º¯È¯
+	// Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
 	public String convertMiddleCategoryCode(String category_name) {
 		for (Program_Middle_Category_VO obj : middle_category_list) {
 			if (obj.getCategory_name().equals(category_name)) {

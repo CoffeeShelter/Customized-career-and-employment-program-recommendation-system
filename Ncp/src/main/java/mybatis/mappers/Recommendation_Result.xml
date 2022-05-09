@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.recommendation_result">
+
+	<resultMap id="recommendation_result_Result"
+		type="Recommendation_Result_VO">
+		<result property="code" column="code" />
+		<result property="open_year" column="open_year" />
+		<result property="open_term" column="open_term" />
+		<result property="university_number" column="university_number" />
+		<result property="capability_category"
+			column="capability_category" />
+		<result property="recommendation_degree"
+			column="recommendation_degree" />
+	</resultMap>
+
+	<select id="selectOne" resultMap="recommendation_result_Result">
+	<![CDATA[
+		select *
+		from Recommendation_Result
+		where university_number = #{university_number}
+	]]>
+	</select>
+
+	<insert id="insertResult" parameterType="java.util.Map">
+
+		insert into
+		Recommendation_Result(code, open_year, open_term, university_number, capability_category,
+		recommendation_degree)
+		values
+
+		<foreach collection="list" item="result" separator=" , ">
+
+			(#{result.code}, #{result.open_year}, #{result.open_term},
+			#{result.university_number}, #{result.capability_category},
+			#{result.recommendation_degree})
+
+		</foreach>
+	</insert>
+
+</mapper>

@@ -2,6 +2,7 @@ package data.dao;
 
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -9,7 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import data.RecommendationResult;
 import data.vo.Preference_Information_VO;
+import data.vo.Recommendation_Result_VO;
 import data.vo.Student_VO;
 
 public class Student_DAO {
@@ -58,4 +61,38 @@ public class Student_DAO {
 
 		return data;
 	}
+	
+	public Recommendation_Result_VO getRecommendationResult(String university_number) {
+		Recommendation_Result_VO data = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		Map<String, Object> parameter = new HashMap<>();
+
+		parameter.put("university_number", university_number);
+
+		data = session.selectOne("mapper.recommendation_result.selectOne", parameter);
+
+		return data;
+	}
+
+	public int insertRecommendedResult(List<RecommendationResult> results) {
+		int result = -1;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		Map<String, Object> parameter = new HashMap<>();
+
+		parameter.put("list", results);
+		
+		result = session.insert("mapper.recommendation_result.insertResult", parameter);
+		if (result > 0) {
+			session.commit();
+		}
+		
+		return result;
+	}
+	
 }
