@@ -5,3 +5,62 @@
 html {
     font-size: 10px;
 }
+table {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #fff;
+    border: 1px solid #d0d2d4;
+    border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #d0d2d4;
+}
+th {
+  font-weight: 500;
+  background-color: #f0f3f7;
+  padding: 8px;
+  text-align: center;
+}
+td {
+  border: 1px solid #d0d2d4;
+  padding: 8px;
+  text-align: left;
+}
+.top_area {
+  /* padding-top: 224px; */
+  padding-bottom: 150px;
+  background-color: #e7f0fc;
+}
+.header_top {
+  text-align: center;
+  padding: 28px;
+}
+.header_bottom {
+  height: 95px;
+}
+.seowonLogo {
+  width: 167.09px;
+  height: 50px;
+  object-fit: cover;
+  display: inline-block;
+}
+.top_area h3 {
+  color: #303d6f;
+  font-size: 3em;
+  font-weight: 600;
+  line-height: 1.2em;
+}
+main {
+  position: relative;
+}
+
+.contents {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 25px 20px 5%;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  transform: translateY(-100px);
+}  
