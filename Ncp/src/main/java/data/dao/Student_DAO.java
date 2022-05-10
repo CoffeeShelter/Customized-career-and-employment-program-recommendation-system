@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import data.RecommendationResult;
+import data.RecommendationResult_Program;
 import data.vo.Preference_Information_VO;
 import data.vo.Recommendation_Result_VO;
 import data.vo.Student_VO;
@@ -30,6 +30,17 @@ public class Student_DAO {
 			}
 		}
 		return sqlMapper;
+	}
+	
+	public List<Preference_Information_VO> getPreferenceInformation() {
+		List<Preference_Information_VO> datum = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		datum = session.selectList("mapper.preference_information.selectAll");
+
+		return datum;
 	}
 
 	public Preference_Information_VO getPreferenceInformation(String university_number) {
@@ -72,7 +83,7 @@ public class Student_DAO {
 
 		parameter.put("university_number", university_number);
 
-		datum = session.selectList("mapper.recommendation_result.selectOne", parameter);
+		datum = session.selectList("mapper.recommendation_result.selectAll", parameter);
 
 		return datum;
 	}
@@ -93,6 +104,21 @@ public class Student_DAO {
 		}
 		
 		return result;
+	}
+	
+	public List<RecommendationResult_Program> getRecommendationResult_Program(String program_code) {
+		List<RecommendationResult_Program> datum = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		Map<String, Object> parameter = new HashMap<>();
+
+		parameter.put("code", program_code);
+
+		datum = session.selectList("mapper.recommendation_result.recoList", parameter);
+
+		return datum;
 	}
 	
 }

@@ -24,7 +24,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="data.vo.Program_Instance_VO" alias="Program_Instance_VO" />
 		<typeAlias type="data.vo.Program_Information_VO" alias="Program_Information_VO" />		
 		<typeAlias type="data.vo.Student_VO" alias="Student_VO" />
-		<typeAlias type="data.vo.Recommendation_Result_VO" alias="Recommendation_Result_VO" />		
+		<typeAlias type="data.vo.Recommendation_Result_VO" alias="Recommendation_Result_VO" />
+		<typeAlias type="data.RecommendationResult_Program" alias="Recommendation_Result_Program" />		
 	</typeAliases>
 
 	<environments default="development">

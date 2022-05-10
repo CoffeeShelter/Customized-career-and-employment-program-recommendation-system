@@ -16,12 +16,35 @@
 		<result property="recommendation_degree"
 			column="recommendation_degree" />
 	</resultMap>
+	
+	<resultMap id="recommendation_result_program_Result"
+		type="Recommendation_Result_Program">
+		<result property="code" column="code" />
+		<result property="open_year" column="open_year" />
+		<result property="open_term" column="open_term" />
+		<result property="university_number" column="university_number" />
+		<result property="capability_category" column="capability_category" />
+		<result property="recommendation_degree" column="recommendation_degree" />
+		<result property="name" column="name" />
+		<result property="major_number" column="major_number" />
+		<result property="grade" column="grade" />
+		<result property="sex" column="sex" />
+	</resultMap>
 
-	<select id="selectOne" resultMap="recommendation_result_Result">
+	<select id="selectAll" resultMap="recommendation_result_Result">
 	<![CDATA[
 		select *
 		from Recommendation_Result
 		where university_number = #{university_number}
+	]]>
+	</select>
+	
+	<select id="recoList" parameterType="java.util.Map" resultMap="recommendation_result_program_Result">
+	<![CDATA[
+		select *
+		from recommendation_result r join student s on r.university_number = s.university_number
+		where code = #{code}
+		order by recommendation_degree desc;
 	]]>
 	</select>
 	
@@ -36,8 +59,6 @@
 			( #{item.code}, #{item.open_year}, #{item.open_term}, #{item.university_number}, #{item.capability_category}, #{item.recommendation_degree} )
 		]]>
 		</foreach>
-			
-		
 	</insert>
 
 </mapper>

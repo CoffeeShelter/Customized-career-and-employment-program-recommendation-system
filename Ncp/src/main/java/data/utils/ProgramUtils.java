@@ -80,4 +80,16 @@ public class ProgramUtils {
 		return program_instance_list;
 	}
 
+	public String getProgramName(String code) {
+		String programName = null;
+		
+		for(Program_Information_VO obj : program_information_list) {
+			if (obj.getCode().equals(code)) {
+				return obj.getProgram_name();
+			}
+		}
+		
+		return programName;
+	}
+	
 }

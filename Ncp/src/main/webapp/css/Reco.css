@@ -1,0 +1,11 @@
+.input_div_ex {
+    display: flex;
+    align-items: center;
+}
+.input_div_in {
+    padding-left: 10px;
+}
+.input_label {
+    font-size: 2rem;
+    font-weight: 700;
+}
