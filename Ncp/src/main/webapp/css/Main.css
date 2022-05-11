@@ -147,7 +147,7 @@ p {
 }
 
 .visual_area {
-  background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/sub/img_visual09.png);
+  /* background-image: url(https://semsplus.seowon.ac.kr/contents/images/client/sub/img_visual09.png); */
   display: flex;
   padding-left: 115px;
   margin: 26px 26px;
@@ -197,12 +197,9 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
-
   display: none;
-
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modal.show {
@@ -212,33 +209,48 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-
-  width: 900px;
-
-  padding: 40px;
-
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
   transform: translateX(-50%) translateY(-50%);
+  width: 100%;
 }
 
 .sitemap_wrapper {
-  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   width: 900px;
+  margin: 0 auto;
 }
+
+.pop_header {
+  position: relative;
+  box-sizing: border-box;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  width: calc(100% + 2px);
+  padding: 10px 64px 10px 20px;
+  padding-left: 20px;
+  min-height: 60px;
+  color: #fff;
+  align-items: center;
+  background: #2e4e87;
+  border-radius: 5px 5px 0 0;
+}
+
 .pop_content {
+  position: relative;
+  box-sizing: border-box;
   padding: 15px;
   min-height: 100px;
 }
 .stiemap_inner {
-  padding: 20px 10px 0;
-  font-size: 0;
-  line-height: 0;
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
 }
 .sitemap_list {
   display: inline-block;
+  box-sizing: border-box;
   margin-right: 2%;
   margin-bottom: 30px;
   width: 18.4%;
@@ -248,6 +260,7 @@ p {
   vertical-align: top;
 }
 .sitemap_list h2 {
+  box-sizing: border-box;
   position: relative;
   margin: 0;
   margin-bottom: 10px;
@@ -268,6 +281,8 @@ p {
   border-radius: 16px;
   overflow: hidden;
 }
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
 }
