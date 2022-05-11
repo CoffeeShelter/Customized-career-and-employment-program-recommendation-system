@@ -2,3 +2,5 @@
 /data/
 /rlogic/
 /servlet/
+/META-INF/
+/mybatis/
