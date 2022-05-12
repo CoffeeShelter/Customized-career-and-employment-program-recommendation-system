@@ -9,6 +9,15 @@ html {
 div {
   box-sizing: border-box;
 }
+ol,
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .page_toparea {
   width: 100%;
 
@@ -243,7 +252,7 @@ p {
   box-sizing: border-box;
   top: -1px;
   left: -1px;
-  width: calc(100% + 2px);
+  width: calc(100% + 3px);
   padding: 10px 20px;
   padding-left: 20px;
   min-height: 60px;
@@ -310,15 +319,7 @@ p {
   border-radius: 16px;
   overflow: hidden;
 }
-ol,
-ul,
-li {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
+
 .sitemap_list > ul > li {
   margin-bottom: 5px;
 }
