@@ -1,7 +1,7 @@
 const body = document.querySelector("body");
-const modal = document.querySelector(".modal");
+const modal = document.querySelector(".sitemap_popup");
 const btnOpenPopup = document.querySelector(".btn_sitemap");
-const btnClosePopup = document.querySelector(".pop_close");
+const btnClosePopup = document.querySelector(".sitemap_close");
 
 btnOpenPopup.addEventListener("click", () => {
   modal.classList.toggle("show");

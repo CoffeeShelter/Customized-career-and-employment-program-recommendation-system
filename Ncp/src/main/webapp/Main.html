@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="css/Main.css" />
     <link rel="stylesheet" type="text/css" href="css/Main_Content.css" />
+    <link rel="stylesheet" type="text/css" href="css/LoginPopup.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
@@ -98,14 +99,14 @@
     <div class="main_content"></div>
     <div class="footer"></div>
 
-    <div class="modal">
-      <div class="modal_body">
+    <div class="sitemap_popup">
+      <div class="sitemap_popup_body">
         <div class="sitemap_wrapper">
-          <section class="pop_header">
+          <section class="sitemap_header">
             <h2>전체메뉴</h2>
-            <a class="pop_close"></a>
+            <a class="sitemap_close"></a>
           </section>
-          <section class="pop_content">
+          <section class="sitemap_content">
             <div class="sitemap_inner">
               <div class="sitemap_list sitemap_list1">
                 <h2>SEMS+ 안내</h2>
@@ -270,6 +271,17 @@
                 </ul>
               </div>
               <div class="sitemap_list sitemap_list10">
+                <h2>교수</h2>
+                <ul>
+                  <li>
+                    <a href="">학생정보 조회</a>
+                  </li>
+                  <li>
+                    <a href="">학생 평가</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="sitemap_list sitemap_list11">
                 <h2>관리자</h2>
                 <ul>
                   <li>
@@ -294,6 +306,52 @@
         </div>
       </div>
     </div>
+
+    <div class="login_popup">
+      <div class="login_popup_body">
+        <div class="login_wrapper">
+          <h1>
+            <img
+              src="https://semsplus.seowon.ac.kr/contents/images/client/common/header_logo.svg"
+              alt="서원대학교"
+            />
+            <img
+              src="https://semsplus.seowon.ac.kr/contents/images/client/main/img_sems.svg"
+              alt="학생지원통합시스템 로그인 입니다"
+            />
+          </h1>
+          <p class="login_input login_id">
+            <label for="login_id">Username</label>
+            <input type="text" id="usrId" placeholder="아이디를 입력해주세요" />
+          </p>
+          <p class="login_input login_pw">
+            <label for="login_id">Password</label>
+            <input
+              type="password"
+              id="token"
+              placeholder="비밀번호를 입력해주세요"
+              autocomplete="off"
+              maxlength="10"
+            />
+          </p>
+          <p class="check_row" tabindex="0">
+            <input type="checkbox" />
+            <label for="idSaveChk" name="save" id="idSaveChk" class="hidden"
+              >아이디 저장</label
+            >
+          </p>
+          <button type="button" class="btn_login_submit" id="loginBtn">
+            LOGIN
+          </button>
+          <span class="font_gray">
+            ※ 아이디는 학사행정서비스 사용자 계정 (학번 또는 교직번)을 입력해
+            주세요.
+          </span>
+          <a class="login_popup_close"></a>
+        </div>
+      </div>
+    </div>
   </body>
-  <script src="js/Modal.js"></script>
+  <script src="js/SitemapPopup.js"></script>
+  <script src="js/LoginPopup.js"></script>
 </html>
