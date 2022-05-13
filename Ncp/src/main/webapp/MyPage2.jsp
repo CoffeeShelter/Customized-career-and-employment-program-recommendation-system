@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@ page import="rlogic.Rlogic"%>
 <%@ page import="java.util.Vector"%>
 <%@ page import="data.RecommendationResult"%>
@@ -19,6 +17,9 @@
 <script src="https://kit.fontawesome.com/46fda0e82e.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%
+	Vector<Vector<RecommendationResult>> results = (Vector<Vector<RecommendationResult>>) request.getAttribute("results");
+	%>
 	<jsp:include page="TopArea.jsp" />
 
 	<main class="main_contents">
@@ -72,59 +73,59 @@
 						<h3 class="info_text">비교과 프로그램 추천 목록</h3>
 					</div>
 
-					<c:forEach items="${results }" var="results">
+					<%
+					for (Vector<RecommendationResult> datum : results) {
+					%>
+					<div class="recommendation_result">
+						<p>최하위 역량(1) (진로탐색)_준비도: 67.1%</p>
+
 						<div class="recommendation_result_table_area">
-							<p>최하위 역량(1) (진로탐색)_준비도: 67.1%</p>
-							<div class="recommendation_result">
-								<table>
-									<tbody>
-										<tr>
-											<th rowspan="2">프로그램 코드</th>
-											<th colspan="2">프로그램 단계</th>
-											<th colspan="3">프로그램 세부내용</th>
-											<th rowspan="2">운영 상황</th>
-											<th rowspan="2">최종 적합도</th>
-										</tr>
-										<tr>
-											<th>대분류</th>
-											<th>중분류</th>
-											<th>프로그램명</th>
-											<th>운영기간</th>
-											<th>이수시간</th>
-										</tr>
-										<c:forEach items="${results }" var="result">
-											<tr>
-												<td>
-													<c:out value="${result.programCode }" />
-												</td>
-												<td>
-													<c:out value="${result.largeCategory }" />
-												</td>
-												<td>
-													<c:out value="${result.middleCategory }" />
-												</td>
-												<td>
-													<c:out value="${result.programName }" />
-												</td>
-												<td>
-													<c:out value="${result.openTerm }" />
-												</td>
-												<td>
-													<c:out value="${result.completationTime }" />
-												</td>
-												<td>
-													<c:out value="${result.operatingState }" />
-												</td>
-												<td>
-													<c:out value="${result.recommendationDegree }" />
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+							<table>
+								<tbody>
+									<tr>
+										<th rowspan="2">프로그램 코드</th>
+										<th colspan="2">프로그램 단계</th>
+										<th colspan="3">프로그램 세부내용</th>
+										<th rowspan="2">운영 상황</th>
+										<th rowspan="2">최종 적합도</th>
+									</tr>
+									<tr>
+										<th>대분류</th>
+										<th>중분류</th>
+										<th>프로그램명</th>
+										<th>운영기간</th>
+										<th>이수시간</th>
+									</tr>
+
+									<%
+									for (RecommendationResult result : datum) {
+									%>
+									<tr>
+										<td><%=result.getProgramCode()%></td>
+										<td><%=result.getLargeCategory()%></td>
+										<td><%=result.getMiddleCategory()%></td>
+										<td><%=result.getProgramName()%></td>
+										<td><%=result.getOpenTerm()%>
+											학기
+										</td>
+										<td><%=result.getCompletationTime()%></td>
+										<td><%=result.getOperatingState()%></td>
+										<td><%=result.getRecommendationDegree()%>
+											%
+										</td>
+									</tr>
+									<%
+									}
+									%>
+								</tbody>
+							</table>
 						</div>
-					</c:forEach>
+					</div>
+
+					<%
+					}
+					%>
+
 				</div>
 			</section>
 		</div>
