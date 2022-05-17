@@ -67,4 +67,18 @@ public class Program_DAO {
 		return data;
 	}
 
+	public int insertProgram_Information(Program_Information_VO programInformationVO) {
+		int result = -1;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		result = session.insert("mapper.program_information.insertOne", programInformationVO);
+		if (result > 0) {
+			session.commit();
+		}
+
+		return result;
+	}
+
 }

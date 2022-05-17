@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import data.vo.Major_Information_VO;
 import data.vo.NCS_Part_VO;
+import data.vo.Program_Operating_Type_VO;
 import data.vo.Student_Sex_VO;
 
 public class Category_DAO {
@@ -58,6 +59,17 @@ public class Category_DAO {
 		SqlSession session = sqlMapper.openSession();
 
 		datum = session.selectList("mapper.ncs_part.selectAll");
+
+		return datum;
+	}
+	
+	public List<Program_Operating_Type_VO> operatingTypeSelectAll(){
+		List<Program_Operating_Type_VO> datum = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		datum = session.selectList("mapper.program_operating_type.selectAll");
 
 		return datum;
 	}

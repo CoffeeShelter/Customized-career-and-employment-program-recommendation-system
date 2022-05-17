@@ -14,6 +14,28 @@ public class Program_Information_VO {
 	private String after_program;
 	private String program_goal;
 	private String program_detail;
+	
+
+	public Program_Information_VO()	{
+		
+	}
+
+	public Program_Information_VO(String code, String program_name, String category_large, String category_middle,
+			String operating_type, String related_NCS_part, String completation_time, String TALENT_capability,
+			String previous_program, String after_program, String program_goal, String program_detail) {
+		this.code = code;
+		this.program_name = program_name;
+		this.category_large = category_large;
+		this.category_middle = category_middle;
+		this.operating_type = operating_type;
+		this.related_NCS_part = related_NCS_part;
+		this.completation_time = completation_time;
+		this.TALENT_capability = TALENT_capability;
+		this.previous_program = previous_program;
+		this.after_program = after_program;
+		this.program_goal = program_goal;
+		this.program_detail = program_detail;
+	}
 
 	public String getCode() {
 		return code;

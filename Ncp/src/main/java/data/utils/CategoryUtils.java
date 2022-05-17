@@ -11,15 +11,18 @@ import data.vo.NCS_Part_VO;
 import data.vo.Preference_Information_VO;
 import data.vo.Program_Large_Category_VO;
 import data.vo.Program_Middle_Category_VO;
+import data.vo.Program_Operating_Type_VO;
 import data.vo.Student_Sex_VO;
 
 public class CategoryUtils {
-	private static List<Program_Large_Category_VO> largeCategoryList;
-	private static List<Program_Middle_Category_VO> middleCategoryList;
-	private static List<Major_Information_VO> majorInformationList;
-	private static List<Student_Sex_VO> studentSexList;
-	private static List<Preference_Information_VO> preferenceList;
-	private static List<NCS_Part_VO> ncsList;
+	public static List<Program_Large_Category_VO> largeCategoryList;
+	public static List<Program_Middle_Category_VO> middleCategoryList;
+	public static List<Major_Information_VO> majorInformationList;
+	public static List<Student_Sex_VO> studentSexList;
+	public static List<Preference_Information_VO> preferenceList;
+	public static List<NCS_Part_VO> ncsList;
+	public static List<Program_Operating_Type_VO> operatingTypeList;
+	
 	private static Category_DAO categoryDAO = null;
 	private static Student_DAO studentDAO = null;
 	private static Program_Middle_Category_DAO middleCategoryDAO = null;
@@ -45,6 +48,7 @@ public class CategoryUtils {
 		studentSexList = categoryDAO.sexSelectAll();
 		preferenceList = studentDAO.getPreferenceInformation();
 		ncsList = categoryDAO.ncsSelectAll();
+		operatingTypeList = categoryDAO.operatingTypeSelectAll();
 	}
 
 	public List<Program_Middle_Category_VO> getMiddleCategoryList() {

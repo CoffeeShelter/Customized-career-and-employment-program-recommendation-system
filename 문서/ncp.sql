@@ -157,7 +157,7 @@ CREATE TABLE Program_Information (
     previous_program varchar(210),
     after_program varchar(210),
     program_goal text NOT NULL,
-    grogram_detail text,
+    program_detail text,
     primary key(code, TALENT_capability),
     foreign key(category_large) references Program_Large_Category (code),
     foreign key(category_middle) references Program_Middle_Category (code),
@@ -167,7 +167,6 @@ CREATE TABLE Program_Information (
     # foreign key(previous_program) references Program_Information (code),
     # foreign key(after_program) references Program_Information (code)
 );
-
 # use ncp;
 # alter table Program_Information drop period;
 # desc Program_Information;
