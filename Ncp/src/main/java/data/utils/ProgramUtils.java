@@ -9,8 +9,8 @@ import data.vo.Program_Instance_VO;
 public class ProgramUtils {
 
 	private static Program_DAO program_DAO = null;
-	private static List<Program_Information_VO> program_information_list = null;
-	private static List<Program_Instance_VO> program_instance_list = null;
+	public static List<Program_Information_VO> program_information_list = null;
+	public static List<Program_Instance_VO> program_instance_list = null;
 
 	static {
 		if (program_information_list == null) {

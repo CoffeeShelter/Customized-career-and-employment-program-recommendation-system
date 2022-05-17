@@ -41,7 +41,7 @@
 	</select>
 
 	<insert id="insertOne"
-		parameterType="program_information_Result">
+		parameterType="data.vo.Program_Information_VO">
      	<![CDATA[
      		insert ignore into program_information
 	     		(code, program_name, category_large, category_middle, 

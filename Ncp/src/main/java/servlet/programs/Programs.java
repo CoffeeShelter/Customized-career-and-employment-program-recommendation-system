@@ -2,6 +2,7 @@ package servlet.programs;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +33,8 @@ public class Programs extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		int result = -1;
 		
 		String code = request.getParameter("code");
@@ -41,7 +44,14 @@ public class Programs extends HttpServlet {
 		String operating_type = request.getParameter("operating_type");
 		String related_NCS_part = request.getParameter("related_NCS_part");
 		String completation_time = request.getParameter("completation_time");
-		String TALENT_capability = request.getParameter("TALENT_capability");
+		
+		String TALENT_capability = request.getParameter("TALENT_capability_01") + "/" +
+									request.getParameter("TALENT_capability_02") + "/" +
+									request.getParameter("TALENT_capability_03") + "/" +
+									request.getParameter("TALENT_capability_04") + "/" +
+									request.getParameter("TALENT_capability_05") + "/" +
+									request.getParameter("TALENT_capability_06");
+		
 		String previous_program = request.getParameter("previous_program");
 		String after_program = request.getParameter("after_program");
 		String program_goal = request.getParameter("program_goal");
@@ -54,6 +64,9 @@ public class Programs extends HttpServlet {
 		result = programDAO.insertProgram_Information(programInformationVO);
 		
 		System.out.println("추가 완료 " + result);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInfo.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)

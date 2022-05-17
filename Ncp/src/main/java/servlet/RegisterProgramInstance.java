@@ -24,7 +24,7 @@ public class RegisterProgramInstance extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInstance.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInstance.jsp");
 		dispatcher.forward(request, response);
 		
 	}
