@@ -72,9 +72,18 @@
 						<h3 class="info_text">비교과 프로그램 추천 목록</h3>
 					</div>
 
-					<c:forEach items="${results }" var="results">
+					<c:forEach items="${results }" var="results" varStatus="status">
 						<div class="recommendation_result_table_area">
-							<p>최하위 역량(1) (진로탐색)_준비도: 67.1%</p>
+
+							<h4>
+								최하위 역량(
+								<c:out value="${status.count }" />
+								) (
+								<c:out value="${preLevels[status.index].capability_category }" />
+								)_준비도:
+								<c:out value="${preLevels[status.index].preparation_degree }" />
+								%
+							</h4>
 							<div class="recommendation_result">
 								<table>
 									<tbody>

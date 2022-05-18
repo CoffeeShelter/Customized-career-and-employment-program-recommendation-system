@@ -6,6 +6,9 @@ textarea {
 	width: 1110px;
 	height: 170px;
 }
+h4{
+	font-size: 1.75rem;
+}
 
 table {
 	margin: 10px 0;

@@ -7,11 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>서원대학교</title>
 <link rel="stylesheet" type="text/css" href="css/Base.css" />
-<link rel="stylesheet" type="text/css" href="css/RegisterProgramInfo.css" />
 <link rel="stylesheet" type="text/css" href="css/Main.css" />
 <link rel="stylesheet" type="text/css" href="css/Main_Content.css" />
 <link rel="stylesheet" type="text/css" href="css/LoginPopup.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" type="text/css" href="css/RegisterProgramInst.css" />
 <script src="https://kit.fontawesome.com/46fda0e82e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -24,11 +24,12 @@
 		<div class="contents">
 			<section>
 				<div>
-					<div>
-						<p>비교과 프로그램 개설 및 관리</p>
+					<div class="info_text_area">
+						<img src="https://semsplus.seowon.ac.kr/contents/images/client/sub/icon_tit_lg.png" />
+						<h3 class="info_text">비교과 프로그램 개설 및 관리</h3>
 					</div>
 					<div>
-						<p>1. 비교과 프로그램 개설 정보</p>
+						<h4>1. 비교과 프로그램 개설 정보</h4>
 						<div>
 							<table>
 								<tbody>
@@ -88,7 +89,7 @@
 						</div>
 					</div>
 					<div>
-						<p>2. 핵심 역량 및 마일리지</p>
+						<h4>2. 핵심 역량 및 마일리지</h4>
 						<div>
 							<div>
 								<table>
@@ -167,7 +168,7 @@
 						</div>
 					</div>
 					<div>
-						<p>3. 운영 내용</p>
+						<h4>3. 운영 내용</h4>
 						<div>
 							<div>
 								<table>
@@ -301,7 +302,7 @@
 						</div>
 					</div>
 					<div>
-						<p>4. 운영 결과</p>
+						<h4>4. 운영 결과</h4>
 						<div>
 							<table>
 								<tbody>
@@ -321,8 +322,8 @@
 							</table>
 						</div>
 					</div>
-					<div>
-						<input type="button" value="등록" />
+					<div class="btnArea">
+						<input type="button" class="btnRegister" value="등록" />
 					</div>
 				</div>
 			</section>

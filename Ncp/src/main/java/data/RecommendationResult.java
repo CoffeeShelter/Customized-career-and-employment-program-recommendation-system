@@ -1,6 +1,7 @@
 package data;
 
 public class RecommendationResult {
+	private String preparationDegree;
 	private String programCode;
 	private String largeCategory;
 	private String middleCategory;
@@ -12,8 +13,9 @@ public class RecommendationResult {
 
 	
 	
-	public RecommendationResult(String programCode, String largeCategory, String middleCategory, String programName,
+	public RecommendationResult(String preparationDegree, String programCode, String largeCategory, String middleCategory, String programName,
 			String openTerm, String completationTime, String operatingState, String recommendationDegree) {
+		this.preparationDegree = preparationDegree;
 		this.programCode = programCode;
 		this.largeCategory = largeCategory;
 		this.middleCategory = middleCategory;
@@ -22,6 +24,14 @@ public class RecommendationResult {
 		this.completationTime = completationTime;
 		this.operatingState = operatingState;
 		this.recommendationDegree = recommendationDegree;
+	}
+
+	public String getPreparationDegree() {
+		return preparationDegree;
+	}
+
+	public void setPreparationDegree(String preparationDegree) {
+		this.preparationDegree = preparationDegree;
 	}
 
 	public String getProgramCode() {

@@ -81,7 +81,7 @@ public class Rlogic {
 			
 			Vector<RecommendationResult> temps = new Vector<>();
 			if (score != -1) {
-				RecommendationResult recoResult = new RecommendationResult(pInfo.getCode(),
+				RecommendationResult recoResult = new RecommendationResult(null, pInfo.getCode(),
 						categoryUtils.getLargeCategoryName(pInfo.getCategory_large()),
 						categoryUtils.getMiddleCategoryName(pInfo.getCategory_middle()), pInfo.getProgram_name(),
 						pInst.getOpen_term(), pInfo.getCompletation_time(), pInst.getOperating_state(),
