@@ -5,6 +5,9 @@
 html {
     font-size: 10px;
 }
+textarea {
+	resize: none;
+}
 table {
     width: 100%;
     text-align: center;

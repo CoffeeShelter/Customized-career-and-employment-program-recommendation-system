@@ -1,102 +1,178 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
-  font-size: 14px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+	scroll-behavior: smooth;
+	font-size: 14px;
 }
-h4{
+
+h4 {
 	font-size: 1.75rem;
 	margin-top: 5px;
 	padding-left: 10px;
 }
+
+.contents-info {
+	display: none;
+}
+
+.contents-info.show {
+	display: block;
+}
+
+.contents-setting {
+	display: none;
+}
+
+.contents-setting.show {
+	display: block;
+}
+
 .top_area {
-  /* padding-top: 224px; */
-  padding-bottom: 150px;
-  background-color: #e7f0fc;
+	/* padding-top: 224px; */
+	padding-bottom: 150px;
+	background-color: #e7f0fc;
 }
+
 .header_top {
-  text-align: center;
-  padding: 28px;
+	text-align: center;
+	padding: 28px;
 }
+
 .header_bottom {
-  height: 95px;
+	height: 95px;
 }
+
 .seowonLogo {
-  width: 167.09px;
-  height: 50px;
-  object-fit: cover;
-  display: inline-block;
+	width: 167.09px;
+	height: 50px;
+	object-fit: cover;
+	display: inline-block;
 }
+
 .top_area h3 {
-  color: #303d6f;
-  font-size: 3em;
-  font-weight: 600;
-  line-height: 1.2em;
+	color: #303d6f;
+	font-size: 3em;
+	font-weight: 600;
+	line-height: 1.2em;
 }
+
 .title_area {
-  margin: 0 126.5px;
-  padding: 0 115px;
+	margin: 0 126.5px;
+	padding: 0 115px;
+}
+
+.info_text_area {
+	display: inline-block;
 }
 
 .info_text_area img {
-  display: inline;
+	display: inline-block;
+	vertical-align: middle;
 }
+
 .info_text {
-  display: inline;
-  font-size: 1.5em;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 1.5em;
+	font-weight: 700;
 }
 
 main {
-  position: relative;
+	position: relative;
 }
 
 .contents {
-  width: 1280px;
-  min-height: 1600px;
-  margin: 0 auto;
-  padding: 25px 20px 5%;
-  background: #fff;
-  border: 1px solid #e1e1e1;
-  transform: translateY(-100px);
+	width: 1280px;
+	min-height: 1600px;
+	margin: 0 auto;
+	padding: 25px 20px 5%;
+	background: #fff;
+	border: 1px solid #e1e1e1;
+	transform: translateY(-100px);
 }
+
 .section_marea {
-  position: relative;
-  margin-bottom: 4%;
+	position: relative;
+	margin-bottom: 4%;
 }
+
 .base_info_table {
-  position: relative;
+	position: relative;
 }
 
 .recommendation_result {
-  padding: 10px;
+	padding: 10px;
 }
+
 .recommendation_result p {
-  font-size: 1.2em;
-  padding: 2px;
+	font-size: 1.2em;
+	padding: 2px;
 }
 
 table {
-  width: 100%;
-  text-align: center;
-  font-size: 1.5rem;
-  background-color: #fff;
-  border: 1px solid #d0d2d4;
-  border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	background-color: #fff;
+	border: 1px solid #d0d2d4;
+	border-collapse: collapse;
+	margin: 10px 0;
 }
-th,
-td {
-  border: 1px solid #d0d2d4;
+
+th, td {
+	border: 1px solid #d0d2d4;
 }
+
 th {
-  font-weight: 500;
-  background-color: #f0f3f7;
-  padding: 8px;
-  text-align: center;
+	font-weight: 500;
+	background-color: #f0f3f7;
+	padding: 8px;
+	text-align: center;
 }
+
 td {
-  border: 1px solid #d0d2d4;
-  padding: 8px;
-  text-align: left;
+	border: 1px solid #d0d2d4;
+	padding: 8px;
+	text-align: left;
+}
+
+.nav-inner {
+	border-bottom: 1px solid #d0d2d4;
+	margin-bottom: 10px;
+}
+
+.nav-list li {
+	display: inline-block;
+	margin-bottom: 3px;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+}
+
+.nav-list li.select-list {
+	background-color: #F0F3F7;
+}
+
+.nav-list li:hover {
+	cursor: pointer;
+	background-color: #435991;
+	color: #fff;
+	background-color: #435991;
+}
+
+.nav-list li a {
+	display: block;
+	font-size: 2.0rem;
+}
+
+.btnArea {
+	float: right;
+}
+
+.btnRegister {
+	width: 100px;
+	height: 30px;
+	font-size: 1.5rem;
 }

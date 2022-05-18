@@ -330,6 +330,9 @@
 		</div>
 	</main>
 
+	<jsp:include page="SitemapPopup.jsp" />
+	<jsp:include page="LoginPopup.jsp" />
+	
 	<script src="js/SitemapPopup.js"></script>
 	<script src="js/LoginPopup.js"></script>
 </body>
