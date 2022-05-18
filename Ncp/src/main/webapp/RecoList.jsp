@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<%@ page import="rlogic.Recommendation_Program" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.List"%>
+<%@ page import="rlogic.Recommendation_Program"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,72 +14,97 @@
 <link rel="stylesheet" type="text/css" href="./css/Base.css" />
 <link rel="stylesheet" type="text/css" href="./css/MyPage.css" />
 <link rel="stylesheet" type="text/css" href="./css/Reco.css" />
+<link rel="stylesheet" type="text/css" href="css/Base.css" />
+<link rel="stylesheet" type="text/css" href="css/RegisterProgramInfo.css" />
+<link rel="stylesheet" type="text/css" href="css/Main.css" />
+<link rel="stylesheet" type="text/css" href="css/Main_Content.css" />
+<link rel="stylesheet" type="text/css" href="css/LoginPopup.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://kit.fontawesome.com/46fda0e82e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<%
-Recommendation_Program recoProgram = new Recommendation_Program();
-List<Map<String, String>> datum = recoProgram.getPrettyRecommendation("12001");
-%>
-	<div class="top_area">
-		<div class="header_top">
-			<img class="seowonLogo" src="https://semsplus.seowon.ac.kr/contents/images/client/common/header_logo.svg" />
-		</div>
-
-		<div class="header_bottom"></div>
-
-		<div class="title_area">
-			<h3>마이페이지</h3>
-		</div>
-	</div>
+	<jsp:include page="TopArea.jsp">
+		<jsp:param name="visual_image" value="https://semsplus.seowon.ac.kr/contents/images/client/main/img_mainvisual.png" />
+	</jsp:include>
 
 	<main class="main_contents">
 		<div class="contents">
 			<section>
-                <div>
-                    <div class="input_div_ex">
-                        <a class="input_label">프로그램 명</a>
-                        <div class="input_div_in">
-                            <input type="text" placeholder="프로그램명을 입력하세요"/>
-                            <input type="button" value="검색"/>
-                        </div>
-                    </div>
-                    <div>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th colspan="9"><strong><%=datum.get(0).get("programName") %></strong><br>프로그램 추천 적합도 순위</th>
-                                </tr>
-                                <tr>
-                                    <th>순번</th>
-                                    <th>이름</th>
-                                    <th>소속학과(코드)</th>
-                                    <th>소속학과</th>
-                                    <th>학번</th>
-                                    <th>학년</th>
-                                    <th>성별</th>
-                                    <th>희망직무</th>
-                                    <th>프로그램 추천 적합도</th>
-                                </tr>
-                                </tr>
-<% for(int i=0; i<datum.size(); i++) { %>
-                                <tr>
-                                    <td><%=i+1 %></td>
-                                    <td><%=datum.get(i).get("name") %></td>
-                                    <td><%=datum.get(i).get("major_number") %></td>
-                                    <td><%=datum.get(i).get("major") %></td>
-                                    <td><%=datum.get(i).get("university_number") %></td>
-                                    <td><%=datum.get(i).get("grade") %></td>
-                                    <td><%=datum.get(i).get("sex") %></td>
-                                    <td><%=datum.get(i).get("ncp") %></td>
-                                    <td><%=datum.get(i).get("degree") %></td>
-                                </tr>
-<%} %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
+				<div>
+					<form action="/sbp" method="get">
+						<div class="input_div_ex">
+							<a class="input_label">프로그램 명</a>
+							<div class="input_div_in">
+								<input type="text" name="programName" placeholder="프로그램명을 입력하세요" />
+								<input type="submit" value="검색" />
+							</div>
+						</div>
+					</form>
+					<div>
+						<c:if test="${not empty recoList }">
+							<table>
+								<tbody>
+									<tr>
+										<th colspan="9"><strong><c:out value="${recoList[0]['programName'] }" /></strong><br>프로그램 추천 적합도 순위</th>
+									</tr>
+									<tr>
+										<th>순번</th>
+										<th>이름</th>
+										<th>소속학과(코드)</th>
+										<th>소속학과</th>
+										<th>학번</th>
+										<th>학년</th>
+										<th>성별</th>
+										<th>희망직무</th>
+										<th>프로그램 추천 적합도</th>
+									</tr>
+									<c:forEach items="${recoList }" var="reco" varStatus="status">
+										<tr>
+											<td>
+												<c:out value="${status.count }" />
+											</td>
+											<td>
+												<c:out value="${reco['name'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['major_number'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['major'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['university_number'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['grade'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['sex'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['ncp'] }" />
+											</td>
+											<td>
+												<c:out value="${reco['degree'] }" />
+												%
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:if>
+						<c:if test="${empty recoList }">
+							조회 결과가 없습니다.
+						</c:if>
+					</div>
+				</div>
+			</section>
 		</div>
 	</main>
+
+	<jsp:include page="SitemapPopup.jsp" />
+	<jsp:include page="LoginPopup.jsp" />
 </body>
+<script src="js/SitemapPopup.js"></script>
+<script src="js/LoginPopup.js"></script>
 </html>

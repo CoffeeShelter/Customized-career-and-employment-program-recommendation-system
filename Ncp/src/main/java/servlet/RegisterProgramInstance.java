@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import data.RecommendationResult;
-import rlogic.Rlogic;
+import data.utils.CategoryUtils;
 
 @WebServlet("/registerProgramInst")
 public class RegisterProgramInstance extends HttpServlet {
@@ -23,10 +21,15 @@ public class RegisterProgramInstance extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		request.setAttribute("operating_method_list", CategoryUtils.operatingMethodList);
+		request.setAttribute("college_information_list", CategoryUtils.collegeInformationList);
+		request.setAttribute("department_information_list", CategoryUtils.departmentInformationList);
+		request.setAttribute("major_information_list", CategoryUtils.majorInformationList);
+		request.setAttribute("student_sex_list", CategoryUtils.studentSexList);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInstance.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

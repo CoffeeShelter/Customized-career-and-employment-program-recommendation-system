@@ -27,9 +27,9 @@ public class ProgramUtils {
 			program_instance_list = program_DAO.getProgram_Instance();
 		}
 	}
-	
+
 	public ProgramUtils() {
-		
+
 	}
 
 	public static List<Program_Information_VO> getProgramInformation() {
@@ -58,9 +58,9 @@ public class ProgramUtils {
 				program_DAO = new Program_DAO();
 			}
 		}
-		
+
 		for (Program_Information_VO obj : program_information_list) {
-			if(obj.getCode().equals(code)) {
+			if (obj.getCode().equals(code)) {
 				return obj;
 			}
 		}
@@ -81,15 +81,20 @@ public class ProgramUtils {
 	}
 
 	public String getProgramName(String code) {
-		String programName = null;
-		
-		for(Program_Information_VO obj : program_information_list) {
+		for (Program_Information_VO obj : program_information_list) {
 			if (obj.getCode().equals(code)) {
 				return obj.getProgram_name();
 			}
 		}
-		
-		return programName;
+		return null;
 	}
-	
+
+	public String getProgramCode(String programName) {
+		for (Program_Information_VO obj : program_information_list) {
+			if (obj.getProgram_name().equals(programName)) {
+				return obj.getCode();
+			}
+		}
+		return null;
+	}
 }

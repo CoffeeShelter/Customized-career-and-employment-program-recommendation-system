@@ -1,8 +1,12 @@
-textarea {
-  width: 1110px;
-  height: 170px;
+html {
+	font-size: 10px;
 }
-p {
-  font-size: 1.5rem;
-  font-weight: 700;
+
+textarea {
+	width: 1110px;
+	height: 170px;
+}
+
+.info_text {
+	font-size: 40px;
 }

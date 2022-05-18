@@ -49,6 +49,7 @@ main {
 
 .contents {
   width: 1280px;
+  min-height: 1600px;
   margin: 0 auto;
   padding: 25px 20px 5%;
   background: #fff;

@@ -7,15 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>서원대학교</title>
 <link rel="stylesheet" type="text/css" href="css/Base.css" />
-<link rel="stylesheet" type="text/css" href="css/RegisterProgramInfo.css" />
 <link rel="stylesheet" type="text/css" href="css/Main.css" />
 <link rel="stylesheet" type="text/css" href="css/Main_Content.css" />
 <link rel="stylesheet" type="text/css" href="css/LoginPopup.css" />
+<link rel="stylesheet" type="text/css" href="css/RegisterProgramInfo.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://kit.fontawesome.com/46fda0e82e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="TopArea.jsp" >
+	<jsp:include page="TopArea.jsp">
 		<jsp:param name="visual_image" value="https://semsplus.seowon.ac.kr/contents/images/client/main/img_mainvisual.png" />
 	</jsp:include>
 
@@ -24,8 +24,9 @@
 			<form action="/programs" method="post">
 				<section>
 					<div>
-						<div>
-							<p>비교과 프로그램 기본 정보 등록</p>
+						<div class="info_text_area">
+							<img src="https://semsplus.seowon.ac.kr/contents/images/client/sub/icon_tit_lg.png" />
+							<h3 class="info_text">비교과 프로그램 기본 정보 등록</h3>
 						</div>
 						<div>
 							<table>
@@ -45,7 +46,9 @@
 										<td>
 											<select name="operating_type">
 												<c:forEach items="${operatingTypeList}" var="operatingType" varStatus="status">
-													<option value="${operatingType.code }"><c:out value="${operatingType.category_name }" /></option>
+													<option value="${operatingType.code }">
+														<c:out value="${operatingType.category_name }" />
+													</option>
 												</c:forEach>
 											</select>
 										</td>
@@ -65,13 +68,15 @@
 										<td>
 											<select name="category_large">
 												<c:forEach items="${largeCategoryList}" var="largeCategory" varStatus="status">
-													<option value="${largeCategory.code }"><c:out value="${largeCategory.category_name }" /></option>
+													<option value="${largeCategory.code }">
+														<c:out value="${largeCategory.category_name }" />
+													</option>
 												</c:forEach>
-											</select>
-											중분류
-											<select name="category_middle">
+											</select> 중분류 <select name="category_middle">
 												<c:forEach items="${middleCategoryList}" var="middleCategory" varStatus="status">
-													<option value="${middleCategory.code }"><c:out value="${middleCategory.category_name }" /></option>
+													<option value="${middleCategory.code }">
+														<c:out value="${middleCategory.category_name }" />
+													</option>
 												</c:forEach>
 											</select>
 										</td>
@@ -79,7 +84,9 @@
 										<td>
 											<select name="related_NCS_part">
 												<c:forEach items="${ncsList}" var="ncs" varStatus="status">
-													<option value="${ncs.code }"><c:out value="${ncs.category_name }" /></option>
+													<option value="${ncs.code }">
+														<c:out value="${ncs.category_name }" />
+													</option>
 												</c:forEach>
 											</select>
 										</td>
@@ -88,18 +95,22 @@
 										<th>선수 프로그램</th>
 										<td>
 											<select name="previous_program">
-											<option value="0"><c:out value="없음" /></option>
+												<option value="0"><c:out value="없음" /></option>
 												<c:forEach items="${programList}" var="program" varStatus="status">
-													<option value="${program.code }"><c:out value="${program.program_name }" /></option>
+													<option value="${program.code }">
+														<c:out value="${program.program_name }" />
+													</option>
 												</c:forEach>
 											</select>
 										</td>
 										<th>사후 프로그램</th>
 										<td>
 											<select name="after_program">
-											<option value="0"><c:out value="없음" /></option>
+												<option value="0"><c:out value="없음" /></option>
 												<c:forEach items="${programList}" var="program" varStatus="status">
-													<option value="${program.code }"><c:out value="${program.program_name }" /></option>
+													<option value="${program.code }">
+														<c:out value="${program.program_name }" />
+													</option>
 												</c:forEach>
 											</select>
 										</td>
@@ -172,7 +183,9 @@
 			</form>
 		</div>
 	</main>
-	
+	<jsp:include page="SitemapPopup.jsp" />
+	<jsp:include page="LoginPopup.jsp" />
+
 	<script src="js/SitemapPopup.js"></script>
 	<script src="js/LoginPopup.js"></script>
 </body>
