@@ -57,6 +57,18 @@ public class Student_DAO {
 
 		return data;
 	}
+	
+	public int updatePreferenceInformation(Preference_Information_VO preferenceInformation) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		int result = session.update("mapper.preference_information.updateOne", preferenceInformation);
+		if (result > 0) {
+			session.commit();
+		}
+		
+		return result;
+	}
 
 	public Student_VO getStudent(String university_number) {
 		Student_VO data = null;

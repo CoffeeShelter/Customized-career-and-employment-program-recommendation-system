@@ -26,5 +26,13 @@
 		where university_number = #{university_number}
 	]]>
 	</select>
+	
+	<update id="updateOne" parameterType="data.vo.Preference_Information_VO">
+	<![CDATA[
+		update Preference_Information
+		set NCS_part = #{NCS_part}, start_day = #{start_day}, end_day = #{end_day}, operating_method = #{operating_method}
+		where university_number = #{university_number}
+	]]>
+	</update>
 
 </mapper>

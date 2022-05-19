@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.RecommendationResult;
 import data.dao.Preparation_Level_DAO;
+import data.utils.CategoryUtils;
 import data.vo.Preparation_Level_VO;
 import rlogic.Rlogic;
 
@@ -35,7 +36,9 @@ public class MyPage extends HttpServlet {
 		Vector<Vector<RecommendationResult>> results = rLogic.getReccomendationResult("201910823");
 
 		request.setAttribute("results", results);
-		request.setAttribute("preLevels", preLevel);
+		request.setAttribute("preLevels", preLevel); 
+		request.setAttribute("ncsList", CategoryUtils.ncsList); 
+		request.setAttribute("operatingMethodList", CategoryUtils.operatingMethodList); 
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("MyPage.jsp");
 		dispatcher.forward(request, response);

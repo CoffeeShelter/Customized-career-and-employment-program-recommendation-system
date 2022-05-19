@@ -150,38 +150,36 @@
 							<tbody>
 								<tr>
 									<th>희망 직무</th>
-									<td>
-										<select>
-											<option>선택하시오</option>
-										</select>
-									</td>
+									<td><select id="ncs">
+											<c:forEach items="${ncsList }" var="ncs">
+												<option value="${ncs.code }">
+													<c:out value="${ncs.category_name } " />
+												</option>
+											</c:forEach>
+									</select></td>
 									<th>희망 운영방식</th>
-									<td>
-										<select>
-											<option>선택하시오</option>
-										</select>
-									</td>
+									<td><select id="operatingMethod">
+											<c:forEach items="${operatingMethodList }"
+												var="operatingMethod">
+												<option value="${operatingMethod.code }">
+													<c:out value="${operatingMethod.category_name } " />
+												</option>
+											</c:forEach>
+									</select></td>
 								</tr>
 								<tr>
-									<th>희망 학기</th>
-									<td colspan="3">
-										<input type="checkbox" name="operating_method" value="" /> 1학기
-										<input type="checkbox" name="operating_method" value="" /> 2학기
-										<input type="checkbox" name="operating_method" value="" /> 여름방학
-										<input type="checkbox" name="operating_method" value="" /> 겨울방학
-									</td>
-								</tr>
-								<tr>
-									<th>참여 희망<br>교육 시간</th>
-									<td colspan="3">
-									<input type="date" name="start_day"/> 부터
-									<input type="date" name="end_day"/> 까지
-									</td>
+									<th>참여 희망<br>교육 시간
+									</th>
+									<td colspan="3"><input id="start_day" type="date"
+										name="start_day" /> 부터 <input id="end_day" type="date"
+										name="end_day" /> 까지</td>
 								</tr>
 							</tbody>
 						</table>
+						<input type="hidden" id="universityNumber" value="201910823"/>
 						<div class="btnArea">
-							<input type="submit" class="btnRegister" value="등록" />
+							<input type="submit" id="btnRegister" class="btnRegister"
+								value="등록" onclick="updatePreferenceInformation();" />
 						</div>
 					</div>
 				</section>

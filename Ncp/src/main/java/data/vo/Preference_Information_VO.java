@@ -7,6 +7,18 @@ public class Preference_Information_VO {
 	private String end_day;
 	private String operating_method;
 
+	public Preference_Information_VO() {
+	}
+
+	public Preference_Information_VO(String university_number, String NCS_part, String start_day, String end_day,
+			String operating_method) {
+		this.university_number = university_number;
+		this.NCS_part = NCS_part;
+		this.start_day = start_day;
+		this.end_day = end_day;
+		this.operating_method = operating_method;
+	}
+
 	public String getUniversity_number() {
 		return university_number;
 	}
