@@ -34,17 +34,17 @@
 									<tr>
 										<th>프로그램 코드</th>
 										<td>
-											<input type="text" name="code" />
+											<input id="code" type="text" name="code" />
 										</td>
 										<th>프로그램 명</th>
 										<td>
-											<input type="text" name="program_name" />
+											<input id="program_name" type="text" name="program_name" />
 										</td>
 									</tr>
 									<tr>
 										<th>운영 유형</th>
 										<td>
-											<select name="operating_type">
+											<select id="operating_type" name="operating_type">
 												<c:forEach items="${operatingTypeList}" var="operatingType" varStatus="status">
 													<option value="${operatingType.code }">
 														<c:out value="${operatingType.category_name }" />
@@ -54,7 +54,7 @@
 										</td>
 										<th>이수시간</th>
 										<td>
-											<select name="completation_time">
+											<select id="completation_time" name="completation_time">
 												<option value="none">선택하세요</option>
 												<option value="1">1시간</option>
 												<option value="2">2시간</option>
@@ -66,13 +66,13 @@
 									<tr>
 										<th>대분류</th>
 										<td>
-											<select name="category_large">
+											<select id="category_large" name="category_large">
 												<c:forEach items="${largeCategoryList}" var="largeCategory" varStatus="status">
 													<option value="${largeCategory.code }">
 														<c:out value="${largeCategory.category_name }" />
 													</option>
 												</c:forEach>
-											</select> 중분류 <select name="category_middle">
+											</select> 중분류 <select id="category_middle" name="category_middle">
 												<c:forEach items="${middleCategoryList}" var="middleCategory" varStatus="status">
 													<option value="${middleCategory.code }">
 														<c:out value="${middleCategory.category_name }" />
@@ -82,7 +82,7 @@
 										</td>
 										<th>연계직무</th>
 										<td>
-											<select name="related_NCS_part">
+											<select id="related_NCS_part" name="related_NCS_part">
 												<c:forEach items="${ncsList}" var="ncs" varStatus="status">
 													<option value="${ncs.code }">
 														<c:out value="${ncs.category_name }" />
@@ -94,7 +94,7 @@
 									<tr>
 										<th>선수 프로그램</th>
 										<td>
-											<select name="previous_program">
+											<select id="previous_program" name="previous_program">
 												<option value="0"><c:out value="없음" /></option>
 												<c:forEach items="${programList}" var="program" varStatus="status">
 													<option value="${program.code }">
@@ -105,7 +105,7 @@
 										</td>
 										<th>사후 프로그램</th>
 										<td>
-											<select name="after_program">
+											<select id="after_program" name="after_program">
 												<option value="0"><c:out value="없음" /></option>
 												<c:forEach items="${programList}" var="program" varStatus="status">
 													<option value="${program.code }">
@@ -136,22 +136,22 @@
 									<tr>
 										<th>반영률</th>
 										<td>
-											<input type="text" name="TALENT_capability_01" />
+											<input id="TALENT_capability_01" type="text" name="TALENT_capability_01" />
 										</td>
 										<td>
-											<input type="text" name="TALENT_capability_02" />
+											<input id="TALENT_capability_02" type="text" name="TALENT_capability_02" />
 										</td>
 										<td>
-											<input type="text" name="TALENT_capability_03" />
+											<input id="TALENT_capability_03" type="text" name="TALENT_capability_03" />
 										</td>
 										<td>
-											<input type="text" name="TALENT_capability_04" />
+											<input id="TALENT_capability_04" type="text" name="TALENT_capability_04" />
 										</td>
 										<td>
-											<input type="text" name="TALENT_capability_05" />
+											<input id="TALENT_capability_05" type="text" name="TALENT_capability_05" />
 										</td>
 										<td>
-											<input type="text" name="TALENT_capability_06" />
+											<input id="TALENT_capability_06" type="text" name="TALENT_capability_06" />
 										</td>
 									</tr>
 								</tbody>
@@ -163,20 +163,20 @@
 									<tr>
 										<th>프로그램 목표</th>
 										<td>
-											<textarea name="program_goal" placeholder="입력하세요"></textarea>
+											<textarea id="program_gaol" name="program_goal" placeholder="입력하세요"></textarea>
 										</td>
 									</tr>
 									<tr>
 										<th>프로그램 세부내용</th>
 										<td>
-											<textarea name="program_detail" placeholder="입력하세요"></textarea>
+											<textarea id="program_detail" name="program_detail" placeholder="입력하세요"></textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 						<div class="btnArea">
-							<input type="submit" class="btnRegister" value="등록" />
+							<input id="btnRegister" type="submit" class="btnRegister" value="등록" />
 						</div>
 					</div>
 				</section>
@@ -188,5 +188,6 @@
 
 	<script src="js/SitemapPopup.js"></script>
 	<script src="js/LoginPopup.js"></script>
+	<script src="js/RegisterProgramInfo.js"></script>
 </body>
 </html>

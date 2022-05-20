@@ -61,9 +61,9 @@ function updatePreferenceInformation() {
 		"start_day=" + start_day + "&" +
 		"end_day=" + end_day + "&" +
 		"operating_method=" + operating_method;
-	
+
 	console.log("./student/preferenceinformation?" + parameter);
-	
+
 	request.open("Put", "./student/preferenceinformation?" + parameter, true);
 	request.onreadystatechange = searchProcess;
 	request.send(null);
