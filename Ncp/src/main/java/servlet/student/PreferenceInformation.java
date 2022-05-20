@@ -52,6 +52,11 @@ public class PreferenceInformation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+	}
+
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
@@ -61,7 +66,8 @@ public class PreferenceInformation extends HttpServlet {
 		String end_day = request.getParameter("end_day");
 		String operating_method = request.getParameter("operating_method");
 
-		Preference_Information_VO data = new Preference_Information_VO(university_number, NCS_part, start_day, end_day, operating_method);
+		Preference_Information_VO data = new Preference_Information_VO(university_number, NCS_part, start_day, end_day,
+				operating_method);
 		int result = studentDAO.updatePreferenceInformation(data);
 
 		if (result >= 0) {
@@ -69,11 +75,6 @@ public class PreferenceInformation extends HttpServlet {
 		} else {
 			response.getWriter().write("");
 		}
-	}
-
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)

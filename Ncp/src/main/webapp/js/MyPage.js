@@ -64,7 +64,7 @@ function updatePreferenceInformation() {
 	
 	console.log("./student/preferenceinformation?" + parameter);
 	
-	request.open("Post", "./student/preferenceinformation?" + parameter, true);
+	request.open("Put", "./student/preferenceinformation?" + parameter, true);
 	request.onreadystatechange = searchProcess;
 	request.send(null);
 }
@@ -91,9 +91,11 @@ function searchProcess() {
 
 		console.log(result);
 		btnRegister.style.backgroundColor = "#5F86D6";
+		btnRegister.disabled = false;
 
 	} else {
 		console.log("로딩즁");
 		btnRegister.style.backgroundColor = "#D94D4D";
+		btnRegister.disabled = true;
 	}
 }
