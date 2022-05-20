@@ -16,9 +16,6 @@ import com.google.gson.Gson;
 import data.utils.ProgramUtils;
 import rlogic.Recommendation_Program;
 
-/**
- * Servlet implementation class RecommendationResultSBP
- */
 @WebServlet("/sbp")
 public class RecommendationResultSBP extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,20 +26,17 @@ public class RecommendationResultSBP extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
 		ProgramUtils programUtils = new ProgramUtils();
 		Recommendation_Program recoProgram = new Recommendation_Program();
-		
+
 		String programName = request.getParameter("programName");
 		String code = programUtils.getProgramCode(programName);
-		
+
 		List<Map<String, String>> datum = recoProgram.getPrettyRecommendation(code);
-		
+
 		String result = getJSON(datum);
 		response.getWriter().write(result);
-		
+
 		request.setAttribute("recoList", datum);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("RecoList.jsp");
 		dispatcher.forward(request, response);
@@ -50,17 +44,14 @@ public class RecommendationResultSBP extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
 		ProgramUtils programUtils = new ProgramUtils();
 		Recommendation_Program recoProgram = new Recommendation_Program();
-		
+
 		String programName = request.getParameter("programName");
 		String code = programUtils.getProgramCode(programName);
-		
+
 		List<Map<String, String>> datum = recoProgram.getPrettyRecommendation(code);
-		
+
 		String result = getJSON(datum);
 		System.out.println(programName);
 		response.getWriter().write(result);
@@ -69,10 +60,10 @@ public class RecommendationResultSBP extends HttpServlet {
 	public String getJSON(List<Map<String, String>> data) {
 		Gson gson = new Gson();
 		String result = "";
-		
+
 		result = gson.toJson(data);
 		System.out.println(result);
-		
+
 		return result;
 	}
 }
