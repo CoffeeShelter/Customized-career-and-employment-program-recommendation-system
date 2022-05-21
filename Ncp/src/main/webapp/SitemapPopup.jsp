@@ -103,6 +103,8 @@
 					<div class="sitemap_list sitemap_list11">
 						<h2>관리자</h2>
 						<ul>
+							<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
+							</a></li>
 							<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
 							</a></li>
 							<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리

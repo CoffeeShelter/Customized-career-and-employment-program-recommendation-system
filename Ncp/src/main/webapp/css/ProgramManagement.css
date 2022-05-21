@@ -1,0 +1,42 @@
+input[id*="pro"] {
+	display: none;
+}
+
+input[id*="pro"]+label {
+	display: block;
+	padding: 20px;
+	border: 1px solid #C1DCFF;
+	border-bottom: 0;
+	color: #fff;
+	font-weight: 900;
+	font-size: 20px;
+	background: #5F86D6;
+	cursor: pointer;
+	position: relative;
+}
+
+input[id*="pro"]+label+div {
+	display: none;
+	box-sizing: border-box;
+	max-height: 0;
+	transition: all .35s;
+	overflow: hidden;
+	background: #ebf8ff;
+	font-size: 15px;
+	padding: 20px;
+}
+
+input[id*="pro"]+label i {
+	position: absolute;
+	right: 40px;
+	font-size: 20px;
+}
+
+input[id*="pro"]:checked+label+div {
+	display: block;
+	max-height: 1500px;
+}
+
+input[id*="pro"]:checked+label i {
+	transform: rotate(180deg);
+}
