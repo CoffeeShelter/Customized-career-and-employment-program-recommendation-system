@@ -1,7 +1,49 @@
+.searchFormZone {
+	display: block;
+	text-align: center;
+}
+
+.searchFormZone div {
+	position: relative;
+	display: inline-block;
+}
+
+.accordion {
+	position: relative;
+}
+
+.searchFormZone div input, button i {
+	font-size: 20px;
+}
+
+.searchFormZone div input[type="text"] {
+	width: 500px;
+	height: 50px;
+	border-radius: 15px;
+	margin: 30px 10px;
+	margin-top: 0;
+	padding: 5px 30px;
+}
+
+.searchFormZone div button {
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	width: 20px;
+	height: 20px;
+	transform: translate(0px, -25px);
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+}
+
 input[id*="pro"] {
 	display: none;
 }
-
+/*
 input[id*="pro"]+label {
 	display: block;
 	padding: 20px;
@@ -13,17 +55,28 @@ input[id*="pro"]+label {
 	background: #5F86D6;
 	cursor: pointer;
 	position: relative;
+	margin-bottom: 5px;
+}
+*/
+input[id*="pro"]+label {
+	display: block;
+	padding: 20px;
+	border-bottom: 1px solid #C1DCFF;
+	color: #000000;
+	font-weight: 900;
+	font-size: 20px;
+	background: #fff;
+	cursor: pointer;
+	position: relative;
+	margin-bottom: 5px;
 }
 
 input[id*="pro"]+label+div {
-	display: none;
 	box-sizing: border-box;
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: #ebf8ff;
 	font-size: 15px;
-	padding: 20px;
 }
 
 input[id*="pro"]+label i {
@@ -32,11 +85,22 @@ input[id*="pro"]+label i {
 	font-size: 20px;
 }
 
+input[id*="pro"]:checked+label {
+	background: #C1DCFF;
+}
 input[id*="pro"]:checked+label+div {
-	display: block;
 	max-height: 1500px;
+	/* padding: 20px; */
 }
 
 input[id*="pro"]:checked+label i {
 	transform: rotate(180deg);
+}
+
+input[id*="pro"]:checked+label+div input {
+	display: inline;
+	float: right;
+	width: 100px;
+	height: 30px;
+	margin: 0 0 0 10px;
 }

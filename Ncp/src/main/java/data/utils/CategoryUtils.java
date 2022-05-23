@@ -122,4 +122,13 @@ public class CategoryUtils {
 
 		return ncsName;
 	}
+
+	public String getOperatingTypeName(String code) {
+		for (Program_Operating_Type_VO obj : operatingTypeList) {
+			if (obj.getCode().equals(code)) {
+				return obj.getCategory_name();
+			}
+		}
+		return null;
+	}
 }
