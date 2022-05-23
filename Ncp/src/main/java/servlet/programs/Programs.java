@@ -42,7 +42,11 @@ public class Programs extends HttpServlet {
 		Gson gson = new Gson();
 		CategoryUtils categoryUtils = new CategoryUtils();
 
-		List<Program_Information_VO> programs = ProgramUtils.program_information_list;
+		String keyword = request.getParameter("keyword");
+		System.out.println(keyword);
+		
+		// List<Program_Information_VO> programs = ProgramUtils.program_information_list;
+		List<Program_Information_VO> programs = programDAO.searchProgram_Inforamtion(keyword);
 		List<Map<String, String>> datum = new ArrayList<>();
 
 		for (Program_Information_VO program : programs) {

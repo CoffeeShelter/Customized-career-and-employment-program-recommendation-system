@@ -43,24 +43,10 @@
 input[id*="pro"] {
 	display: none;
 }
-/*
+
 input[id*="pro"]+label {
 	display: block;
-	padding: 20px;
-	border: 1px solid #C1DCFF;
-	border-bottom: 0;
-	color: #fff;
-	font-weight: 900;
-	font-size: 20px;
-	background: #5F86D6;
-	cursor: pointer;
-	position: relative;
-	margin-bottom: 5px;
-}
-*/
-input[id*="pro"]+label {
-	display: block;
-	padding: 20px;
+	padding: 10px 20px;
 	border-bottom: 1px solid #C1DCFF;
 	color: #000000;
 	font-weight: 900;
@@ -88,19 +74,79 @@ input[id*="pro"]+label i {
 input[id*="pro"]:checked+label {
 	background: #C1DCFF;
 }
+
 input[id*="pro"]:checked+label+div {
 	max-height: 1500px;
-	/* padding: 20px; */
 }
 
 input[id*="pro"]:checked+label i {
 	transform: rotate(180deg);
 }
 
-input[id*="pro"]:checked+label+div input {
+input[id*="pro"]:checked+label+div a {
 	display: inline;
 	float: right;
 	width: 100px;
 	height: 30px;
-	margin: 0 0 0 10px;
+	margin: 0 0 20px 10px;
+	border: 1px solid #3D93E4;
+	text-align: center;
+	line-height: 30px;
+}
+
+input[id*="pro"]:checked+label+div a:hover {
+	background: #3D93E4;
+	color: #fff;
+}
+
+/* 로딩 스피너 */
+.center {
+	display: none;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	min-height:20vh;
+}
+.center.show{
+	display: flex;
+}
+
+.ring {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	animation: ring 2s linear infinite;
+}
+@keyframes ring {
+	0% {
+		transform: rotate(0deg);
+		box-shadow: 1px 5px 2px #3A93E5;
+	}
+	50% {
+		transform: rotate(180deg);
+		box-shadow: 1px 5px 2px #9080CA;
+	}
+	100% {
+		transform: rotate(360deg);
+		box-shadow: 1px 5px 2px #E570AF;
+	}
+}
+
+.ring:before {
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0, 0, 0,.3);
+}
+span {
+	color: #737373;
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 200px;
 }

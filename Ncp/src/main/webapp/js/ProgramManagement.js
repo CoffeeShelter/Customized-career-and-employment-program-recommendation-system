@@ -3,17 +3,23 @@ const request = new XMLHttpRequest();
 window.onload = searchPrograms();
 
 function searchPrograms() {
-	request.open("Get", "./programs", true);
+	let keyword = document.getElementById("keyword").value;
+	
+	request.open("Get", "./programs?keyword=" + keyword, true);
 	request.onreadystatechange = searchProcess;
 	request.send(null);
 }
 
 function searchProcess() {
+	const spinner = document.getElementById("spinner");
 	if (request.readyState == 4 && request.status == 200) {
+		spinner.classList.remove("show");
+		
 		let accordion = document.getElementById("accordion");
 		let result = request.responseText;
 		result = JSON.parse(result);
 
+		accordion.innerHTML = "";
 		for (var i = 0; i < result.length; i++) {
 			createList(accordion, result[i]);
 		}
@@ -21,6 +27,7 @@ function searchProcess() {
 		console.log(result.length);
 
 	} else {
+		spinner.classList.add("show");
 		console.log("로딩즁");
 	}
 }
@@ -81,13 +88,13 @@ function createList(accordion, data) {
 
 	table.appendChild(tbody);
 
-	let inputButtonUpdate = document.createElement("input");
-	inputButtonUpdate.setAttribute("type", "button");
-	inputButtonUpdate.setAttribute("value", "수정");
+	let inputButtonUpdate = document.createElement("a");
+	inputButtonUpdate.setAttribute("href", "./RegisterProgramInfo?code=" + data['code']);
+	inputButtonUpdate.innerText = "수정";
 
-	let inputButtonCreate = document.createElement("input");
-	inputButtonCreate.setAttribute("type", "button");
-	inputButtonCreate.setAttribute("value", "개설");
+	let inputButtonCreate = document.createElement("a");
+	inputButtonCreate.setAttribute("href", "./RegisterProgramInstance?code=" + data['code']);
+	inputButtonCreate.innerText = "개설";
 
 	div.appendChild(table);
 	div.appendChild(inputButtonUpdate);
@@ -96,4 +103,10 @@ function createList(accordion, data) {
 	accordion.appendChild(inputCheckbox);
 	accordion.appendChild(label);
 	accordion.appendChild(div);
+}
+
+function onkeyupEvent(e){
+	if(e.keyCode == 13) {
+		searchPrograms();
+	}
 }

@@ -39,6 +39,15 @@
 		 where code = #{code}
       ]]>
 	</select>
+	
+	<select id="searchPrograms" resultMap="program_information_Result"
+		parameterType="String">
+      <![CDATA[  
+         SELECT *
+		 FROM Program_Information
+		 WHERE UPPER(program_name) LIKE CONCAT('%',#{program_name} ,'%')
+      ]]>
+	</select>
 
 	<insert id="insertOne"
 		parameterType="data.vo.Program_Information_VO">

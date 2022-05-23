@@ -31,7 +31,7 @@ public class Program_DAO {
 		return sqlMapper;
 	}
 
-	public List<Program_Instance_VO> getProgram_Instance() {
+	public static List<Program_Instance_VO> getProgram_Instance() {
 		List<Program_Instance_VO> datum = new ArrayList<Program_Instance_VO>();
 
 		sqlMapper = getInstance();
@@ -42,7 +42,7 @@ public class Program_DAO {
 		return datum;
 	}
 
-	public List<Program_Information_VO> getProgram_Inforamtion() {
+	public static List<Program_Information_VO> getProgram_Inforamtion() {
 		List<Program_Information_VO> datum = new ArrayList<Program_Information_VO>();
 
 		sqlMapper = getInstance();
@@ -53,7 +53,7 @@ public class Program_DAO {
 		return datum;
 	}
 
-	public Program_Information_VO getProgram_Inforamtion(String code) {
+	public static Program_Information_VO getProgram_Inforamtion(String code) {
 		Program_Information_VO data = null;
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
@@ -66,8 +66,22 @@ public class Program_DAO {
 
 		return data;
 	}
+	
+	public static List<Program_Information_VO> searchProgram_Inforamtion(String program_name) {
+		List<Program_Information_VO> datum = new ArrayList<Program_Information_VO>();
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		Map<String, Object> programMap = new HashMap<>();
+		
+		programMap.put("program_name", program_name);
+		
+		datum = session.selectList("mapper.program_information.searchPrograms", programMap);
+		
+		return datum;
+	}
 
-	public int insertProgram_Information(Program_Information_VO programInformationVO) {
+	public static int insertProgram_Information(Program_Information_VO programInformationVO) {
 		int result = -1;
 
 		sqlMapper = getInstance();

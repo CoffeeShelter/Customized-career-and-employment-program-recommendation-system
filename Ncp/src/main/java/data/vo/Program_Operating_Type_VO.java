@@ -20,4 +20,9 @@ public class Program_Operating_Type_VO {
 		this.category_name = category_name;
 	}
 
+	@Override
+	public String toString() {
+		return "Program_Operating_Type_VO [code=" + code + ", category_name=" + category_name + "]";
+	}
+
 }

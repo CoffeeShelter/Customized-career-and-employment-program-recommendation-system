@@ -14,3 +14,7 @@ select * from student_sex;
 select * from Preference_Information;
 select * from Program_Information;
 select * from Program_Operating_Type;
+
+select *
+from Program_Information
+where upper(program_name) like concat('%',upper('seo') ,'%');
