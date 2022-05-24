@@ -19,6 +19,45 @@ const TALENT_capability_06 = document.getElementById("TALENT_capability_06");
 
 var request = new XMLHttpRequest();
 
+function insertProgramInformation() {
+	var code = code_doc.value;
+	var program_name = program_name_doc.value;
+	var category_large = category_large_doc.options[category_large_doc.selectedIndex].value;
+	var category_middle = category_middle_doc.options[category_middle_doc.selectedIndex].value;
+	var operating_type = operating_type_doc.options[operating_type_doc.selectedIndex].value;
+	var related_NCS_part = related_NCS_part_doc.options[related_NCS_part_doc.selectedIndex].value;
+	var completation_time = completation_time_doc.value;
+	var TALENT_capability = TALENT_capability_01.value + "/" +
+		TALENT_capability_02.value + "/" +
+		TALENT_capability_03.value + "/" +
+		TALENT_capability_04.value + "/" +
+		TALENT_capability_05.value + "/" +
+		TALENT_capability_06.value;
+	var previous_program = previous_program_doc.options[previous_program_doc.selectedIndex].value;
+	var after_program = after_program_doc.options[after_program_doc.selectedIndex].value;
+	var program_goal = program_goal_doc.value;
+	var program_detail = program_detail_doc.value;
+
+	var parameter = "code=" + code + "&" +
+		"program_name=" + program_name + "&" +
+		"category_large=" + category_large + "&" +
+		"category_middle=" + category_middle + "&" +
+		"operating_type=" + operating_type + "&" +
+		"related_NCS_part=" + related_NCS_part + "&" +
+		"completation_time=" + completation_time + "&" +
+		"TALENT_capability=" + TALENT_capability + "&" +
+		"previous_program=" + previous_program + "&" +
+		"after_program=" + after_program + "&" +
+		"program_goal=" + program_goal + "&" +
+		"program_detail=" + program_detail;
+
+	console.log("./programs?" + parameter);
+
+	request.open("Post", "./programs?" + parameter, true);
+	request.onreadystatechange = insertProcess;
+	request.send(null);
+}
+
 function updateProgramInformation() {
 	var code = code_doc.value;
 	var program_name = program_name_doc.value;
@@ -58,6 +97,23 @@ function updateProgramInformation() {
 	request.send(null);
 }
 
+function deleteProgramInformation() {
+	var code = code_doc.value;
+
+	var parameter = "code=" + code;
+
+	if (confirm("비교과 프로그램 기본 정보를 삭제 하시겠습니까?")) {
+		console.log("./programs?" + parameter);
+
+		request.open("Delete", "./programs?" + parameter, true);
+		request.onreadystatechange = deleteProcess;
+		request.send(null);
+	} else {
+		console.log("취소");
+	}
+
+}
+
 function searchProcess() {
 	const spinner = document.getElementById("spinner");
 	const tableArea = document.getElementById("tableArea");
@@ -70,6 +126,46 @@ function searchProcess() {
 		result = JSON.parse(result);
 
 		alert("수정 완료");
+	} else {
+		tableArea.classList.remove("show");
+		spinner.classList.add("show");
+		console.log("로딩즁");
+	}
+}
+
+function insertProcess() {
+	const spinner = document.getElementById("spinner");
+	const tableArea = document.getElementById("tableArea");
+
+	if (request.readyState == 4 && request.status == 200) {
+		spinner.classList.remove("show");
+		tableArea.classList.add("show");
+
+		let result = request.responseText;
+		if(result.length == ""){
+			alert("추가 완료");
+			window.open("./ProgramManagement.jsp");
+		}
+	} else {
+		tableArea.classList.remove("show");
+		spinner.classList.add("show");
+		console.log("로딩즁");
+	}
+}
+
+function deleteProcess() {
+	const spinner = document.getElementById("spinner");
+	const tableArea = document.getElementById("tableArea");
+
+	if (request.readyState == 4 && request.status == 200) {
+		spinner.classList.remove("show");
+		tableArea.classList.add("show");
+
+		let result = request.responseText;
+		if(result.length == ""){
+			alert("삭제 완료");
+			window.open("./ProgramManagement.jsp");
+		}
 	} else {
 		tableArea.classList.remove("show");
 		spinner.classList.add("show");

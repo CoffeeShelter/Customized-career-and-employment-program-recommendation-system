@@ -23,7 +23,7 @@
 		<result property="program_detail" column="program_detail" />
 	</resultMap>
 
-	<!-- 상품 전체 항목 검색 -->
+	<!-- 프로그램 기본 정보 전체 검색 -->
 	<select id="selectAll" resultMap="program_information_Result">
 	<![CDATA[
 		select *
@@ -31,6 +31,10 @@
 	]]>
 	</select>
 
+	<!--
+	비교과 프로그램 기본 정보 검색
+	검색 키워드: 프로그램 코드 
+	-->
 	<select id="selectOne" resultMap="program_information_Result"
 		parameterType="String">
       <![CDATA[  
@@ -40,6 +44,10 @@
       ]]>
 	</select>
 	
+	<!--
+	비교과 프로그램 기본 정보 검색
+	검색 키워드: 프로그램 명 
+	-->
 	<select id="searchPrograms" resultMap="program_information_Result"
 		parameterType="String">
       <![CDATA[  
@@ -49,6 +57,7 @@
       ]]>
 	</select>
 
+	<!-- 비교과 프로그램 기본 정보 추가 -->
 	<insert id="insertOne"
 		parameterType="data.vo.Program_Information_VO">
      	<![CDATA[
@@ -64,20 +73,26 @@
       	]]>
 	</insert>
 	
-	<!-- TODO: update 문 작성 , delete 문 생성 -->
-	<update id="insertOne"
+	<!-- 비교과 프로그램 기본 정보 수정 -->
+	<update id="updateProgram"
 		parameterType="data.vo.Program_Information_VO">
      	<![CDATA[
      		update program_information
 	     	set code=#{code}, program_name=#{program_name}, category_large=#{category_large}, category_middle=#{category_middle}, 
-	     		operating_type, related_NCS_part, completation_time, 
-	     		TALENT_capability, previous_program, after_program, 
-	     		program_goal, program_detail) 
-     		values (#{code}, #{program_name}, #{category_large}, #{category_middle},
-	   			#{operating_type}, #{related_NCS_part}, #{completation_time}, 
-	   			#{TALENT_capability}, #{previous_program}, #{after_program}, 
-	   			#{program_goal}, #{program_detail})
+	     		operating_type=#{operating_type}, related_NCS_part=#{related_NCS_part}, completation_time=#{completation_time}, 
+	     		TALENT_capability=#{TALENT_capability}, previous_program=#{previous_program}, after_program=#{after_program}, 
+	     		program_goal=#{program_goal}, program_detail=#{program_detail}
+     		where code=#{code}
       	]]>
 	</update>
+	
+	<!-- 비교과 프로그램 기본 정보 삭제 -->
+	<delete id="deleteProgram"
+		parameterType="String">
+     	<![CDATA[
+     		delete from program_information
+     		where code=#{code}
+      	]]>
+	</delete>
 
 </mapper>

@@ -94,5 +94,33 @@ public class Program_DAO {
 
 		return result;
 	}
+	
+	public static int updateProgram_Information(Program_Information_VO programInformationVO) {
+		int result = -1;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		result = session.update("mapper.program_information.updateProgram", programInformationVO);
+		if (result > 0) {
+			session.commit();
+		}
+
+		return result;
+	}
+	
+	public static int deleteProgram_Information(String code) {
+		int result = -1;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		result = session.delete("mapper.program_information.deleteProgram", code);
+		if (result > 0) {
+			session.commit();
+		}
+		
+		return result;
+	}
 
 }

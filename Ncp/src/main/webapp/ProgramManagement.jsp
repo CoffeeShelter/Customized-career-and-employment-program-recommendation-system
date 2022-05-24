@@ -21,14 +21,21 @@
 	<div class="main_content">
 		<div class="contents">
 			<div class="searchFormZone">
-				<div>
+				<div class="inner-left">
+					<a href="registerProgramInfo?code=0">신규 등록</a>
+					<i class="fa-solid fa-plus"></i>
+				</div>
+				<div class="inner-middle">
 					<input id="keyword" type="text" placeholder="프로그램 명을 입력하세요" onkeyup="onkeyupEvent(event)" value="">
 					<button onclick="searchPrograms();">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
 				</div>
+				<div class="inner-right">
+				
+				</div>
 			</div>
-			<div id="spinner" class="center">
+			<div id="spinner" class="center show">
 				<div class="ring">
 				</div>
 				<span>Loading...</span>

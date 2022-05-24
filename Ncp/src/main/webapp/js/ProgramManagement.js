@@ -3,6 +3,9 @@ const request = new XMLHttpRequest();
 window.onload = searchPrograms();
 
 function searchPrograms() {
+	let spinner = document.getElementById("spinner");
+	spinner.classList.remove("show");
+	
 	let keyword = document.getElementById("keyword").value;
 	
 	request.open("Get", "./programs?keyword=" + keyword, true);

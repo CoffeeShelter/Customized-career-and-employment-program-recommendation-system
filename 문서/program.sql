@@ -1,5 +1,9 @@
-insert ignore into Program_Information ( code, program_name, category_large, category_middle, operating_type, related_NCS_part, completation_time, TALENT_capability, previous_program, after_program, program_goal, grogram_detail )
+insert ignore into Program_Information ( code, program_name, category_large, category_middle, operating_type, related_NCS_part, completation_time, TALENT_capability, previous_program, after_program, program_goal, program_detail )
 values ( '11001', '진로취업 SEOCH 진로진단검사', '1', '1', '1', '00', 1, '0/0/70/0/30/0', null, null, 
+		'진로진단검사를 통한 진로수준 파악', 
+		'전학년 대상 진로개발준비도검사 실시' ),
+        
+        ( '11011', '진로취업 TEST 진로진단검사', '1', '1', '1', '00', 1, '0/0/70/0/30/0', null, null, 
 		'진로진단검사를 통한 진로수준 파악', 
 		'전학년 대상 진로개발준비도검사 실시' ),
         
@@ -26,3 +30,8 @@ desc Program_Instance;
 
 select * from Program_Information;
 select * from Program_Instance;
+
+delete from program_information
+where code = "";
+
+use ncp;

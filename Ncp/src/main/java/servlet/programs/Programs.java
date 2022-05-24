@@ -98,11 +98,15 @@ public class Programs extends HttpServlet {
 				previous_program, after_program, program_goal, program_detail);
 
 		result = Program_DAO.insertProgram_Information(programInformationVO);
-
-		System.out.println("추가 완료 " + result);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInfo.jsp");
-		dispatcher.forward(request, response);
+		
+		if (result > 0) {
+			System.out.println("추가 완료 " + result);
+		} else {
+			System.out.println("추가 실패 ...");
+		}
+		
+		// RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInfo.jsp");
+		// dispatcher.forward(request, response);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -123,9 +127,12 @@ public class Programs extends HttpServlet {
 		Program_Information_VO program = new Program_Information_VO(code, program_name, category_large, category_middle,
 				operating_type, related_NCS_part, completation_time, TALENT_capability, previous_program, after_program,
 				program_goal, program_detail);
-		
-		
 
+		int result = Program_DAO.updateProgram_Information(program);
+		if(result >= 0) {
+			System.out.println(result + "개 수정");
+		}
+		
 		Map<String, String> data = new HashMap<>();
 		data.put("code", program.getCode());
 		data.put("program_name", program.getProgram_name());
@@ -150,8 +157,10 @@ public class Programs extends HttpServlet {
 			throws ServletException, IOException {
 		String code = request.getParameter("code");
 
-		
-		response.getWriter().write("");
+		int result = Program_DAO.deleteProgram_Information(code);
+		if(result >= 0) {
+			System.out.println(result + "개 삭제");
+		}
 	}
 
 }
