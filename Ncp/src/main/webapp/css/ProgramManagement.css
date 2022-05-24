@@ -9,6 +9,11 @@
 }
 
 .accordion {
+	display: none;
+	position: relative;
+}
+.accordion.show {
+	display: block;
 	position: relative;
 }
 

@@ -63,5 +63,21 @@
 	   			#{program_goal}, #{program_detail})
       	]]>
 	</insert>
+	
+	<!-- TODO: update 문 작성 , delete 문 생성 -->
+	<update id="insertOne"
+		parameterType="data.vo.Program_Information_VO">
+     	<![CDATA[
+     		update program_information
+	     	set code=#{code}, program_name=#{program_name}, category_large=#{category_large}, category_middle=#{category_middle}, 
+	     		operating_type, related_NCS_part, completation_time, 
+	     		TALENT_capability, previous_program, after_program, 
+	     		program_goal, program_detail) 
+     		values (#{code}, #{program_name}, #{category_large}, #{category_middle},
+	   			#{operating_type}, #{related_NCS_part}, #{completation_time}, 
+	   			#{TALENT_capability}, #{previous_program}, #{after_program}, 
+	   			#{program_goal}, #{program_detail})
+      	]]>
+	</update>
 
 </mapper>

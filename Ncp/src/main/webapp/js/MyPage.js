@@ -15,7 +15,7 @@ const universityNumberInput = document.getElementById("universityNumber")
 const startDay = document.getElementById("start_day");
 const endDay = document.getElementById("end_day");
 
-var request = new XMLHttpRequest();
+const request = new XMLHttpRequest();
 
 btnInfo.addEventListener("click", () => {
 	contentsSetting.classList.remove("show");

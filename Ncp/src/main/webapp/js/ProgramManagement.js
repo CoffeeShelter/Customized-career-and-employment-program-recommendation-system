@@ -12,10 +12,12 @@ function searchPrograms() {
 
 function searchProcess() {
 	const spinner = document.getElementById("spinner");
+	const accordion = document.getElementById("accordion");
+	
 	if (request.readyState == 4 && request.status == 200) {
 		spinner.classList.remove("show");
+		accordion.classList.add("show");
 		
-		let accordion = document.getElementById("accordion");
 		let result = request.responseText;
 		result = JSON.parse(result);
 
@@ -27,6 +29,7 @@ function searchProcess() {
 		console.log(result.length);
 
 	} else {
+		accordion.classList.remove("show");
 		spinner.classList.add("show");
 		console.log("로딩즁");
 	}
@@ -89,11 +92,11 @@ function createList(accordion, data) {
 	table.appendChild(tbody);
 
 	let inputButtonUpdate = document.createElement("a");
-	inputButtonUpdate.setAttribute("href", "./RegisterProgramInfo?code=" + data['code']);
+	inputButtonUpdate.setAttribute("href", "./registerProgramInfo?code=" + data['code']);
 	inputButtonUpdate.innerText = "수정";
 
 	let inputButtonCreate = document.createElement("a");
-	inputButtonCreate.setAttribute("href", "./RegisterProgramInstance?code=" + data['code']);
+	inputButtonCreate.setAttribute("href", "./registerProgramInstance?code=" + data['code']);
 	inputButtonCreate.innerText = "개설";
 
 	div.appendChild(table);

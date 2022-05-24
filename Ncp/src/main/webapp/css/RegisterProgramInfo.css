@@ -24,10 +24,43 @@ table {
 }
 
 .btnArea {
-	float: right;
+	display: flex;
+	justify-content: space-between;
 }
-.btnRegister {
+
+.btnArea button {
 	width: 100px;
 	height: 30px;
 	font-size: 1.5rem;
+}
+
+#btnRemove {
+	border: 0; color : #fff;
+	background: #E82C0C;
+	color: #fff;
+}
+
+#btnRemove:hover {
+	border: 0;
+	color: #fff;
+	background: #d94d4d;
+}
+
+#btnRegister {
+	border: 0;
+	color: #fff;
+	background: rgb(95, 134, 214);
+}
+#btnRegister:hover {
+	border: 0;
+	color: #fff;
+	background: #0237E8;
+}
+
+.tableArea {
+	display: none;
+}
+
+.tableArea.show {
+	display: block;
 }
