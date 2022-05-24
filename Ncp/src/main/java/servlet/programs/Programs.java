@@ -123,6 +123,8 @@ public class Programs extends HttpServlet {
 		Program_Information_VO program = new Program_Information_VO(code, program_name, category_large, category_middle,
 				operating_type, related_NCS_part, completation_time, TALENT_capability, previous_program, after_program,
 				program_goal, program_detail);
+		
+		
 
 		Map<String, String> data = new HashMap<>();
 		data.put("code", program.getCode());
