@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="data.vo.Student_VO" alias="Student_VO" />
 		<typeAlias type="data.vo.Recommendation_Result_VO" alias="Recommendation_Result_VO" />
 		<typeAlias type="data.RecommendationResult_Program" alias="Recommendation_Result_Program" />		
+		<typeAlias type="data.vo.Users_VO" alias="Users_VO" />		
 	</typeAliases>
 
 	<environments default="development">
@@ -62,5 +63,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/mappers/Program_Information.xml" />
 		<mapper resource="mybatis/mappers/Student.xml" />
 		<mapper resource="mybatis/mappers/Recommendation_Result.xml" />
+		<mapper resource="mybatis/mappers/Users.xml" />
 	</mappers>
 </configuration>

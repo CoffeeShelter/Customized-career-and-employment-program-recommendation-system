@@ -94,5 +94,14 @@
      		where code=#{code}
       	]]>
 	</delete>
+	
+	<!-- 비교과 프로그램 기본 코드 최대값 검색 -->
+	<select id="maxProgramsCode" resultType="string" parameterType="String">
+     	<![CDATA[
+			SELECT MAX(CAST(CODE AS SIGNED INTEGER) - CAST(#{code} AS SIGNED INTEGER))
+			FROM PROGRAM_INFORMATION
+			WHERE CAST(CODE AS SIGNED INTEGER) BETWEEN CAST(#{code} AS SIGNED INTEGER) AND CAST(#{code} AS SIGNED INTEGER) + 999;
+      	]]>
+	</select>
 
 </mapper>

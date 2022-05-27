@@ -2,9 +2,14 @@
 
 CREATE DATABASE IF NOT EXISTS NCP;
 
-USE ncp;
-
 USE NCP;
+
+CREATE TABLE IF NOT EXISTS Users (
+	user_number varchar(9) NOT NULL,
+    power int NOT NULL DEFAULT 3,
+    PRIMARY KEY(user_number)
+);
+
 #########################################################################################
 #                                     학생 정보 (임시)                                     #
 #########################################################################################

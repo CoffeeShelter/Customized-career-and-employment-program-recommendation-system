@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.users">
+
+	<resultMap id="users_Result" type="Users_VO">
+		<result property="number" column="number" />
+		<result property="power" column="power" />
+	</resultMap>
+
+	<!-- 
+	유저 검색
+	키워드 : 번호
+	 -->
+	<select id="selectOne" resultMap="users_Result"	parameterType="String">
+	<![CDATA[
+		SELECT *
+		FROM Users
+		WHERE user_number = #{number};
+	]]>
+	</select>
+
+</mapper>

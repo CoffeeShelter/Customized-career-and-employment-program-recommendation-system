@@ -45,9 +45,6 @@
 							<table>
 								<tbody>
 									<tr>
-									<!-- 
-									[TODO]: 프로그램 코드 자동 생성 기능 추가
-									 -->
 										<th>프로그램 코드</th>
 										<td><input id="code" type="text" name="code"
 											value="${program.code }" readonly="readonly" /></td>
@@ -83,7 +80,7 @@
 									</tr>
 									<tr>
 										<th>대분류</th>
-										<td><select id="category_large" name="category_large">
+										<td><select id="category_large" name="category_large" onchange="onChange();">
 												<c:forEach items="${largeCategoryList}" var="largeCategory"
 													varStatus="status">
 													<c:choose>
@@ -101,7 +98,7 @@
 													</c:choose>
 
 												</c:forEach>
-										</select> 중분류 <select id="category_middle" name="category_middle">
+										</select> 중분류 <select id="category_middle" name="category_middle" onchange="onChange();">
 												<c:forEach items="${middleCategoryList}"
 													var="middleCategory" varStatus="status">
 													<c:choose>

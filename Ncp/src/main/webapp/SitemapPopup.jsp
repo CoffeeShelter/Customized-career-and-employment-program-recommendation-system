@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sitemap_popup">
 	<div class="sitemap_popup_body">
 		<div class="sitemap_wrapper">
@@ -86,33 +86,73 @@
 							<li><a href="">쪽지</a></li>
 						</ul>
 					</div>
-					<div class="sitemap_list sitemap_list9">
-						<h2>마이페이지</h2>
-						<ul>
-							<li><a href="/mypage">마이페이지</a></li>
-							<li><a href="">포트폴리오</a></li>
-						</ul>
-					</div>
-					<div class="sitemap_list sitemap_list10">
-						<h2>교수</h2>
-						<ul>
-							<li><a href="">학생정보 조회</a></li>
-							<li><a href="">학생 평가</a></li>
-						</ul>
-					</div>
-					<div class="sitemap_list sitemap_list11">
-						<h2>관리자</h2>
-						<ul>
-							<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
-							</a></li>
-							<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
-							</a></li>
-							<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리
-							</a></li>
-							<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
-							</a></li>
-						</ul>
-					</div>
+					<!-- 학생 접속 -->
+					<c:if test="${cookie.power.value eq '3' }">
+						<div class="sitemap_list sitemap_list9">
+							<h2>마이페이지</h2>
+							<ul>
+								<li><a href="/mypage">마이페이지</a></li>
+								<li><a href="">포트폴리오</a></li>
+							</ul>
+						</div>
+					</c:if>
+					<!-- 교수 접속 -->
+					<c:if test="${cookie.power.value eq '2' }">
+						<div class="sitemap_list sitemap_list10">
+							<h2>교수</h2>
+							<ul>
+								<li><a href="">학생정보 조회</a></li>
+								<li><a href="">학생 평가</a></li>
+							</ul>
+						</div>
+					</c:if>
+					<!-- 직원 접속 -->
+					<c:if test="${cookie.power.value eq '1' }">
+						<div class="sitemap_list sitemap_list11">
+							<h2>관리자</h2>
+							<ul>
+								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
+								</a></li>
+								<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
+								</a></li>
+								<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리
+								</a></li>
+								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
+								</a></li>
+							</ul>
+						</div>
+					</c:if>
+					<!-- 슈퍼 유저 접속 -->
+					<c:if test="${cookie.power.value eq '0' }">
+						<div class="sitemap_list sitemap_list9">
+							<h2>마이페이지</h2>
+							<ul>
+								<li><a href="/mypage">마이페이지</a></li>
+								<li><a href="">포트폴리오</a></li>
+							</ul>
+						</div>
+						<div class="sitemap_list sitemap_list10">
+							<h2>교수</h2>
+							<ul>
+								<li><a href="">학생정보 조회</a></li>
+								<li><a href="">학생 평가</a></li>
+							</ul>
+						</div>
+						<div class="sitemap_list sitemap_list11">
+							<h2>관리자</h2>
+							<ul>
+								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
+								</a></li>
+								<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
+								</a></li>
+								<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리
+								</a></li>
+								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
+								</a></li>
+							</ul>
+						</div>
+					</c:if>
+
 				</div>
 			</section>
 		</div>

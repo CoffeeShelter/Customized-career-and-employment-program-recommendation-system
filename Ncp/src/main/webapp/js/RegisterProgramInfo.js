@@ -142,7 +142,7 @@ function insertProcess() {
 		tableArea.classList.add("show");
 
 		let result = request.responseText;
-		if(result.length == ""){
+		if (result.length == "") {
 			alert("추가 완료");
 			window.open("./ProgramManagement.jsp");
 		}
@@ -162,13 +162,39 @@ function deleteProcess() {
 		tableArea.classList.add("show");
 
 		let result = request.responseText;
-		if(result.length == ""){
+		if (result.length == "") {
 			alert("삭제 완료");
 			window.open("./ProgramManagement.jsp");
 		}
 	} else {
 		tableArea.classList.remove("show");
 		spinner.classList.add("show");
+		console.log("로딩즁");
+	}
+}
+
+let code = 0;
+function onChange() {
+	code = Number(category_large_doc.options[category_large_doc.selectedIndex].value) * 10000;
+	code += Number(category_middle_doc.options[category_middle_doc.selectedIndex].value) * 1000;
+
+	request.open("Get", "./programs/code?code=" + String(code), true);
+	request.onreadystatechange = codeProcess;
+	request.send(null);
+
+	
+}
+
+function codeProcess() {
+	if (request.readyState == 4 && request.status == 200) {
+		let result = request.responseText;
+		result = JSON.parse(result);
+		
+		console.log(Number(result['maxCode']));
+		console.log(code + Number(result['maxCode']) +1);
+		
+		code_doc.value = code + Number(result['maxCode']) +1;
+	} else {
 		console.log("로딩즁");
 	}
 }

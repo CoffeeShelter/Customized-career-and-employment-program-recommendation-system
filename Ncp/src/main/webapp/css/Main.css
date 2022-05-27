@@ -68,6 +68,30 @@ p {
 .btn_login:hover div p {
   color: #fff;
 }
+.btn_logout {
+  background-color: transparent;
+  width: 112px;
+  height: 32px;
+  display: flex;
+  border: 1px solid #000;
+  border-radius: 40px;
+
+  justify-content: center;
+  align-items: center;
+}
+.btn_logout div i,
+p {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+.btn_logout:hover {
+  background-color: #0f298f;
+  cursor: pointer;
+}
+.btn_logout:hover div i,
+.btn_logout:hover div p {
+  color: #fff;
+}
 .seowon_logo {
   width: 167.09px;
   height: 50px;

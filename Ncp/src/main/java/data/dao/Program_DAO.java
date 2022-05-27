@@ -122,5 +122,16 @@ public class Program_DAO {
 		
 		return result;
 	}
+	
+	public static String getProgramMaxCode(String code) {
+		String result = null;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		result = session.selectOne("mapper.program_information.maxProgramsCode", code);
+		
+		return result;
+	}
 
 }

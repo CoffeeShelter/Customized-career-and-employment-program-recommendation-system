@@ -1,18 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="page_toparea">
 	<header class="header_wrap">
 		<div class="header_top">
-			<div class="btn_login">
-				<div>
-					<i class="fa-solid fa-lock"></i>
-					<p>LOGIN</p>
-				</div>
-			</div>
+			<c:choose>
+				<c:when test="${not empty cookie.power.value}">
+					<div class="btn_logout">
+						<div>
+							<i class="fa-solid fa-lock"></i>
+							<a href="/logout">LOGOUT</a>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="btn_login">
+						<div>
+							<i class="fa-solid fa-lock"></i>
+							<p>LOGIN</p>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 			<div class="seowon_logo">
-				<a href="index.jsp"><img src="https://semsplus.seowon.ac.kr/contents/images/client/common/header_logo.svg"/></a>
+				<a href="index.jsp"><img src="https://semsplus.seowon.ac.kr/contents/images/client/common/header_logo.svg" /></a>
 			</div>
 			<div class="btn_sitemap">
 				<i class="fa-solid fa-bars"></i>
