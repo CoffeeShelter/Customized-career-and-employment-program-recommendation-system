@@ -27,11 +27,23 @@
 		<result property="operating_department" column="operating_department" />
 	</resultMap>
 
-	<!-- 전체 항목 검색 -->
+	<!-- 개설 항목 전체 검색 -->
 	<select id="selectAll" resultMap="program_instance_Result"	>
 	<![CDATA[
 		select *
 		from Program_Instance
+	]]>
+	</select>
+	
+	<!--
+	개설 항목 검색
+	검색 키워드: 프로그램 코드
+	-->
+	<select id="searchInst" resultMap="program_instance_Result" parameterType="String"	>
+	<![CDATA[
+		SELECT *
+		FROM Program_Instance
+		WHERE CODE = #{code}
 	]]>
 	</select>
 

@@ -41,6 +41,17 @@ public class Program_DAO {
 
 		return datum;
 	}
+	
+	public static List<Program_Instance_VO> getProgram_Instance(String code) {
+		List<Program_Instance_VO> datum = new ArrayList<Program_Instance_VO>();
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		datum = session.selectList("mapper.program_instance.searchInst", code);
+		
+		return datum;
+	}
 
 	public static List<Program_Information_VO> getProgram_Inforamtion() {
 		List<Program_Information_VO> datum = new ArrayList<Program_Information_VO>();

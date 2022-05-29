@@ -99,7 +99,7 @@ function createList(accordion, data) {
 	inputButtonUpdate.innerText = "수정";
 
 	let inputButtonCreate = document.createElement("a");
-	inputButtonCreate.setAttribute("href", "./programInstanceManagement?code=" + data['code']);
+	inputButtonCreate.setAttribute("href", "./registerProgramInstance?code=" + data['code']);
 	inputButtonCreate.innerText = "개설";
 
 	div.appendChild(table);
