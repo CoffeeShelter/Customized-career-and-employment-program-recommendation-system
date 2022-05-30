@@ -68,6 +68,34 @@ public class Program_DAO {
 		return data;
 	}
 
+	public static int insertProgram_Instance(Program_Instance_VO programInstance) {
+		int result = -1;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		result = session.insert("mapper.program_instance.insertInst", programInstance);
+		if (result > 0) {
+			session.commit();
+		}
+
+		return result;
+	}
+	
+	public static int updateProgram_Instance(Program_Instance_VO programInstance) {
+		int result = -1;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		result = session.update("mapper.program_instance.updateInst", programInstance);
+		if (result > 0) {
+			session.commit();
+		}
+		
+		return result;
+	}
+	
 	public static List<Program_Information_VO> getProgram_Inforamtion() {
 		List<Program_Information_VO> datum = new ArrayList<Program_Information_VO>();
 

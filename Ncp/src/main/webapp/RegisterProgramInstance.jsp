@@ -29,7 +29,7 @@
 						<h3 class="info_text">비교과 프로그램 개설 및 관리</h3>
 					</div>
 					<div>
-						<input type="hidden" value="${program.code }" id="code" />
+						<input type="hidden" value="${programInst.code }" id="code" />
 						<h4>1. 비교과 프로그램 개설 정보</h4>
 						<div>
 							<table>
@@ -230,9 +230,9 @@
 
 											<th>교육 시간</th>
 											<td>
-												<input type="time" name="" id="" />
+												<input type="time" name="start_time" id="start_time" />
 												~
-												<input type="time" name="" id="" />
+												<input type="time" name="end_time" id="end_time" />
 											</td>
 										</tr>
 										<tr>
@@ -355,7 +355,7 @@
 									<tr>
 										<th>운영 평가</th>
 										<td>
-											<textarea name="" id="" placeholder="평가 내용을 입력해주세요"></textarea>
+											<textarea name="" id="operating_result" placeholder="평가 내용을 입력해주세요"></textarea>
 										</td>
 									</tr>
 								</tbody>

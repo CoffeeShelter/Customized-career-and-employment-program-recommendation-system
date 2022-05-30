@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sitemap_popup">
 	<div class="sitemap_popup_body">
@@ -113,9 +114,11 @@
 							<ul>
 								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
 								</a></li>
-								<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
+								<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보
+										등록
 								</a></li>
-								<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리
+								<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가
+										관리
 								</a></li>
 								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
 								</a></li>
@@ -142,10 +145,6 @@
 							<h2>관리자</h2>
 							<ul>
 								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
-								</a></li>
-								<li><a href="/registerProgramInfo">비교과 프로그램<br />기본 정보 등록
-								</a></li>
-								<li><a href="/registerProgramInst">비교과 프로그램<br />개설/평가 관리
 								</a></li>
 								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
 								</a></li>

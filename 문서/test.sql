@@ -15,6 +15,19 @@ select * from Preference_Information;
 select * from Program_Information;
 select * from Program_Operating_Type;
 
-select *
-from Program_Information
-where upper(program_name) like concat('%',upper('seo') ,'%');
+ALTER TABLE Program_Instance CHANGE open_time start_time TIME;
+ALTER TABLE Program_Instance MODIFY operating_result TEXT;
+
+ALTER TABLE Program_Instance
+ADD end_time TIME NOT NULL;
+
+ALTER TABLE Program_Instance DROP training_time;
+
+set sql_safe_updates=0;
+
+
+UPDATE Program_Instance
+SET recuiting_number = 100
+where code > 0;
+
+SELECT * FROM Program_Instance;

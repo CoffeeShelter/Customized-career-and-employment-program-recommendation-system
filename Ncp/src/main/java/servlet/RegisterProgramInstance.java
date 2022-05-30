@@ -44,17 +44,12 @@ public class RegisterProgramInstance extends HttpServlet {
 			request.setAttribute("TALENT_capability", TALENT_capability);
 		}
 		
+		request.setAttribute("program", program);
 		request.setAttribute("programInst", programInst);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("RegisterProgramInstance.jsp");
 		dispatcher.forward(request, response);
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

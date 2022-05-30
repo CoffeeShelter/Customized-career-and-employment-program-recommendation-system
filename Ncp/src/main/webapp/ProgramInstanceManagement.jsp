@@ -40,12 +40,17 @@
 				<table>
 					<thead>
 						<tr>
-							<th>No</th>
-							<th>강의 시작일</th>
-							<th>강의 종료일</th>
-							<th>이수 시간</th>
-							<th>운영 방식</th>
-							<th>평가 상태</th>
+							<th rowspan="2">No</th>
+							<th colspan="2">개설 날짜</th>
+							<th colspan="2">강의 시간</th>
+							<th rowspan="2">운영 방식</th>
+							<th rowspan="2">평가 상태</th>
+						</tr>
+						<tr>
+							<th>시작</th>
+							<th>종료</th>
+							<th>시작</th>
+							<th>종료</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,7 +61,8 @@
 										<td><c:out value="${status.count }" /></td>
 										<td><c:out value="${inst.start_day }" /></td>
 										<td><c:out value="${inst.end_day }" /></td>
-										<td><c:out value="${inst.training_time }" /></td>
+										<td><c:out value="${inst.start_time }" /></td>
+										<td><c:out value="${inst.end_time }" /></td>
 										<td><c:out value="${inst.operating_method }" /></td>
 										<c:choose>
 											<c:when test="${inst.operating_result eq '' or empty inst.operating_result }">
@@ -71,7 +77,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="5">
+									<td colspan="7">
 										개설 이력이 없습니다.
 									</td>
 								</tr>

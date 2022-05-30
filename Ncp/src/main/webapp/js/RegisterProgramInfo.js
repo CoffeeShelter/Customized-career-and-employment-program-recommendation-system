@@ -181,8 +181,6 @@ function onChange() {
 	request.open("Get", "./programs/code?code=" + String(code), true);
 	request.onreadystatechange = codeProcess;
 	request.send(null);
-
-	
 }
 
 function codeProcess() {

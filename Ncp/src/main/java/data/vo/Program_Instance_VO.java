@@ -7,7 +7,8 @@ public class Program_Instance_VO {
 	private String open_term;
 	private String start_day;
 	private String end_day;
-	private String training_time;
+	private String start_time;
+	private String end_time;
 	private String operating_method;
 	private String recuiting_number;
 	private String participation_number;
@@ -69,12 +70,20 @@ public class Program_Instance_VO {
 		this.end_day = end_day;
 	}
 
-	public String getTraining_time() {
-		return training_time;
+	public String getStart_time() {
+		return start_time;
 	}
 
-	public void setTraining_time(String training_time) {
-		this.training_time = training_time;
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+
+	public String getEnd_time() {
+		return end_time;
+	}
+
+	public void setEnd_time(String end_time) {
+		this.end_time = end_time;
 	}
 
 	public String getOperating_method() {
