@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS Program_Instance (
     target_sex varchar(1) NOT NULL,
     manager varchar(6)NOT NULL,
     operating_state varchar(2) NOT NULL,
-    operating_result int NOT NULL,
+    operating_result text NOT NULL,
     operating_department varchar(20) NOT NULL,
     primary key(code, open_year, open_term),
     foreign key(code) references Program_Information (code),

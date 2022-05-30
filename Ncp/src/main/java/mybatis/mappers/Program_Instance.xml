@@ -46,5 +46,17 @@
 		WHERE CODE = #{code}
 	]]>
 	</select>
+	
+	<!--
+	개설 항목 검색
+	검색 키워드: 프로그램 코드, 강의 시작 일, 강의 종료 일
+	-->
+	<select id="searchOneInst" resultMap="program_instance_Result" parameterType="Map"	>
+	<![CDATA[
+		SELECT *
+		FROM Program_Instance
+		WHERE code = #{code} AND start_day = #{start_day} AND end_day = #{end_day}
+	]]>
+	</select>
 
 </mapper>

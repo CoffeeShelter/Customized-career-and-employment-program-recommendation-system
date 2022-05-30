@@ -52,6 +52,21 @@ public class Program_DAO {
 		
 		return datum;
 	}
+	
+	public static Program_Instance_VO getProgram_Instance(String code, String start_day, String end_day) {
+		Program_Instance_VO data = null;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		Map<String, Object> parameter = new HashMap<>();
+		parameter.put("code", code);
+		parameter.put("start_day", start_day);
+		parameter.put("end_day", end_day);		
+		data = session.selectOne("mapper.program_instance.searchOneInst", parameter);
+		
+		return data;
+	}
 
 	public static List<Program_Information_VO> getProgram_Inforamtion() {
 		List<Program_Information_VO> datum = new ArrayList<Program_Information_VO>();

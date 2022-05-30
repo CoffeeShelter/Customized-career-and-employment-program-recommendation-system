@@ -26,17 +26,60 @@
 					<i class="fa-solid fa-plus"></i>
 				</div>
 				
+				<div class="inner-middle">
+					<h4><c:out value="${program.program_name }"/></h4>
+				</div>
+				
 				<div class="inner-right">
 					<p>조회</p>
 					<input type="date" name="query">
 				</div>
 			</div>
-			<div id="spinner" class="center show">
-				<div class="ring">
-				</div>
-				<span>Loading...</span>
+			<input type="hidden" class="programCode" id="programCode" value="${program.code }"/>
+			<div class="instList-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>강의 시작일</th>
+							<th>강의 종료일</th>
+							<th>이수 시간</th>
+							<th>운영 방식</th>
+							<th>평가 상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:choose>
+							<c:when test="${not empty programInst }">
+								<c:forEach	items="${programInst }" var="inst" varStatus="status">
+									<tr id="instList-item" class="instList-item">
+										<td><c:out value="${status.count }" /></td>
+										<td><c:out value="${inst.start_day }" /></td>
+										<td><c:out value="${inst.end_day }" /></td>
+										<td><c:out value="${inst.training_time }" /></td>
+										<td><c:out value="${inst.operating_method }" /></td>
+										<c:choose>
+											<c:when test="${inst.operating_result eq '' or empty inst.operating_result }">
+												<td><i class="fa-solid fa-xmark" style="color:red;"></i></td>
+											</c:when>
+											<c:otherwise>
+												<td><i class="fa-solid fa-check ok" style="color:green;"></i></td>
+											</c:otherwise>
+										</c:choose>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="5">
+										개설 이력이 없습니다.
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</tbody>
+				</table>
 			</div>
-			<div id="accordion" class="accordion"></div>
 		</div>
 	</div>
 

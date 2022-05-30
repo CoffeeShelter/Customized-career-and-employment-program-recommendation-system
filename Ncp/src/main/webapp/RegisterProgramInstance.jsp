@@ -29,27 +29,11 @@
 						<h3 class="info_text">비교과 프로그램 개설 및 관리</h3>
 					</div>
 					<div>
+						<input type="hidden" value="${program.code }" id="code" />
 						<h4>1. 비교과 프로그램 개설 정보</h4>
 						<div>
 							<table>
 								<tbody>
-									<tr>
-										<th>운영 년도</th>
-										<td>
-											<select name="open_year">
-												<option value="2022">2022년</option>
-												<option value="2023">2023년</option>
-												<option value="2024">2024년</option>
-											</select>
-										</td>
-										<th>운영 학기</th>
-										<td>
-											<select name="open_term">
-												<option value="1">1학기</option>
-												<option value="2">2학기</option>
-											</select>
-										</td>
-									</tr>
 									<tr>
 										<th>운영 부서</th>
 										<td>교육혁신원</td>
@@ -59,9 +43,9 @@
 									<tr>
 										<th>프로그램 형식</th>
 										<td>
-											<input type="radio" value="new" name="program_type" />
+											<input type="radio" value="0" name="program_type" />
 											신규개설
-											<input type="radio" value="old" name="program_type" />
+											<input type="radio" value="1" name="program_type" checked="checked" />
 											추가개설(다회차인 경우)
 										</td>
 										<th>운영 부서</th>
@@ -75,13 +59,27 @@
 										<th>운영 방식</th>
 										<td>
 											<c:forEach items="${operating_method_list }" var="operating_method">
-												<input type="radio" value="${operating_method.code }" name="operating_method" />
+												<c:choose>
+													<c:when test="${programInst.operating_method eq operating_method.code }">
+														<input type="radio" value="${operating_method.code }" name="operating_method" checked="checked" />
+													</c:when>
+													<c:otherwise>
+														<input type="radio" value="${operating_method.code }" name="operating_method" />
+													</c:otherwise>
+												</c:choose>
+
 												<c:out value="${operating_method.category_name }" />
 											</c:forEach>
 										</td>
 										<th>담당자</th>
 										<td>
-											<input type="text" />
+											<select id="manager" name="manager">
+												<c:forEach items="${managers }" var="manager">
+													<option value="${manager.staff_id }">
+														<c:out value="${manager.staff_name } (${manager.staff_id })" />
+													</option>
+												</c:forEach>
+											</select>
 										</td>
 									</tr>
 								</tbody>
@@ -97,7 +95,7 @@
 										<tr>
 											<th>인증 여부</th>
 											<td>
-												<input type="checkbox" name="auth" value="" />
+												<input type="checkbox" name="auth" value="" checked="checked" />
 												미인증
 												<input type="checkbox" name="auth" value="" />
 												일반인증
@@ -108,19 +106,24 @@
 											</td>
 											<th>참여시간</th>
 											<td>
-												<input type="text" name="" value="" placeholder="참여시간" />
+												<input type="number" name="" value="1" placeholder="참여시간" />
+												시간
 											</td>
 										</tr>
 										<tr>
+											<!-- 
 											<th>운영 기간</th>
 											<td>
 												<select id="" name="">
 													<option value="">선택하세요</option>
 												</select>
 											</td>
+											 -->
+
 											<th>CUKI 마일리지</th>
-											<td>
-												<input type="text" name="" value="" placeholder="CUKI 마일리지" />
+											<td colspan="3">
+												<input type="number" name="" value="50" placeholder="CUKI 마일리지" />
+												점
 											</td>
 										</tr>
 									</tbody>
@@ -144,23 +147,24 @@
 										</tr>
 										<tr>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[0] }" />
 											</td>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[1] }" />
 											</td>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[2] }" />
 											</td>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[3] }" />
 											</td>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[4] }" />
 											</td>
 											<td>
-												<input type="text" name="capability" value="0" />
+												<input type="number" name="capability" value="${TALENT_capability[5] }" />
 											</td>
+
 										</tr>
 									</tbody>
 								</table>
@@ -176,51 +180,51 @@
 										<tr>
 											<th>장소</th>
 											<td>
-												<input type="text" name="" value="" />
+												<input id="operating_department" type="text" name="" value="${programInst.operating_department }" />
 											</td>
 											<th>사전 공개 여부</th>
 											<td>
-												<input type="radio" value="" name="release" />
+												<input type="radio" value="" name="release" checked="checked" />
 												공개
 												<input type="radio" value="" name="release" />
 												비공개
 											</td>
 											<th>모집 기간</th>
 											<td>
-												<input type="date" name="" id="" />
+												<input type="date" name="" id="" value="${programInst.start_day }" />
 												~
-												<input type="date" name="" id="" />
+												<input type="date" name="" id="" value="${programInst.start_day }" />
 											</td>
 										</tr>
 										<tr>
 											<th>모집 인원</th>
 											<td>
-												<input type="number" name="recuiting_number" min="0" />
+												<input type="number" name="recuiting_number" min="0" value="${programInst.recuiting_number }" id="recuiting_number"/>
 												명
 											</td>
 											<th>대기 인원</th>
 											<td>27 명</td>
 											<th>운영 기간</th>
 											<td>
-												<input type="date" name="" id="" />
+												<input type="date" name="" id="start_day" value="${programInst.start_day }" />
 												~
-												<input type="date" name="" id="" />
+												<input type="date" name="" id="end_day" value="${programInst.end_day }" />
 											</td>
 										</tr>
 										<tr>
 											<th>참여 대상</th>
 											<td colspan="3">
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" checked="checked" />
 												전체
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" />
 												1학년
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" />
 												2학년
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" />
 												3학년
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" />
 												4학년
-												<input type="checkbox" name="participating" value="" />
+												<input type="checkbox" name="target_grade" value="" />
 												졸업자
 											</td>
 
@@ -234,7 +238,7 @@
 										<tr>
 											<th>문의</th>
 											<td colspan="5">
-												<input type="text" name="" value="" />
+												<input type="text" name="" value="043-721-5474" />
 											</td>
 										</tr>
 									</tbody>
@@ -253,44 +257,80 @@
 										<tr>
 											<td>
 												<div>
-													단과대학 <select name="college_information">
+													단과대학 <select id="college_information" name="college_information">
 														<c:forEach items="${college_information_list }" var="college_information">
-															<option value="${college_information.code }">
-																<c:out value="${college_information.category_name }" />
-															</option>
+															<c:choose>
+																<c:when test="${programInst.college_number eq college_information.code }">
+																	<option value="${college_information.code }" selected="selected">
+																		<c:out value="${college_information.category_name }" />
+																	</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${college_information.code }">
+																		<c:out value="${college_information.category_name }" />
+																	</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>
 											</td>
 											<td>
 												<div>
-													학부 <select name="department_information">
+													학부 <select id="department_information" name="department_information">
 														<c:forEach items="${department_information_list }" var="department_information">
-															<option value="${department_information.code }">
-																<c:out value="${department_information.category_name }" />
-															</option>
+															<c:choose>
+																<c:when test="${programInst.department_number eq department_information.code }">
+																	<option value="${department_information.code }" selected="selected">
+																		<c:out value="${department_information.category_name }" />
+																	</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${department_information.code }">
+																		<c:out value="${department_information.category_name }" />
+																	</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>
 											</td>
 											<td>
 												<div>
-													학부/전공 <select name="major_information">
+													학부/전공 <select id="major_information" name="major_information">
 														<c:forEach items="${major_information_list }" var="major_information">
-															<option value="${major_information.code }">
-																<c:out value="${major_information.category_name }" />
-															</option>
+															<c:choose>
+																<c:when test="${programInst.major_number eq major_information.code }">
+																	<option value="${major_information.code }" selected="selected">
+																		<c:out value="${major_information.category_name }" />
+																	</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${major_information.code }">
+																		<c:out value="${major_information.category_name }" />
+																	</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>
 											</td>
 											<td>
 												<div>
-													<select name="student_sex">
+													<select id="target_sex" name="target_sex">
 														<c:forEach items="${student_sex_list }" var="student_sex">
-															<option value="${student_sex.code }">
-																<c:out value="${student_sex.category_name }" />
-															</option>
+															<c:choose>
+																<c:when test="${programInst.target_sex eq student_sex.code }">
+																	<option value="${student_sex.code }" selected="selected">
+																		<c:out value="${student_sex.category_name }" />
+																	</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${student_sex.code }">
+																		<c:out value="${student_sex.category_name }" />
+																	</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>
@@ -309,13 +349,13 @@
 									<tr>
 										<th>참여 인원</th>
 										<td>
-											<input type="number" name="participation_number" min="0" />
+											<input type="number" id="participation_number" name="participation_number" min="0" value="78" />
 										</td>
 									</tr>
 									<tr>
 										<th>운영 평가</th>
 										<td>
-											<textarea name="" id=""></textarea>
+											<textarea name="" id="" placeholder="평가 내용을 입력해주세요"></textarea>
 										</td>
 									</tr>
 								</tbody>
@@ -323,7 +363,14 @@
 						</div>
 					</div>
 					<div class="btnArea">
-						<input type="button" class="btnRegister" value="등록" />
+						<c:choose>
+							<c:when test="${not empty programInst}">
+								<button id="btnRegister" class="btnRegister" onclick="updateProgramInstance();">수정</button>
+							</c:when>
+							<c:otherwise>
+								<button id="btnRegister" class="btnRegister" onclick="insertProgramInstance();">등록</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</section>
@@ -332,7 +379,8 @@
 
 	<jsp:include page="SitemapPopup.jsp" />
 	<jsp:include page="LoginPopup.jsp" />
-	
+
+	<script src="js/RegisterProgramInstance.js"></script>
 	<script src="js/SitemapPopup.js"></script>
 	<script src="js/LoginPopup.js"></script>
 </body>

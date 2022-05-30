@@ -1,12 +1,14 @@
 package data.dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import data.vo.Manager_Information_VO;
 import data.vo.Users_VO;
 
 public class UsersDAO {
@@ -25,7 +27,7 @@ public class UsersDAO {
 		}
 		return sqlMapper;
 	}
-	
+
 	public static Users_VO getUser(String number) {
 		Users_VO user = null;
 
@@ -37,5 +39,15 @@ public class UsersDAO {
 		return user;
 	}
 
-	
+	public static List<Manager_Information_VO> getManager() {
+		List<Manager_Information_VO> managers = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		managers = session.selectList("mapper.manager_information.selectAll");
+
+		return managers;
+	}
+
 }
