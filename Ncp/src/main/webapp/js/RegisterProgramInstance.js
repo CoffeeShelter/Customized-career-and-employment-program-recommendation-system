@@ -1,3 +1,15 @@
+function getOpenTerm(month) {
+	if (month >= 3 && month < 7) {
+		return '1';
+	} else if (month >= 7 && month < 9) {
+		return '3';
+	} else if (month >= 9 && month < 12) {
+		return '2';
+	} else {
+		return '4';
+	}
+}
+
 const code_doc = document.getElementById("code");
 const open_type_doc = document.getElementsByName("program_type");
 const start_day_doc = document.getElementById("start_day");
@@ -15,6 +27,11 @@ const operating_result_doc = document.getElementById("operating_result");
 const operating_department_doc = document.getElementById("operating_department");
 const start_time_doc = document.getElementById("start_time");
 const end_time_doc = document.getElementById("end_time");
+
+const before_start_day = start_day.value;
+const before_end_day = end_day.value;
+const before_open_year = start_day_doc.value.substring(0, 4);
+const before_open_term = getOpenTerm(Number(start_day_doc.value.substring(5, 2)));
 
 var request = new XMLHttpRequest();
 
@@ -84,7 +101,9 @@ function updateProgramInstance() {
 					 "manager=" + manager + "&" +
 					 "operating_state=" + operating_state + "&" +
 					 "operating_result=" + operating_result + "&" +
-					 "operating_department=" + operating_department;
+					 "operating_department=" + operating_department + "&" +
+					 "before_start_day=" + before_start_day + "&" +
+					 "before_end_day=" + before_end_day;
 
 	request.open("Put", "/programs/instance?" + parameter, true);
 	request.onreadystatechange = updateProcess;
@@ -159,18 +178,19 @@ function insertProgramInstance() {
 					 "operating_result=" + operating_result + "&" +
 					 "operating_department=" + operating_department;
 
+	console.log(parameter);
+
 	request.open("Post", "/programs/instance?" + parameter, true);
-	request.onreadystatechange = updateProcess;
+	request.onreadystatechange = insertProcess;
 	request.send(null);
 }
 
 function updateProcess() {
 	const btnRegister = document.getElementById("btnRegister");
+	var code = code_doc.value;
 
 	if (request.readyState == 4 && request.status == 200) {
-		btnRegister.disabled = false;
-		btnRegister.style.backgroundColor = "#5F86D6";
-		console.log("수정 완료");
+		location.href = "./programInstanceManagement?code=" + code;
 	} else {
 		btnRegister.disabled = true;
 		btnRegister.style.backgroundColor = "#D94D4D";

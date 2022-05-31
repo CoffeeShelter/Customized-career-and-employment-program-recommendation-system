@@ -1,25 +1,14 @@
 package config;
 
-import java.util.List;
-import java.util.Map;
-
-import com.google.gson.Gson;
-
-import rlogic.Recommendation_Program;
+import rlogic.Rlogic;
 
 public class Preference_Information_Test {
 
 	public static void main(String[] args) {
 		// 201910823
 		// 202011346
-		Gson gson = new Gson();
-		
-		Recommendation_Program recoProgram = new Recommendation_Program();
-		List<Map<String, String>> datum = recoProgram.getPrettyRecommendation("12001");
 
-		for(Map<String, String> data : datum) {
-			System.out.println(data.toString());
-		}
-		
+		Rlogic rlogic = new Rlogic();
+		rlogic.getReccomendationResult("201910823");
 	}
 }

@@ -44,6 +44,7 @@ public class RegisterProgramInstance extends HttpServlet {
 			request.setAttribute("TALENT_capability", TALENT_capability);
 		}
 		
+		request.setAttribute("programCode", code);
 		request.setAttribute("program", program);
 		request.setAttribute("programInst", programInst);
 		

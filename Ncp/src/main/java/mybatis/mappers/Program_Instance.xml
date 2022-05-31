@@ -45,6 +45,7 @@
 		SELECT *
 		FROM Program_Instance
 		WHERE CODE = #{code}
+		ORDER BY start_day;
 	]]>
 	</select>
 	
@@ -81,14 +82,14 @@
 	<!--
 	개설 정보 수정
 	-->
-	<insert id="updateInst"  parameterType="data.vo.Program_Instance_VO">
+	<insert id="updateInst"  parameterType="Map">
 	<![CDATA[
 		UPDATE Program_Instance
 		SET code=#{code}, open_type=#{open_type}, open_year=#{open_year}, open_term=#{open_term}, start_day=#{start_day},
 			end_day=#{end_day}, start_time=#{start_time}, end_time=#{end_time}, operating_method=#{operating_method}, recuiting_number=#{recuiting_number},
 			participation_number=#{participation_number}, college_number=#{college_number}, department_number=#{department_number}, major_number= #{major_number}, target_grade=#{target_grade},
 			target_sex=#{target_sex}, manager=#{manager}, operating_state=#{operating_state}, operating_result=#{operating_result}, operating_department=#{operating_department}
-		WHERE code=#{code} AND open_year=#{open_year} AND open_term=#{open_term}
+		WHERE code=#{code} AND start_day=#{before_start_day} AND end_day=#{before_end_day}
 	]]>
 	</insert>
 

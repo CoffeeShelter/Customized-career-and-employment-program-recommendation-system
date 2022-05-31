@@ -182,4 +182,18 @@ public class Program_Instance_VO {
 		this.operating_department = operating_department;
 	}
 
+	@Override
+	public String toString() {
+		return "Program_Instance_VO [code=" + code + ", open_type=" + open_type + ", open_year=" + open_year
+				+ ", open_term=" + open_term + ", start_day=" + start_day + ", end_day=" + end_day + ", start_time="
+				+ start_time + ", end_time=" + end_time + ", operating_method=" + operating_method
+				+ ", recuiting_number=" + recuiting_number + ", participation_number=" + participation_number
+				+ ", college_number=" + college_number + ", department_number=" + department_number + ", major_number="
+				+ major_number + ", target_grade=" + target_grade + ", target_sex=" + target_sex + ", manager="
+				+ manager + ", operating_state=" + operating_state + ", operating_result=" + operating_result
+				+ ", operating_department=" + operating_department + "]";
+	}
+
+	
+	
 }

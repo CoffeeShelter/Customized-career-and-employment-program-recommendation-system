@@ -261,13 +261,13 @@ CREATE TABLE IF NOT EXISTS Program_Participation_History (
 # Rlogic에 의해 모집 중에 있는 프로그램에 대한 추천 적합 도를 계산한 결과를 저장(알고리즘 단계별 적합 도는 View로 처리)
 CREATE TABLE IF NOT EXISTS Recommendation_Result (
 	code varchar(10) NOT NULL,
-    open_year year NOT NULL,
-    open_term int NOT NULL,
+    start_day date NOT NULL,
+    end_day date NOT NULL,
     university_number varchar(9) NOT NULL,
     capability_category varchar(3) NOT NULL,
     recommendation_degree float NOT NULL,
-    primary key(code, university_number, open_year, open_term, capability_category),
-	foreign key(code, open_year, open_term) references Program_Instance (code, open_year, open_term),
+    primary key(code, university_number, start_day, end_day, capability_category),
+	foreign key(code, start_day, end_day) references Program_Instance (code, start_day, end_day),
 	foreign key(university_number) references Student (university_number),
 	foreign key(capability_category) references Program_Middle_Category (code)
 );

@@ -2,19 +2,20 @@ package data.vo;
 
 public class Recommendation_Result_VO {
 	private String code;
-	private String open_year;
-	private int open_term;
+	private String start_day;
+	private String end_day;
 	private String university_number;
 	private String capability_category;
 	private float recommendation_degree;
-	
-	public Recommendation_Result_VO() {}
 
-	public Recommendation_Result_VO(String code, String open_year, int open_term, String university_number,
+	public Recommendation_Result_VO() {
+	}
+
+	public Recommendation_Result_VO(String code, String start_day, String end_day, String university_number,
 			String capability_category, float recommendation_degree) {
 		this.code = code;
-		this.open_year = open_year;
-		this.open_term = open_term;
+		this.start_day = start_day;
+		this.end_day = end_day;
 		this.university_number = university_number;
 		this.capability_category = capability_category;
 		this.recommendation_degree = recommendation_degree;
@@ -28,20 +29,20 @@ public class Recommendation_Result_VO {
 		this.code = code;
 	}
 
-	public String getOpen_year() {
-		return open_year;
+	public String getStart_day() {
+		return start_day;
 	}
 
-	public void setOpen_year(String open_year) {
-		this.open_year = open_year;
+	public void setStart_day(String start_day) {
+		this.start_day = start_day;
 	}
 
-	public int getOpen_term() {
-		return open_term;
+	public String getEnd_day() {
+		return end_day;
 	}
 
-	public void setOpen_term(int open_term) {
-		this.open_term = open_term;
+	public void setEnd_day(String end_day) {
+		this.end_day = end_day;
 	}
 
 	public String getUniversity_number() {
@@ -70,7 +71,7 @@ public class Recommendation_Result_VO {
 
 	@Override
 	public String toString() {
-		return "Recommendation_Result_VO [code=" + code + ", open_year=" + open_year + ", open_term=" + open_term
+		return "Recommendation_Result_VO [code=" + code + ", start_day=" + start_day + ", end_day=" + end_day
 				+ ", university_number=" + university_number + ", capability_category=" + capability_category
 				+ ", recommendation_degree=" + recommendation_degree + "]";
 	}

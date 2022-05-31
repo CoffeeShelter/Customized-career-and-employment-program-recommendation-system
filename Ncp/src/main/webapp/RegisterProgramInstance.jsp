@@ -29,7 +29,7 @@
 						<h3 class="info_text">비교과 프로그램 개설 및 관리</h3>
 					</div>
 					<div>
-						<input type="hidden" value="${programInst.code }" id="code" />
+						<input type="hidden" value="${programCode }" id="code" />
 						<h4>1. 비교과 프로그램 개설 정보</h4>
 						<div>
 							<table>
@@ -214,25 +214,25 @@
 										<tr>
 											<th>참여 대상</th>
 											<td colspan="3">
-												<input type="checkbox" name="target_grade" value="" checked="checked" />
+												<input type="checkbox" name="target_grade" value="0" checked="checked" />
 												전체
-												<input type="checkbox" name="target_grade" value="" />
+												<input type="checkbox" name="target_grade" value="1" />
 												1학년
-												<input type="checkbox" name="target_grade" value="" />
+												<input type="checkbox" name="target_grade" value="2" />
 												2학년
-												<input type="checkbox" name="target_grade" value="" />
+												<input type="checkbox" name="target_grade" value="3" />
 												3학년
-												<input type="checkbox" name="target_grade" value="" />
+												<input type="checkbox" name="target_grade" value="4" />
 												4학년
-												<input type="checkbox" name="target_grade" value="" />
+												<input type="checkbox" name="target_grade" value="8" />
 												졸업자
 											</td>
 
 											<th>교육 시간</th>
 											<td>
-												<input type="time" name="start_time" id="start_time" />
+												<input type="time" name="start_time" id="start_time" value="${programInst.start_time }"/>
 												~
-												<input type="time" name="end_time" id="end_time" />
+												<input type="time" name="end_time" id="end_time" value="${programInst.end_time }"/>
 											</td>
 										</tr>
 										<tr>
@@ -349,13 +349,13 @@
 									<tr>
 										<th>참여 인원</th>
 										<td>
-											<input type="number" id="participation_number" name="participation_number" min="0" value="78" />
+											<input type="number" id="participation_number" name="participation_number" min="0" value="${programInst.participation_number }" />
 										</td>
 									</tr>
 									<tr>
 										<th>운영 평가</th>
 										<td>
-											<textarea name="" id="operating_result" placeholder="평가 내용을 입력해주세요"></textarea>
+											<textarea name="" id="operating_result" placeholder="평가 내용을 입력해주세요"><c:out value="${programInst.operating_result }" /></textarea>
 										</td>
 									</tr>
 								</tbody>

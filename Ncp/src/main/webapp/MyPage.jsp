@@ -51,19 +51,19 @@
 									<th>단과대학</th>
 									<td>미디어융합대학</td>
 									<th>소속</th>
-									<td>소프트웨어학부 (컴퓨터공학)</td>
+									<td>${student.major }</td>
 								</tr>
 								<tr>
 									<th>부/복수/연계/융합전공</th>
 									<td></td>
 									<th>학년</th>
-									<td>4학년</td>
+									<td>${student.grade }학년</td>
 								</tr>
 								<tr>
 									<th>학번</th>
-									<td>201711245</td>
+									<td>${student.university_number }</td>
 									<th>이름</th>
-									<td>이주훈(남성)</td>
+									<td>${student.name }</td>
 								</tr>
 								<tr>
 									<th>연락처</th>
@@ -92,11 +92,9 @@
 							<div class="recommendation_result_table_area">
 
 								<h4>
-									최하위 역량(
-									<c:out value="${status.count }" />
-									) (
+									<strong><c:out value="${status.count }" />. </strong> 최하위 역량(
 									<c:out value="${preLevels[status.index].capability_category }" />
-									)_준비도:
+									) 준비도:
 									<c:out value="${preLevels[status.index].preparation_degree }" />
 									%
 								</h4>
@@ -119,14 +117,14 @@
 											</tr>
 											<c:forEach items="${results }" var="result">
 												<tr>
-													<td><c:out value="${result.programCode }" /></td>
-													<td><c:out value="${result.largeCategory }" /></td>
-													<td><c:out value="${result.middleCategory }" /></td>
-													<td><c:out value="${result.programName }" /></td>
-													<td><c:out value="${result.openTerm }" /></td>
-													<td><c:out value="${result.completationTime }" /></td>
-													<td><c:out value="${result.operatingState }" /></td>
-													<td><c:out value="${result.recommendationDegree }" />
+													<td><c:out value="${result.code }" /></td>
+													<td><c:out value="${result.category_large_name }" /></td>
+													<td><c:out value="${result.category_middle_name }" /></td>
+													<td><c:out value="${result.program_name }" /></td>
+													<td><c:out value="${result.day }" /></td>
+													<td><c:out value="${result.completation_time }" /></td>
+													<td><c:out value="${result.operating_state_name }" /></td>
+													<td><c:out value="${result.recommendation_degree }" />
 													</td>
 												</tr>
 											</c:forEach>
@@ -176,7 +174,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<input type="hidden" id="universityNumber" value="201910823"/>
+						<input type="hidden" id="universityNumber" value="201910823" />
 						<div class="btnArea">
 							<input type="submit" id="btnRegister" class="btnRegister"
 								value="등록" onclick="updatePreferenceInformation();" />

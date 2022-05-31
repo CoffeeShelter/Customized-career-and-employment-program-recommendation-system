@@ -22,7 +22,7 @@
 		<div class="contents">
 			<div class="searchFormZone">
 				<div class="inner-left">
-					<a href="registerProgramInst?code=0">신규 개설</a>
+					<a onclick="createInstance();">신규 개설</a>
 					<i class="fa-solid fa-plus"></i>
 				</div>
 				
@@ -57,7 +57,7 @@
 						<c:choose>
 							<c:when test="${not empty programInst }">
 								<c:forEach	items="${programInst }" var="inst" varStatus="status">
-									<tr id="instList-item" class="instList-item">
+									<tr id="instList-item" class="instList-item" ondblclick="updateInstance(this)">
 										<td><c:out value="${status.count }" /></td>
 										<td><c:out value="${inst.start_day }" /></td>
 										<td><c:out value="${inst.end_day }" /></td>

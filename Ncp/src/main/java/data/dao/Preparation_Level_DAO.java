@@ -11,7 +11,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import data.vo.Preparation_Level_VO;
-import data.vo.Program_Information_VO;
 
 public class Preparation_Level_DAO {
 	private static SqlSessionFactory sqlMapper = null;
@@ -29,19 +28,18 @@ public class Preparation_Level_DAO {
 		}
 		return sqlMapper;
 	}
-	
 
-	public List<Preparation_Level_VO> selectAll() {
+	public static List<Preparation_Level_VO> selectAll() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		
+
 		List<Preparation_Level_VO> preparation_level_list = null;
 		preparation_level_list = session.selectList("mapper.preparation_level.selectAll");
-		
+
 		return preparation_level_list;
 	}
 
-	public List<Preparation_Level_VO> selectAll(String student_number) {
+	public static List<Preparation_Level_VO> selectAll(String student_number) {
 		List<Preparation_Level_VO> data = null;
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
@@ -54,5 +52,5 @@ public class Preparation_Level_DAO {
 
 		return data;
 	}
-	
+
 }

@@ -6,7 +6,7 @@
 <mapper namespace="mapper.users">
 
 	<resultMap id="users_Result" type="Users_VO">
-		<result property="number" column="number" />
+		<result property="number" column="user_number" />
 		<result property="power" column="power" />
 	</resultMap>
 

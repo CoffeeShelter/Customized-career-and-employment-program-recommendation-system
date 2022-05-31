@@ -8,8 +8,8 @@
 	<resultMap id="recommendation_result_Result"
 		type="Recommendation_Result_VO">
 		<result property="code" column="code" />
-		<result property="open_year" column="open_year" />
-		<result property="open_term" column="open_term" />
+		<result property="start_day" column="start_day" />
+		<result property="end_day" column="end_day" />
 		<result property="university_number" column="university_number" />
 		<result property="capability_category"
 			column="capability_category" />
@@ -30,12 +30,28 @@
 		<result property="grade" column="grade" />
 		<result property="sex" column="sex" />
 	</resultMap>
+	
+	<resultMap id="reco"
+		type="Reco">
+		<result property="code" column="code" />
+		<result property="category_large" column="category_large" />
+		<result property="category_large_name" column="category_large_name" />
+		<result property="category_middle" column="category_middle" />
+		<result property="category_middle_name" column="category_middle_name" />
+		<result property="program_name" column="program_name" />
+		<result property="day" column="day" />
+		<result property="completation_time" column="completation_time" />
+		<result property="operating_state" column="operating_state" />
+		<result property="operating_state_name" column="operating_state_name" />
+		<result property="recommendation_degree" column="recommendation_degree" />
+	</resultMap>
 
 	<select id="selectAll" resultMap="recommendation_result_Result">
 	<![CDATA[
-		select *
-		from Recommendation_Result
-		where university_number = #{university_number}
+		SELECT *
+		FROM Recommendation_Result
+		WHERE university_number = #{university_number}
+		ORDER BY capability_category DESC, recommendation_degree DESC
 	]]>
 	</select>
 	
@@ -48,15 +64,29 @@
 	]]>
 	</select>
 	
+	<select id="getReco" parameterType="String" resultMap="reco">
+	<![CDATA[
+		SELECT DISTINCT info.code, info.category_large, large.category_name as category_large_name, info.category_middle, middle.category_name as category_middle_name,
+			state.status_name as operating_state_name, info.program_name, concat(inst.start_day,'~' ,inst.end_day) as day, 
+			info.completation_time, inst.operating_state, reco.recommendation_degree
+		FROM (program_large_category large, program_middle_category middle, operating_state state,recommendation_result reco join program_instance inst on reco.code = inst.code) 
+			join program_information info on inst.code = info.code AND info.category_large = large.code AND info.category_middle = middle.code AND inst.operating_state = state.code
+		WHERE reco.university_number=#{university_number}
+		ORDER BY info.category_middle DESC, reco.recommendation_degree DESC;
+	]]>
+	</select>
+	
+	
+	
 	<insert id="insert" parameterType="java.util.List">
 		<![CDATA[
 			INSERT IGNORE INTO Recommendation_Result (
-				code, open_year, open_term, university_number, capability_category, recommendation_degree
+				code, start_day, end_day, university_number, capability_category, recommendation_degree
 			) values 
 		]]>
 		<foreach collection="list" item="item" separator=" , ">
 		<![CDATA[
-			( #{item.code}, #{item.open_year}, #{item.open_term}, #{item.university_number}, #{item.capability_category}, #{item.recommendation_degree} )
+			( #{item.code}, #{item.start_day}, #{item.end_day}, #{item.university_number}, #{item.capability_category}, #{item.recommendation_degree} )
 		]]>
 		</foreach>
 	</insert>

@@ -4,6 +4,7 @@ public class Student_VO {
 	private String university_number;
 	private String name;
 	private String major_number;
+	private String major;
 	private String grade;
 	private String sex;
 
@@ -13,6 +14,14 @@ public class Student_VO {
 
 	public void setUniversity_number(String university_number) {
 		this.university_number = university_number;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
 	}
 
 	public String getName() {

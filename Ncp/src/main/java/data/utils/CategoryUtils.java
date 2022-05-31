@@ -10,6 +10,7 @@ import data.vo.College_Information_VO;
 import data.vo.Department_Information_VO;
 import data.vo.Major_Information_VO;
 import data.vo.NCS_Part_VO;
+import data.vo.Operating_State_VO;
 import data.vo.Preference_Information_VO;
 import data.vo.Program_Large_Category_VO;
 import data.vo.Program_Middle_Category_VO;
@@ -28,16 +29,19 @@ public class CategoryUtils {
 	public static List<College_Information_VO> collegeInformationList;
 	public static List<Department_Information_VO> departmentInformationList;
 	public static List<Major_Information_VO> majorInformationList;
+	public static List<Operating_State_VO> operatingStateList;
 
-	private static Category_DAO categoryDAO = null;
+	// private static Category_DAO categoryDAO = null;
 	private static Student_DAO studentDAO = null;
 	private static Program_Middle_Category_DAO middleCategoryDAO = null;
 	private static Program_Large_Category_DAO largeCategoryDAO = null;
 
 	static {
+		/*
 		if (categoryDAO == null) {
 			categoryDAO = new Category_DAO();
 		}
+		*/
 		if (studentDAO == null) {
 			studentDAO = new Student_DAO();
 		}
@@ -50,25 +54,26 @@ public class CategoryUtils {
 
 		middleCategoryList = middleCategoryDAO.selectAll();
 		largeCategoryList = largeCategoryDAO.selectAll();
-		studentSexList = categoryDAO.sexSelectAll();
+		studentSexList = Category_DAO.sexSelectAll();
 		preferenceList = studentDAO.getPreferenceInformation();
-		ncsList = categoryDAO.ncsSelectAll();
-		operatingTypeList = categoryDAO.operatingTypeSelectAll();
-		operatingMethodList = categoryDAO.operatingMethodSelectAll();
-		collegeInformationList = categoryDAO.collegeInformationSelectAll();
-		departmentInformationList = categoryDAO.departmentInformationSelectAll();
-		majorInformationList = categoryDAO.majorSelectAll();
+		ncsList = Category_DAO.ncsSelectAll();
+		operatingTypeList = Category_DAO.operatingTypeSelectAll();
+		operatingMethodList = Category_DAO.operatingMethodSelectAll();
+		collegeInformationList = Category_DAO.collegeInformationSelectAll();
+		departmentInformationList = Category_DAO.departmentInformationSelectAll();
+		majorInformationList = Category_DAO.majorSelectAll();
+		operatingStateList = Category_DAO.operatingStateSelectAll();
 	}
 
-	public List<Program_Middle_Category_VO> getMiddleCategoryList() {
+	public static List<Program_Middle_Category_VO> getMiddleCategoryList() {
 		return middleCategoryList;
 	}
 
-	public List<Program_Large_Category_VO> getLargeCategoryList() {
+	public static List<Program_Large_Category_VO> getLargeCategoryList() {
 		return largeCategoryList;
 	}
 
-	public String getMiddleCategoryName(String code) {
+	public static String getMiddleCategoryName(String code) {
 		for (Program_Middle_Category_VO obj : middleCategoryList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
@@ -77,7 +82,7 @@ public class CategoryUtils {
 		return null;
 	}
 
-	public String getLargeCategoryName(String code) {
+	public static String getLargeCategoryName(String code) {
 		for (Program_Large_Category_VO obj : largeCategoryList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
@@ -86,7 +91,7 @@ public class CategoryUtils {
 		return null;
 	}
 
-	public String getMajorName(String code) {
+	public static String getMajorName(String code) {
 		for (Major_Information_VO obj : majorInformationList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
@@ -95,7 +100,7 @@ public class CategoryUtils {
 		return null;
 	}
 
-	public String getStudentSexName(String code) {
+	public static String getStudentSexName(String code) {
 		for (Student_Sex_VO obj : studentSexList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
@@ -104,7 +109,7 @@ public class CategoryUtils {
 		return null;
 	}
 
-	public String getNcsName(String code) {
+	public static String getNcsName(String code) {
 		for (NCS_Part_VO obj : ncsList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
@@ -113,7 +118,7 @@ public class CategoryUtils {
 		return null;
 	}
 
-	public String getStudentNCS(String university_number) {
+	public static String getStudentNCS(String university_number) {
 		Preference_Information_VO preLevel = null;
 		preLevel = studentDAO.getPreferenceInformation(university_number);
 
@@ -123,8 +128,17 @@ public class CategoryUtils {
 		return ncsName;
 	}
 
-	public String getOperatingTypeName(String code) {
+	public static String getOperatingTypeName(String code) {
 		for (Program_Operating_Type_VO obj : operatingTypeList) {
+			if (obj.getCode().equals(code)) {
+				return obj.getCategory_name();
+			}
+		}
+		return null;
+	}
+	
+	public static String getOperatingStateName(String code) {
+		for (Operating_State_VO obj : operatingStateList) {
 			if (obj.getCode().equals(code)) {
 				return obj.getCategory_name();
 			}

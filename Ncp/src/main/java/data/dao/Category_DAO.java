@@ -12,6 +12,7 @@ import data.vo.College_Information_VO;
 import data.vo.Department_Information_VO;
 import data.vo.Major_Information_VO;
 import data.vo.NCS_Part_VO;
+import data.vo.Operating_State_VO;
 import data.vo.Program_Operating_Method_VO;
 import data.vo.Program_Operating_Type_VO;
 import data.vo.Student_Sex_VO;
@@ -34,7 +35,7 @@ public class Category_DAO {
 	}
 
 	
-	public List<Major_Information_VO> majorSelectAll() {
+	public static List<Major_Information_VO> majorSelectAll() {
 		List<Major_Information_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -46,7 +47,7 @@ public class Category_DAO {
 	}
 	
 	// 성별
-	public List<Student_Sex_VO> sexSelectAll() {
+	public static List<Student_Sex_VO> sexSelectAll() {
 		List<Student_Sex_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -58,7 +59,7 @@ public class Category_DAO {
 	}
 	
 	// 연계 정보
-	public List<NCS_Part_VO> ncsSelectAll(){
+	public static List<NCS_Part_VO> ncsSelectAll(){
 		List<NCS_Part_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -70,7 +71,7 @@ public class Category_DAO {
 	}
 	
 	// 비교과 프로그램 운영 유형
-	public List<Program_Operating_Type_VO> operatingTypeSelectAll(){
+	public static List<Program_Operating_Type_VO> operatingTypeSelectAll(){
 		List<Program_Operating_Type_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -81,8 +82,20 @@ public class Category_DAO {
 		return datum;
 	}
 	
+	// 비교과 프로그램 운영 상태
+	public static List<Operating_State_VO> operatingStateSelectAll(){
+		List<Operating_State_VO> datum = null;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		datum = session.selectList("mapper.operating_state.selectAll");
+		
+		return datum;
+	}
+	
 	// 비교과 프로그램 운영 방식
-	public List<Program_Operating_Method_VO> operatingMethodSelectAll(){
+	public static List<Program_Operating_Method_VO> operatingMethodSelectAll(){
 		List<Program_Operating_Method_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -94,7 +107,7 @@ public class Category_DAO {
 	}
 	
 	// 단과 대학
-	public List<College_Information_VO> collegeInformationSelectAll(){
+	public static List<College_Information_VO> collegeInformationSelectAll(){
 		List<College_Information_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -106,7 +119,7 @@ public class Category_DAO {
 	}
 	
 	// 학부 정보
-	public List<Department_Information_VO> departmentInformationSelectAll(){
+	public static List<Department_Information_VO> departmentInformationSelectAll(){
 		List<Department_Information_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -118,7 +131,7 @@ public class Category_DAO {
 	}
 	
 	// 학과 정보
-	public List<Major_Information_VO> majorInformationSelectAll(){
+	public static List<Major_Information_VO> majorInformationSelectAll(){
 		List<Major_Information_VO> datum = null;
 
 		sqlMapper = getInstance();

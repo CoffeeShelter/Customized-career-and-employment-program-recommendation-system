@@ -82,13 +82,13 @@ public class Program_DAO {
 		return result;
 	}
 	
-	public static int updateProgram_Instance(Program_Instance_VO programInstance) {
+	public static int updateProgram_Instance(Map<String, Object> parameter) {
 		int result = -1;
 		
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		
-		result = session.update("mapper.program_instance.updateInst", programInstance);
+		result = session.update("mapper.program_instance.updateInst", parameter);
 		if (result > 0) {
 			session.commit();
 		}

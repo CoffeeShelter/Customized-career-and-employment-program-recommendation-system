@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<!-- 상품 전체 항목 검색 -->
-	<select id="selectOne" resultMap="student_Result"	>
+	<select id="selectOne" parameterType="String" resultMap="student_Result"	>
 	<![CDATA[
 		select *
 		from Student

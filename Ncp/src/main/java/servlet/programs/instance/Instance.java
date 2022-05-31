@@ -1,6 +1,8 @@
 package servlet.programs.instance;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import data.dao.Program_DAO;
 import data.vo.Program_Instance_VO;
@@ -16,9 +19,13 @@ import data.vo.Program_Instance_VO;
 @WebServlet("/programs/instance")
 public class Instance extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Gson gson = null;
 
 	public Instance() {
 		super();
+		if(gson == null) {
+			gson = new GsonBuilder().serializeNulls().create();
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -71,6 +78,8 @@ public class Instance extends HttpServlet {
 		programInstance.setOperating_result(operating_result);
 		programInstance.setOperating_department(operating_department);
 		
+		System.out.println(programInstance.toString());
+		
 		int result = Program_DAO.insertProgram_Instance(programInstance);
 		if (result >= 0) {
 			System.out.println(result + "개 추가");
@@ -99,6 +108,8 @@ public class Instance extends HttpServlet {
 		String operating_state = request.getParameter("operating_state");
 		String operating_result = request.getParameter("operating_result");
 		String operating_department = request.getParameter("operating_department");
+		String before_start_day = request.getParameter("before_start_day");
+		String before_end_day = request.getParameter("before_end_day");
 
 		Program_Instance_VO programInstance = new Program_Instance_VO();
 		programInstance.setCode(code);
@@ -122,7 +133,15 @@ public class Instance extends HttpServlet {
 		programInstance.setOperating_result(operating_result);
 		programInstance.setOperating_department(operating_department);
 		
-		int result = Program_DAO.updateProgram_Instance(programInstance);
+		String jsonString = gson.toJson(programInstance);
+		Map<String, Object> parameter = new HashMap<>();
+		parameter = gson.fromJson(jsonString, HashMap.class);
+		parameter.put("before_start_day", before_start_day);
+		parameter.put("before_end_day", before_end_day);
+		
+		System.out.println(parameter);
+		
+		int result = Program_DAO.updateProgram_Instance(parameter);
 		if (result >= 0) {
 			System.out.println(result + "개 수정");
 		}

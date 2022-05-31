@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import data.Reco;
 import data.RecommendationResult_Program;
 import data.vo.Preference_Information_VO;
 import data.vo.Recommendation_Result_VO;
@@ -32,7 +33,7 @@ public class Student_DAO {
 		return sqlMapper;
 	}
 	
-	public List<Preference_Information_VO> getPreferenceInformation() {
+	public static List<Preference_Information_VO> getPreferenceInformation() {
 		List<Preference_Information_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -43,7 +44,7 @@ public class Student_DAO {
 		return datum;
 	}
 
-	public Preference_Information_VO getPreferenceInformation(String university_number) {
+	public static Preference_Information_VO getPreferenceInformation(String university_number) {
 		Preference_Information_VO data = null;
 
 		sqlMapper = getInstance();
@@ -58,7 +59,7 @@ public class Student_DAO {
 		return data;
 	}
 	
-	public int updatePreferenceInformation(Preference_Information_VO preferenceInformation) {
+	public static int updatePreferenceInformation(Preference_Information_VO preferenceInformation) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		
@@ -70,22 +71,29 @@ public class Student_DAO {
 		return result;
 	}
 
-	public Student_VO getStudent(String university_number) {
+	public static Student_VO getStudent(String university_number) {
 		Student_VO data = null;
 
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 
-		Map<String, Object> parameter = new HashMap<>();
-
-		parameter.put("university_number", university_number);
-
-		data = session.selectOne("mapper.student.selectOne", parameter);
+		data = session.selectOne("mapper.student.selectOne", university_number);
 
 		return data;
 	}
 	
-	public List<Recommendation_Result_VO> getRecommendationResult(String university_number) {
+	public static List<Reco> getReco(String university_number) {
+		List<Reco> datum = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		datum = session.selectList("mapper.recommendation_result.getReco", university_number);
+
+		return datum;
+	}
+	
+	public static List<Recommendation_Result_VO> getRecommendationResult(String university_number) {
 		List<Recommendation_Result_VO> datum = null;
 
 		sqlMapper = getInstance();
@@ -100,7 +108,7 @@ public class Student_DAO {
 		return datum;
 	}
 
-	public int insertRecommendedResult(List<Recommendation_Result_VO> results) {
+	public static int insertRecommendedResult(List<Recommendation_Result_VO> results) {
 		int result = -1;
 		
 		sqlMapper = getInstance();
@@ -118,7 +126,7 @@ public class Student_DAO {
 		return result;
 	}
 	
-	public List<RecommendationResult_Program> getRecommendationResult_Program(String program_code) {
+	public static List<RecommendationResult_Program> getRecommendationResult_Program(String program_code) {
 		List<RecommendationResult_Program> datum = null;
 
 		sqlMapper = getInstance();
