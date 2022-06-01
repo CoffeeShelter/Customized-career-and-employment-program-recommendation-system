@@ -11,21 +11,16 @@ import data.utils.CategoryUtils;
 import data.utils.ProgramUtils;
 
 public class Recommendation_Program {
-
-	private Student_DAO studentDAO = null;
-	private CategoryUtils categoryUtils = null;
 	private ProgramUtils programUtils = null;
 	
 	public Recommendation_Program() {
-		studentDAO = new Student_DAO();
-		categoryUtils = new CategoryUtils();
 		programUtils = new ProgramUtils();
 	}
 
 	public List<RecommendationResult_Program> getRecommendation(String code) {
 		List<RecommendationResult_Program> datum = null;
 
-		datum = studentDAO.getRecommendationResult_Program(code);
+		datum = Student_DAO.getRecommendationResult_Program(code);
 		
 		return datum;
 	}
@@ -34,7 +29,7 @@ public class Recommendation_Program {
 		List<Map<String, String>> results = new ArrayList<>();
 		
 		List<RecommendationResult_Program> datum = null;
-		datum = studentDAO.getRecommendationResult_Program(code);
+		datum = Student_DAO.getRecommendationResult_Program(code);
 		
 		for (RecommendationResult_Program data : datum) {
 			Map<String, String> result = new HashMap<>();
@@ -42,11 +37,11 @@ public class Recommendation_Program {
 			String programName = programUtils.getProgramName(code);
 			String name =  data.getName();
 			String major_number = data.getMajor_number();
-			String major = categoryUtils.getMajorName(major_number);
+			String major = CategoryUtils.getMajorName(major_number);
 			String university_number = data.getUniversity_number();
 			String grade = data.getGrade();
-			String sex = categoryUtils.getStudentSexName(data.getSex());
-			String ncp = categoryUtils.getStudentNCS(university_number);
+			String sex = CategoryUtils.getStudentSexName(data.getSex());
+			String ncp = CategoryUtils.getStudentNCS(university_number);
 			String degree = data.getRecommendation_degree();
 			
 			result.put("programName", programName);

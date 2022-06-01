@@ -34,5 +34,12 @@
 		where university_number = #{university_number}
 	]]>
 	</update>
+	
+	<insert id="insertOne" parameterType="data.vo.Preference_Information_VO">
+	<![CDATA[
+		INSERT IGNORE INTO Preference_Information VALUES
+		(#{university_number}, #{NCS_part}, #{start_day}, #{end_day}, #{operating_method})
+	]]>
+	</insert>
 
 </mapper>

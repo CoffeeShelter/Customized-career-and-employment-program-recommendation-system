@@ -55,6 +55,13 @@
 	]]>
 	</select>
 	
+	<delete id="deleteReco" parameterType="String">
+	<![CDATA[
+		DELETE FROM Recommendation_Result
+		WHERE university_number = #{university_number}
+	]]>
+	</delete>
+	
 	<select id="recoList" parameterType="java.util.Map" resultMap="recommendation_result_program_Result">
 	<![CDATA[
 		select *

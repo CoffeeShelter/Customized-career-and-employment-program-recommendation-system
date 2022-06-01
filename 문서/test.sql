@@ -56,3 +56,28 @@ DROP TABLE Program_Instance;
 drop table Program_Participation_History;
 drop table Recommendation_Result;
 select * from Program_Participation_History;
+
+SELECT * FROM Major_Information;
+SELECT * FROM Student;
+SELECT * FROM USERS;
+SELECT * FROM Preparation_Level WHERE university_number = '201910823';
+
+INSERT IGNORE INTO Student VALUES
+('201711245', '이주훈', '30001', '4', '1'),
+('201711246', '홍길동', '33101', '2', '1'),
+('201711247', '이순신', '22203', '4', '2');
+
+INSERT IGNORE INTO Users VALUES
+('201711245', '3'),
+('201711246', '3'),
+('201711247', '3');
+
+INSERT IGNORE INTO Preparation_Level VALUES
+('201711245', '자기이해', '20.1', '보통', '5'),
+('201711245', '진로탐색', '22.1', '보통', '5'),
+('201711245', '진로결정', '22.3', '보통', '5'),
+('201711245', '진로설계', '16.1', '보통', '5'),
+('201711245', '경력개발', '15.1', '보통', '5'),
+('201711245', '실무역량', '17.0', '보통', '5'),
+('201711245', '맞춤취업', '22.2', '보통', '5'),
+('201711245', '구직활동', '14.1', '보통', '5'),

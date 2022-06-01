@@ -29,27 +29,34 @@ public class MyPage extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Preparation_Level_VO> preLevel = null;
-		Cookie[] cookies = request.getCookies();
 		String student_number = null;
-		for(Cookie cookie : cookies ) {
-			if(cookie.getName().equals("number")) {
+		String power = null;
+		List<Preparation_Level_VO> preLevel = null;
+
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("number")) {
 				student_number = cookie.getValue();
 			}
+			if (cookie.getName().equals("power")) {
+				power = cookie.getValue();
+			}
 		}
-		
-		preLevel = Preparation_Level_DAO.selectAll(student_number);
 
-		Rlogic rLogic = new Rlogic();
-		List<List<Reco>> results = rLogic.getReco(student_number);
-		Student_VO student = Student_DAO.getStudent(student_number);
-		student.setMajor(CategoryUtils.getMajorName(student.getMajor_number()));
+		if (power.equals("3")) {
+			Rlogic rLogic = new Rlogic();
+			List<List<Reco>> results = rLogic.getReco(student_number);
+			Student_VO student = Student_DAO.getStudent(student_number);
+			student.setMajor(CategoryUtils.getMajorName(student.getMajor_number()));
 
-		request.setAttribute("student", student);
-		request.setAttribute("results", results);
-		request.setAttribute("preLevels", preLevel); 
-		request.setAttribute("ncsList", CategoryUtils.ncsList); 
-		request.setAttribute("operatingMethodList", CategoryUtils.operatingMethodList); 
+			preLevel = Preparation_Level_DAO.selectAll(student_number);
+
+			request.setAttribute("student", student);
+			request.setAttribute("results", results);
+			request.setAttribute("preLevels", preLevel);
+		}
+		request.setAttribute("ncsList", CategoryUtils.ncsList);
+		request.setAttribute("operatingMethodList", CategoryUtils.operatingMethodList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("MyPage.jsp");
 		dispatcher.forward(request, response);

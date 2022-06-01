@@ -174,7 +174,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<input type="hidden" id="universityNumber" value="201910823" />
+						<input type="hidden" id="universityNumber" value="${student.university_number }" />
 						<div class="btnArea">
 							<input type="submit" id="btnRegister" class="btnRegister"
 								value="등록" onclick="updatePreferenceInformation();" />

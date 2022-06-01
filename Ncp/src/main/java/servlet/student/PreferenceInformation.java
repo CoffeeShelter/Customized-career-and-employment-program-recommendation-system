@@ -19,12 +19,9 @@ import data.vo.Preference_Information_VO;
 @WebServlet("/student/preferenceinformation")
 public class PreferenceInformation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Student_DAO studentDAO = null;
 	private Gson gson = null;
 
 	public PreferenceInformation() {
-		super();
-		this.studentDAO = new Student_DAO();
 		this.gson = new Gson();
 	}
 
@@ -37,7 +34,7 @@ public class PreferenceInformation extends HttpServlet {
 
 		Preference_Information_VO data = null;
 		Map<String, String> mapData = new HashMap<>();
-		data = studentDAO.getPreferenceInformation(university_number);
+		data = Student_DAO.getPreferenceInformation(university_number);
 
 		mapData.put("university_number", data.getUniversity_number());
 		mapData.put("NCS_part", data.getNCS_part());
@@ -52,7 +49,16 @@ public class PreferenceInformation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String university_number = request.getParameter("university_number");
+		String NCS_part = request.getParameter("NCS_part");
+		String start_day = request.getParameter("start_day");
+		String end_day = request.getParameter("end_day");
+		String operating_method = request.getParameter("operating_method");
+		
+		Preference_Information_VO data = new Preference_Information_VO(university_number, NCS_part, start_day, end_day,
+				operating_method);
+		
+		int result = Student_DAO.insertPreferenceInformation(data);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +74,16 @@ public class PreferenceInformation extends HttpServlet {
 
 		Preference_Information_VO data = new Preference_Information_VO(university_number, NCS_part, start_day, end_day,
 				operating_method);
-		int result = studentDAO.updatePreferenceInformation(data);
+
+		Preference_Information_VO temp = Student_DAO.getPreferenceInformation(university_number);
+		
+		int result = -1;
+		if (Student_DAO.getPreferenceInformation(university_number) == null) {
+			doPost(request, response);
+		} else {
+			System.out.println(temp.getUniversity_number());
+			result = Student_DAO.updatePreferenceInformation(data);
+		}
 
 		if (result >= 0) {
 			doGet(request, response);

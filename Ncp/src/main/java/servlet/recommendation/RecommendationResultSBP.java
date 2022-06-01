@@ -26,6 +26,7 @@ public class RecommendationResultSBP extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("utf-8");
 		ProgramUtils programUtils = new ProgramUtils();
 		Recommendation_Program recoProgram = new Recommendation_Program();
 
@@ -44,6 +45,7 @@ public class RecommendationResultSBP extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("utf-8");
 		ProgramUtils programUtils = new ProgramUtils();
 		Recommendation_Program recoProgram = new Recommendation_Program();
 

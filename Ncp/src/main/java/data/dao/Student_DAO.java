@@ -59,6 +59,18 @@ public class Student_DAO {
 		return data;
 	}
 	
+	public static int insertPreferenceInformation(Preference_Information_VO preInfo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		int result = session.insert("mapper.preference_information.insertOne", preInfo);
+		if (result > 0) {
+			session.commit();
+		}
+		System.out.println(result);
+		return result;
+	}
+	
 	public static int updatePreferenceInformation(Preference_Information_VO preferenceInformation) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
@@ -91,6 +103,19 @@ public class Student_DAO {
 		datum = session.selectList("mapper.recommendation_result.getReco", university_number);
 
 		return datum;
+	}
+	
+	public static int deleteReco(String university_number) {
+		int result = -1;
+		
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		result = session.delete("mapper.recommendation_result.deleteReco", university_number);
+		if(result > 0) {
+			session.commit();
+		}
+		return result;
 	}
 	
 	public static List<Recommendation_Result_VO> getRecommendationResult(String university_number) {

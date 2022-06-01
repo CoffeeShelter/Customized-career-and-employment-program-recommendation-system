@@ -43,17 +43,25 @@ public class Rlogic {
 	}
 
 	public List<List<Reco>> getReco(String university_number) {
-		List<Reco> recommendationResults = Student_DAO.getReco(university_number);
+		
 		List<List<Reco>> results = null;
+		
+		results = getReccomendationResult(university_number);
+		List<Reco> recommendationResults = Student_DAO.getReco(university_number);
+		results = convert(recommendationResults, university_number);
+		/*
 		if (recommendationResults != null) {
 			if (recommendationResults.size() == 0) {
+				System.out.println("rlogic 수행");
 				results = getReccomendationResult(university_number);
 			} else {
 				results = convert(recommendationResults, university_number);
 			}
 		} else {
+			System.out.println("rlogic 수행");
 			results = getReccomendationResult(university_number);
 		}
+		*/
 		return results;
 	}
 
@@ -66,7 +74,6 @@ public class Rlogic {
 		List<Program_Instance_VO> program_instance_list = ProgramUtils.getProgram_instance_list();
 
 		if (program_instance_list == null) {
-			System.out.println("null");
 			return null;
 		}
 
@@ -123,7 +130,6 @@ public class Rlogic {
 
 		float score = 0.0f;
 		if (preLevel != null) {
-			// 2. �񱳰� ���α׷� �� ī�װ� ��ġ ���� �˻� ( +30 )
 			for (Preparation_Level_VO obj : preLevel) {
 				String category_code = convertMiddleCategoryCode(obj.getCapability_category());
 
