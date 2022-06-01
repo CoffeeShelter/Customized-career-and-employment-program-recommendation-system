@@ -49,27 +49,29 @@
 					</div>
 
 					<div>
-						<c:if test="${not empty recoList }">
-							<table>
-								<thead>
-									<tr>
-										<th colspan='9'><strong id="targetProgram"><c:out
-													value="${recoList[0]['programName'] }" /></strong><br>프로그램 추천
-											적합도 순위</th>
-									</tr>
-									<tr>
-										<th>순번</th>
-										<th>이름</th>
-										<th>소속학과(코드)</th>
-										<th>소속학과</th>
-										<th>학번</th>
-										<th>학년</th>
-										<th>성별</th>
-										<th>희망직무</th>
-										<th>프로그램 추천 적합도</th>
-									</tr>
-								</thead>
-								<tbody id="sbpTable">
+
+						<table>
+							<thead>
+								<tr>
+									<th colspan='9'><strong id="targetProgram"><c:out
+												value="${programName }" /></strong><br>프로그램 추천
+										적합도 순위</th>
+								</tr>
+								<tr>
+									<th>순번</th>
+									<th>이름</th>
+									<th>소속학과(코드)</th>
+									<th>소속학과</th>
+									<th>학번</th>
+									<th>학년</th>
+									<th>성별</th>
+									<th>희망직무</th>
+									<th>프로그램 추천 적합도</th>
+								</tr>
+							</thead>
+
+							<tbody id="sbpTable">
+								<c:if test="${not empty recoList }">
 									<c:forEach items="${recoList }" var="reco" varStatus="status">
 										<tr>
 											<td><c:out value="${status.count }" /></td>
@@ -83,12 +85,17 @@
 											<td><c:out value="${reco['degree'] }" /> %</td>
 										</tr>
 									</c:forEach>
-								</tbody>
-							</table>
-						</c:if>
-						<c:if test="${empty recoList }">
-							조회 결과가 없습니다.
-						</c:if>
+								</c:if>
+								<c:if test="${empty recoList }">
+									<tr>
+										<td colspan="9">조회 결과가 없습니다.</td>
+									</tr>
+								</c:if>
+
+							</tbody>
+
+						</table>
+
 					</div>
 				</div>
 			</section>

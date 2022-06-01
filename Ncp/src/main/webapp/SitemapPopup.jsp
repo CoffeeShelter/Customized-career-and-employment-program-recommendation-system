@@ -114,8 +114,6 @@
 							<ul>
 								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
 								</a></li>
-								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
-								</a></li>
 							</ul>
 						</div>
 					</c:if>
@@ -139,8 +137,6 @@
 							<h2>관리자</h2>
 							<ul>
 								<li><a href="/ProgramManagement.jsp">비교과 프로그램<br />관리
-								</a></li>
-								<li><a href="/recoList">비교과 프로그램<br />추천 학생 리스트
 								</a></li>
 							</ul>
 						</div>

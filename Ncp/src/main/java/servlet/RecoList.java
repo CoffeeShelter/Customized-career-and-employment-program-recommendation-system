@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.utils.ProgramUtils;
 import rlogic.Recommendation_Program;
 
 @WebServlet("/recoList")
 public class RecoList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Recommendation_Program recoProgram = new Recommendation_Program();
 
 	public RecoList() {
 		super();
@@ -23,20 +25,18 @@ public class RecoList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Recommendation_Program recoProgram = new Recommendation_Program();
-		List<Map<String, String>> datum = recoProgram.getPrettyRecommendation("12001");
-		
+
+		String code = request.getParameter("code");
+		String programName = ProgramUtils.getProgramName(code);
+
+		List<Map<String, String>> datum = recoProgram.getPrettyRecommendation(code);
+
 		request.setAttribute("recoList", datum);
-		
+		request.setAttribute("programName", programName);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("RecoList.jsp");
 		dispatcher.forward(request, response);
-		
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

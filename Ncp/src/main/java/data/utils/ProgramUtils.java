@@ -17,14 +17,14 @@ public class ProgramUtils {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
 			}
-			program_information_list = program_DAO.getProgram_Inforamtion();
+			program_information_list = Program_DAO.getProgram_Inforamtion();
 		}
 
 		if (program_instance_list == null) {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
 			}
-			program_instance_list = program_DAO.getProgram_Instance();
+			program_instance_list = Program_DAO.getProgram_Instance();
 		}
 	}
 
@@ -37,7 +37,7 @@ public class ProgramUtils {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
 			}
-			program_information_list = program_DAO.getProgram_Inforamtion();
+			program_information_list = Program_DAO.getProgram_Inforamtion();
 		}
 		return program_information_list;
 	}
@@ -47,7 +47,7 @@ public class ProgramUtils {
 			if (program_DAO == null) {
 				program_DAO = new Program_DAO();
 			}
-			program_instance_list = program_DAO.getProgram_Instance();
+			program_instance_list = Program_DAO.getProgram_Instance();
 		}
 		return program_instance_list;
 	}
@@ -80,7 +80,7 @@ public class ProgramUtils {
 		return program_instance_list;
 	}
 
-	public String getProgramName(String code) {
+	public static String getProgramName(String code) {
 		for (Program_Information_VO obj : program_information_list) {
 			if (obj.getCode().equals(code)) {
 				return obj.getProgram_name();
@@ -89,7 +89,7 @@ public class ProgramUtils {
 		return null;
 	}
 
-	public String getProgramCode(String programName) {
+	public static String getProgramCode(String programName) {
 		for (Program_Information_VO obj : program_information_list) {
 			if (obj.getProgram_name().equals(programName)) {
 				return obj.getCode();

@@ -101,10 +101,15 @@ function createList(accordion, data) {
 	let inputButtonCreate = document.createElement("a");
 	inputButtonCreate.setAttribute("href", "./programInstanceManagement?code=" + data['code']);
 	inputButtonCreate.innerText = "개설";
+	
+	let inputButtonReco = document.createElement("a");
+	inputButtonReco.setAttribute("href", "./recoList?code=" + data['code']);
+	inputButtonReco.innerText = "추천 학생";
 
 	div.appendChild(table);
 	div.appendChild(inputButtonUpdate);
 	div.appendChild(inputButtonCreate);
+	div.appendChild(inputButtonReco);
 
 	accordion.appendChild(inputCheckbox);
 	accordion.appendChild(label);
