@@ -11,6 +11,7 @@
 		<result property="major_number" column="major_number" />
 		<result property="grade" column="grade" />
 		<result property="sex" column="sex" />
+		<result property="Professor_number" column="Professor_number" />
 	</resultMap>
 
 	<!-- 상품 전체 항목 검색 -->
