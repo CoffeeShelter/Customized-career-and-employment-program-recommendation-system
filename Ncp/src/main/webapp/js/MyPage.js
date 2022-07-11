@@ -44,9 +44,23 @@ btnSetting.addEventListener("click", () => {
 });
 
 function searchPreferenceInformation() {
-	request.open("Get", "./student/preferenceinformation?university_number=" + "201910823", true);
+	var university_number = universityNumberInput.value;
+	request.open("Get", "./student/preferenceinformation?university_number=" + university_number, true);
 	request.onreadystatechange = searchProcess;
 	request.send(null);
+}
+
+function getPreferenceInformation() {
+	var university_number = universityNumberInput.value;
+
+	var parameter = "university_number=" + university_number;
+
+	console.log("./student/preferenceinformation?" + parameter);
+
+	request.open("Get", "./student/preferenceinformation?" + parameter, true);
+	request.onreadystatechange = searchProcess;
+	request.send(null);
+
 }
 
 function updatePreferenceInformation() {
@@ -74,28 +88,34 @@ function searchProcess() {
 		var result = request.responseText;
 		result = JSON.parse(result);
 
-		startDay.value = result.start_day;
-		endDay.value = result.end_day;
+		if (result != null) {
+			if (result.status == "success") {
+				startDay.value = result.start_day;
+				endDay.value = result.end_day;
 
-		for (var i = 0; i < ncsSelect.options.length; i++) {
-			if (ncsSelect.options[i].value == result.NCS_part) {
-				ncsSelect.options[i].selected = true;
+				for (var i = 0; i < ncsSelect.options.length; i++) {
+					if (ncsSelect.options[i].value == result.NCS_part) {
+						ncsSelect.options[i].selected = true;
+					}
+				}
+
+				for (var i = 0; i < operatingMethodSelect.options.length; i++) {
+					if (operatingMethodSelect.options[i].value == result.operating_method) {
+						operatingMethodSelect.options[i].selected = true;
+					}
+				}
 			}
+
+			console.log(result);
+			btnRegister.style.backgroundColor = "#5F86D6";
+			btnRegister.disabled = false;
 		}
 
-		for (var i = 0; i < operatingMethodSelect.options.length; i++) {
-			if (operatingMethodSelect.options[i].value == result.operating_method) {
-				operatingMethodSelect.options[i].selected = true;
-			}
-		}
-
-		console.log(result);
-		btnRegister.style.backgroundColor = "#5F86D6";
-		btnRegister.disabled = false;
 
 	} else {
 		console.log("로딩즁");
-		btnRegister.style.backgroundColor = "#D94D4D";
+		// btnRegister.style.backgroundColor = "#D94D4D";
+		btnRegister.style.backgroundColor = "#5F86D6";
 		btnRegister.disabled = true;
 	}
 }

@@ -48,7 +48,11 @@ public class Rlogic {
 		
 		results = getReccomendationResult(university_number);
 		List<Reco> recommendationResults = Student_DAO.getReco(university_number);
+		System.out.println(recommendationResults.toString());
+		
 		results = convert(recommendationResults, university_number);
+		
+			
 		/*
 		if (recommendationResults != null) {
 			if (recommendationResults.size() == 0) {
@@ -131,8 +135,8 @@ public class Rlogic {
 		float score = 0.0f;
 		if (preLevel != null) {
 			for (Preparation_Level_VO obj : preLevel) {
-				String category_code = convertMiddleCategoryCode(obj.getCapability_category());
-
+				// String category_code = convertMiddleCategoryCode(obj.getCapability_category());
+				String category_code = obj.getCapability_category();
 				if (pInfo.getCategory_middle().equals(category_code)) {
 					score += 30;
 					middleCheck = true;
@@ -141,10 +145,12 @@ public class Rlogic {
 			}
 		}
 		if (middleCheck == false) {
+			System.out.println("middlecheck failed");
 			return -1;
 		}
 
 		if (preferenceInfo == null) {
+			System.out.println("preferenceInfo failed");
 			return -1;
 		}
 
@@ -169,6 +175,7 @@ public class Rlogic {
 		}
 
 		if ((ncsCheck || majorCheck) == false) {
+			System.out.println("(ncsCheck || majorCheck) failed");
 			return -1;
 		}
 
@@ -249,8 +256,14 @@ public class Rlogic {
 		List<Reco> temp1 = new ArrayList<>();
 		List<Reco> temp2 = new ArrayList<>();
 		List<Reco> temp3 = new ArrayList<>();
-
+		
+		if (levels.size()==0) {
+			return results;
+		}
+		
 		for (Reco result : recommendationResults) {
+			// System.out.println(result.getCategory_middle() + "  :  " + levels.get(0).getCapability_category());
+			/*
 			if (levels.get(0).getCapability_category().equals(result.getCategory_middle_name())) {
 				temp1.add(result);
 			} else if (levels.get(1).getCapability_category().equals(result.getCategory_middle_name())) {
@@ -258,12 +271,20 @@ public class Rlogic {
 			} else if (levels.get(2).getCapability_category().equals(result.getCategory_middle_name())) {
 				temp3.add(result);
 			}
+			*/
+			if (levels.get(0).getCapability_category().equals(result.getCategory_middle())) {
+				temp1.add(result);
+			} else if (levels.get(1).getCapability_category().equals(result.getCategory_middle())) {
+				temp2.add(result);
+			} else if (levels.get(2).getCapability_category().equals(result.getCategory_middle())) {
+				temp3.add(result);
+			}
 		}
 
 		results.add(temp1);
 		results.add(temp2);
 		results.add(temp3);
-
+		
 		return results;
 	}
 

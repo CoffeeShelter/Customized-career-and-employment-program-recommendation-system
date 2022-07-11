@@ -62,7 +62,7 @@
 							<li><a href="">핵심역량 진단</a></li>
 							<li><a href="">전공역량 진단</a></li>
 							<li><a href="">학습역량 진단</a></li>
-							<li><a href="">진로개발준비도 검사</a></li>
+							<li><a href="http://61.81.215.8:8080/Project_NCP/Education_Identity_Test_Servlet?student=${cookie.number.value}">진로개발준비도 검사</a></li>
 							<li><a href="">고용가능성 진단</a></li>
 							<li><a href="">워크넷 진단</a></li>
 							<li><a href="">학지사 진단</a></li>
