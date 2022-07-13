@@ -33,6 +33,17 @@ public class Student_DAO {
 		return sqlMapper;
 	}
 	
+	public static List<Student_VO> getStudentForProf(String professor) {
+		List<Student_VO> datum = null;
+
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+
+		datum = session.selectList("mapper.student.searchStudentForProf", professor);
+
+		return datum;
+	}
+	
 	public static List<Preference_Information_VO> getPreferenceInformation() {
 		List<Preference_Information_VO> datum = null;
 

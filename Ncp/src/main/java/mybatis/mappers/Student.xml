@@ -14,12 +14,19 @@
 		<result property="Professor_number" column="Professor_number" />
 	</resultMap>
 
-	<!-- 상품 전체 항목 검색 -->
 	<select id="selectOne" parameterType="String" resultMap="student_Result"	>
 	<![CDATA[
 		select *
 		from Student
 		where university_number = #{university_number}
+	]]>
+	</select>
+	
+	<select id="searchStudentForProf" parameterType="String" resultMap="student_Result"	>
+	<![CDATA[
+		select *
+		from Student
+		where Professor_number = #{professor}
 	]]>
 	</select>
 

@@ -102,7 +102,7 @@
 						<div class="sitemap_list sitemap_list10">
 							<h2>교수</h2>
 							<ul>
-								<li><a href="">학생정보 조회</a></li>
+								<li><a href="http://61.81.215.8:8080/Project_NCP/Professor_Search_Student_Servlet?professer=${cookie.number.value}">학생정보 조회</a></li>
 								<li><a href="">학생 평가</a></li>
 							</ul>
 						</div>
@@ -129,8 +129,8 @@
 						<div class="sitemap_list sitemap_list10">
 							<h2>교수</h2>
 							<ul>
-								<li><a href="">학생정보 조회</a></li>
-								<li><a href="">학생 평가</a></li>
+								<li><a href="/StudentManagement.jsp">학생정보 조회</a></li>
+								<li><a href="http://61.81.215.8:8080/Project_NCP/Professor_Search_Student_Servlet?professer=${cookie.number.value}">학생 평가</a></li>
 							</ul>
 						</div>
 						<div class="sitemap_list sitemap_list11">
